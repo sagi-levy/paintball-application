@@ -14,6 +14,7 @@ import SignUp from "./components/signUp";
 import SignUpBiz from "./components/signUpBiz";
 import DeleteActivityCard from "./components/common/deleteActivityCard";
 function App() {
+  //
   return (
     <div className="App">
       <header>
