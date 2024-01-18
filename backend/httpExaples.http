@@ -1,0 +1,94 @@
+@local=http://localhost:3000
+ @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2OGNiMDlhMjY4NTA4NDFmMDJkM2UiLCJiaXoiOnRydWUsImlhdCI6MTY4MTMwNjU4Mn0.y9IgloANVBLosAQjP_lW-Zg9veNNnL1XgtD8gSsWwUM
+//Content-Type: application/json
+###
+//send new user (sign in) request
+POST {{local}}/users
+Content-Type: application/json
+
+{
+    "name": "sagi4",
+    "password": "Levy111",
+    "email": "sagi4@gmail.com",
+    "biz": true
+  }
+###
+
+
+//sent req for auth (log in)
+POST {{local}}/auth
+Content-Type: application/json
+ 
+{
+    "password": "Levy111",
+    "email": "sagi4@gmail.com"
+}
+
+
+
+
+
+
+###
+
+
+GET {{local}}/users/me
+x-auth-token:{{token}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###
+GET {{local}}/users/me
+x-auth-token:{{token}}
+
+
+
+
+
+###
+// send card req
+POST {{local}}/card/create-activity-card
+x-auth-token:{{token}}
+Content-Type: application/json
+
+{
+    "activityName": "paintball game 1",
+    "bizUserName": "sagi levy",
+    "activityDescription":"first paintball game card (activity card)",
+    "activityAddress": "kfar sava ",
+    "bizUserPhone": "0545454545",
+    "activityImage":"https://media.istockphoto.com/id/1349643226/photo/team-of-friends-paintball-players-playing-together-in-battle.jpg?s=2048x2048&w=is&k=20&c=0_TPof3tWNS4hHegpZtRRRUt7bu9IjepYh6caJqhnkk=" 
+  }
+
+###
+GET {{local}}/cards/my-activity-cards/643ebbd08427d5bf67b98d31
+x-auth-token:{{token}}
+Content-Type: application/json
+
+
+
+
+###
+GET {{local}}/users/me
+x-auth-token:{{token}}
+
+###
+# GET {{local}}/cards/my-activity-cards1
+# x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDRmYzYyNWIyOTI2MWVkYzA1ZjJmNDIiLCJiaXoiOmZhbHNlLCJpYXQiOjE2ODI5NTU3MjF9.CgS4eZWZA_pfBS07HRQSBDn7CJoSIz5X3NwKdfYKYZo
+# Content-Type: application/json
