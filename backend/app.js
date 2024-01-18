@@ -21,5 +21,5 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
 
-const PORT = 3000;
+const PORT = 3002;
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
