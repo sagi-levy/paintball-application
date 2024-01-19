@@ -1,4 +1,5 @@
 import PageHeader from "./common/pageHeader";
+import CreateActivityCard from "./createActivityCard";
 const Home = () => {
   return (
     <>
@@ -85,6 +86,7 @@ const Home = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      <CreateActivityCard />
     </>
   );
 };

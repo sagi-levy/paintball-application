@@ -11,16 +11,12 @@ const SignUp = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
   const navigate = useNavigate();
   const form = useFormik({
-    initialValues: { email: "", name: "", password: "" },
+    initialValues: { name: "", phoneNumber: "" },
     validateOnMount: true,
     validate: FormikUsingJoi({
       name: Joi.string().min(2).max(255).required(),
-      email: Joi.string()
-        .min(6)
-        .max(255)
-        .email({ tlds: { allow: false } })
-        .required(),
-      password: Joi.string().min(6).max(255).required(),
+      phoneNumber: Joi.string().max(10).min(4).required(),
+      
     }),
 
     async onSubmit(values) {
@@ -49,13 +45,7 @@ const SignUp = () => {
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
-        <Input
-          {...form.getFieldProps("email")}
-          type="email"
-          name="email"
-          id="email"
-          error={form.touched.email && form.errors.email}
-        />
+
         <Input
           {...form.getFieldProps("name")}
           type="text"
@@ -64,12 +54,13 @@ const SignUp = () => {
           error={form.touched.name && form.errors.name}
         />
         <Input
-          {...form.getFieldProps("password")}
-          type="password"
-          name="password"
-          id="password"
-          error={form.touched.password && form.errors.password}
+          {...form.getFieldProps("phoneNumber")}
+          type="text"
+          name="phoneNumber"
+          id="phoneNumber"
+          error={form.touched.phoneNumber && form.errors.phoneNumber}
         />
+
         <button type="submit" className="btn btn-primary">
           Sign Up
         </button>

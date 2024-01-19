@@ -11,18 +11,16 @@ const SignIn = () => {
 
   const navigate = useNavigate();
   const form = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { phoneNumber: "", password: "" },
     validate(values) {
       const errors = {};
-      if (values.email === "") {
-        errors.email = "email cant be empty";
-      } else if (!values.email.endsWith(".com") && values.email.length > 4) {
-        errors.email = `"email must end with ".com"`;
-      } else if (values.email.length < 3) {
-        errors.email = "email cant less then 2 chars";
+      if (values.phoneNumber === "") {
+        errors.phoneNumber = "phoneNumber cant be empty";
+      }  else if (values.phoneNumber.length < 3) {
+        errors.phoneNumber = "phoneNumber cant less then 2 chars";
       }
       if (values.password === "") {
-        errors.password = "dani";
+        errors.password = "wrong";
       }
       return errors;
     },
@@ -49,18 +47,13 @@ const SignIn = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
-          {...form.getFieldProps("email")}
-          error={form.errors.email}
-          name="email"
-          type="email"
-          id="email"
+          {...form.getFieldProps("phoneNumber")}
+          error={form.errors.phoneNumber}
+          name="phoneNumber"
+          type="phoneNumber"
+          id="phoneNumber"
         />
-        <Input
-          {...form.getFieldProps("password")}
-          name="password"
-          type="password"
-          id="password"
-        />
+       
         <button type="submit" className="btn btn-primary">
           submit
         </button>

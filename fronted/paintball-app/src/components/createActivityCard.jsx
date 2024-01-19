@@ -52,7 +52,7 @@ const CreateActivityCard = () => {
   return (
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
-      <p>fill the form to create a card</p>
+      <p>fill the form to and it will send to the Admin</p>
       <form onSubmit={form.handleSubmit}>
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
@@ -117,7 +117,7 @@ const CreateActivityCard = () => {
           className="btn btn-primary"
           disabled={Object.keys(form.errors).length}
         >
-          create card
+          leave your activity details
         </button>
       </form>
     </>

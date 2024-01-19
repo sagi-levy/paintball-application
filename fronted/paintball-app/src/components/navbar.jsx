@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="container-fluid">
           <Link to="/">
             {" "}
-            <i className="bi bi-house-door"></i>
+            <i className="bi bi-house-door"> home</i>
           </Link>
 
           <button
@@ -46,11 +46,6 @@ const Navbar = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink to="sign-up-biz" className="nav-link">
-                      sign up admin
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
                     <NavLink to="sign-in" className="nav-link">
                       sign in
                     </NavLink>
@@ -60,19 +55,22 @@ const Navbar = () => {
                       sign up
                     </NavLink>
                   </li>{" "}
+                  <li className="nav-item">
+                    <NavLink to="about" className="nav-link">
+                      gallery
+                    </NavLink>
+                  </li>{" "}
+                  <li className="nav-item">
+                    <NavLink to="calendar" className="nav-link">
+                      calendar
+                    </NavLink>
+                  </li>{" "}
                 </>
               )}
               {user && user.biz && (
                 <li className="nav-item">
                   <NavLink to="cards/my-activity-cards" className="nav-link">
                     My Cards
-                  </NavLink>
-                </li>
-              )}
-              {user && !user.biz && (
-                <li className="nav-item">
-                  <NavLink to="sign-up-biz" className="nav-link">
-                    sign up admin
                   </NavLink>
                 </li>
               )}
