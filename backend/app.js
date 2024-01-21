@@ -21,5 +21,34 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
 
+let tasks = [];
+
+app.get("/api/tasks", (req, res) => {
+  res.json([
+    {
+      activityDate: "2024-01-19",
+      time: "12:0",
+      activityName: "Meeting with client",
+    },
+    {
+      activityDate: "2024-01-20",
+      time: "10:00",
+      activityName: "Team brainstorming",
+    },
+    {
+      activityDate: "2024-01-21",
+      time: "15:00",
+      activityName: "Project presentation",
+    },
+    { activityDate: "2024-01-22", time: "09:00", activityName: "Code review" },
+  ]);
+});
+
+app.post("/api/tasks", (req, res) => {
+  const newTask = req.body;
+  tasks.push(newTask);
+  res.status(201).json(tasks);
+});
+
 const PORT = 3003;
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));

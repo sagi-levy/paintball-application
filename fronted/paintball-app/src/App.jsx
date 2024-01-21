@@ -29,13 +29,13 @@ function App() {
             path="/calendar"
             element={
               <Calendar
-                tasks={[
-                  { date: '2024-01-19', time: '12:0', title: 'Meeting with client' },
-                  { date: '2024-01-20', time: '10:00', title: 'Team brainstorming' },
-                  { date: '2024-01-21', time: '15:00', title: 'Project presentation' },
-                  { date: '2024-01-22', time: '09:00', title: 'Code review' },
-                 
-                ]}
+              // tasks={[
+              //   { date: '2024-01-19', time: '12:0', title: 'Meeting with client' },
+              //   { date: '2024-01-20', time: '10:00', title: 'Team brainstorming' },
+              //   { date: '2024-01-21', time: '15:00', title: 'Project presentation' },
+              //   { date: '2024-01-22', time: '09:00', title: 'Code review' },
+
+              // ]}
               />
             }
           ></Route>

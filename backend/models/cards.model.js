@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const _ = require("lodash");
 const activityCardSchema = new mongoose.Schema({
+  paid: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  inCalendar: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   activityName: {
     type: String,
     required: true,
@@ -54,6 +64,10 @@ const activityCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  activityTime: {
+    type: String,
+    required: true,
+  },
 });
 
 const ActivityCard = mongoose.model(
@@ -76,6 +90,7 @@ const validateCard = (activityCard) => {
       .regex(/^0[2-9]\d{7,8}$/),
     activityImage: Joi.string().allow("").min(11).max(1024),
     activityDate: Joi.date().allow(""),
+    activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
   });
 
   return schema.validate(activityCard);

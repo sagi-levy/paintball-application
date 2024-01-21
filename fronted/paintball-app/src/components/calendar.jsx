@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Calendar = ({ tasks }) => {
+const Calendar = () => {
   const [currentWeek, setCurrentWeek] = useState(new Date());
-
+  const [tasks, setTasks] = useState([]); // should get from server
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch("http://localhost:3003/api/tasks");
 
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
+
+      const data = await response.json();
+
+      setTasks(data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  useEffect(() => {
+    fetchTasks();
+  }, [currentWeek]);
   const getDaysInWeek = (week) => {
     const startOfWeek = new Date(week);
     startOfWeek.setDate(week.getDate() - week.getDay());
@@ -64,13 +81,17 @@ const Calendar = ({ tasks }) => {
                     {tasks
                       .filter(
                         (task) =>
-                          new Date(task.date).toDateString() ===
-                          day.toDateString() /*&& new Date(task.time).getHours() === hour*/  //doesn't work
+                          new Date(task.activityDate).toDateString() ===
+                            day.toDateString() &&
+                          new Date(task.activityDate).getHours() === hour //doesn't work
                       )
-                      .sort((a, b) => new Date(a.time) - new Date(b.time))
+                      .sort(
+                        (a, b) =>
+                          new Date(a.activityDate) - new Date(b.activityDate)
+                      )
                       .map((task, taskIndex) => (
                         <li key={taskIndex} className="list-group-item">
-                          {task.title}
+                          {task.activityName}
                         </li>
                       ))}
                   </ul>
@@ -82,7 +103,8 @@ const Calendar = ({ tasks }) => {
       </table>
     );
   };
-  console.log(tasks,tasks[0].time );
+  console.log(tasks, tasks[0]);
+  console.log(async () => await fetchTasks());
 
   return (
     <div className="container mt-4">

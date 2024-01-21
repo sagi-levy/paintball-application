@@ -18,6 +18,7 @@ const CreateActivityCard = () => {
       bizUserPhone: "",
       bizUserName: "",
       activityImage: "",
+      activityTime: "",
     },
     validate: FormikUsingJoi({
       activityName: Joi.string().min(2).max(255).required(),
@@ -32,6 +33,7 @@ const CreateActivityCard = () => {
         .regex(/^0[2-9]\d{7,8}$/),
       activityImage: Joi.string().allow("").min(11).max(1024),
       activityDate: Joi.date().allow(""),
+      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/)
     }),
     onSubmit: async (values) => {
       try {
@@ -39,8 +41,9 @@ const CreateActivityCard = () => {
         if (activityImage) {
           body.activityImage = activityImage;
         }
+        console.log(body);
         await createActivityCard(body);
-        navigate("/cards/my-activity-cards");
+        navigate("/");
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -79,6 +82,14 @@ const CreateActivityCard = () => {
           name="activityDate"
           type="date"
           id="activityDate"
+          // {...form.getFieldProps("activityDate")}
+        />
+        <Input
+          onChange={form.handleChange}
+          error={form.errors.activityTime}
+          name="activityTime"
+          type="time"
+          id="activityTime"
           // {...form.getFieldProps("activityDate")}
         />
         <Input
