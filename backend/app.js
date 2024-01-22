@@ -26,21 +26,33 @@ let tasks = [];
 app.get("/api/tasks", (req, res) => {
   res.json([
     {
+      isPaid: false,
+      inCalendar: false,
       activityDate: "2024-01-19",
       time: "12:0",
       activityName: "Meeting with client",
     },
     {
+      isPaid: false,
+      inCalendar: false,
       activityDate: "2024-01-20",
       time: "10:00",
       activityName: "Team brainstorming",
     },
     {
+      isPaid: true,
+      inCalendar: true,
       activityDate: "2024-01-21",
-      time: "15:00",
+      time: "2",
       activityName: "Project presentation",
     },
-    { activityDate: "2024-01-22", time: "09:00", activityName: "Code review" },
+    {
+      isPaid: false,
+      inCalendar: false,
+      activityDate: "2024-01-22",
+      time: "09:00",
+      activityName: "Code review",
+    },
   ]);
 });
 

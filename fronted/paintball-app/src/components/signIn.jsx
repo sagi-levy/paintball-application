@@ -16,7 +16,7 @@ const SignIn = () => {
       const errors = {};
       if (values.phoneNumber === "") {
         errors.phoneNumber = "phoneNumber cant be empty";
-      }  else if (values.phoneNumber.length < 3) {
+      } else if (values.phoneNumber.length < 3) {
         errors.phoneNumber = "phoneNumber cant less then 2 chars";
       }
       if (values.password === "") {
@@ -53,7 +53,15 @@ const SignIn = () => {
           type="phoneNumber"
           id="phoneNumber"
         />
-       
+
+        <Input
+          {...form.getFieldProps("password")}
+          error={form.errors.password}
+          name="password"
+          type="password"
+          id="password"
+        />
+
         <button type="submit" className="btn btn-primary">
           submit
         </button>

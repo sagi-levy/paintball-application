@@ -83,7 +83,8 @@ const Calendar = () => {
                         (task) =>
                           new Date(task.activityDate).toDateString() ===
                             day.toDateString() &&
-                          new Date(task.activityDate).getHours() === hour //doesn't work
+                          task.time == hour &&
+                          task.inCalendar === true
                       )
                       .sort(
                         (a, b) =>
@@ -92,6 +93,16 @@ const Calendar = () => {
                       .map((task, taskIndex) => (
                         <li key={taskIndex} className="list-group-item">
                           {task.activityName}
+
+                          <span>
+                            {" "}
+                            paid?
+                            {task.isPaid ? (
+                              <i className="bi bi-check2"></i>
+                            ) : (
+                              <i className="bi bi-calendar2-x-fill"></i>
+                            )}
+                          </span>
                         </li>
                       ))}
                   </ul>
@@ -103,9 +114,9 @@ const Calendar = () => {
       </table>
     );
   };
-  console.log(tasks, tasks[0]);
-  console.log(async () => await fetchTasks());
-
+  // console.log(tasks, tasks[0]);
+  // console.log(new Date(tasks[0].activityDate).getHours());
+  // console.log((tasks[0].time));
   return (
     <div className="container mt-4">
       <h2>Calendar</h2>

@@ -42,6 +42,11 @@ const Navbar = () => {
                       Sign Out
                     </NavLink>
                   </li>{" "}
+                  <li className="nav-item">
+                    <NavLink to="calendar" className="nav-link">
+                      calendar
+                    </NavLink>
+                  </li>{" "}
                 </>
               ) : (
                 <>

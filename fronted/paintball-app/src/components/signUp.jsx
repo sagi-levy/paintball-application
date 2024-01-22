@@ -11,18 +11,18 @@ const SignUp = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
   const navigate = useNavigate();
   const form = useFormik({
-    initialValues: { name: "", phoneNumber: "" },
+    initialValues: { name: "", phoneNumber: "", password: "" },
     validateOnMount: true,
     validate: FormikUsingJoi({
       name: Joi.string().min(2).max(255).required(),
       phoneNumber: Joi.string().max(10).min(4).required(),
-      
+      password: Joi.string(),
     }),
 
     async onSubmit(values) {
       try {
         await createUser({ ...values, biz: false });
-        navigate("/sign-in");
+       navigate("/sign-in");
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -59,6 +59,13 @@ const SignUp = () => {
           name="phoneNumber"
           id="phoneNumber"
           error={form.touched.phoneNumber && form.errors.phoneNumber}
+        />
+        <Input
+          {...form.getFieldProps("password")}
+          type="password"
+          name="password"
+          id="password"
+          error={form.touched.password && form.errors.password}
         />
 
         <button type="submit" className="btn btn-primary">

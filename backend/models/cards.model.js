@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const _ = require("lodash");
 const activityCardSchema = new mongoose.Schema({
-  paid: {
+  isPaid: {
     type: Boolean,
     required: true,
     default: false,
@@ -36,7 +36,7 @@ const activityCardSchema = new mongoose.Schema({
     minLength: 2,
     maxLength: 400,
   },
-  bizUserPhone: {
+  phoneNumber: {
     type: String,
     required: true,
     minLength: 9,
@@ -82,7 +82,7 @@ const validateCard = (activityCard) => {
     bizUserName: Joi.string().min(2).max(255).required(),
     activityDescription: Joi.string().min(2).max(1024).required(),
     activityAddress: Joi.string().min(2).max(400).required(),
-    bizUserPhone: Joi.string()
+    phoneNumber: Joi.string()
       .allow("")
       .min(9)
       .max(10)
