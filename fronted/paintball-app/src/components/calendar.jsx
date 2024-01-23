@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Calendar = () => {
+  console.dir(document)
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [tasks, setTasks] = useState([]); // should get from server
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -83,7 +84,7 @@ const Calendar = () => {
                         (task) =>
                           new Date(task.activityDate).toDateString() ===
                             day.toDateString() &&
-                          task.time == hour &&
+                          task.activityTime == hour &&
                           task.inCalendar === true
                       )
                       .sort(

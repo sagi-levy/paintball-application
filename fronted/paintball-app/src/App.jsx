@@ -16,7 +16,7 @@ import DeleteActivityCard from "./components/common/deleteActivityCard";
 import Calendar from "./components/calendar";
 import { date } from "joi";
 function App() {
-  //
+  
   return (
     <div className="App">
       <header>

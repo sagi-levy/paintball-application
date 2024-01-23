@@ -20,45 +20,61 @@ app.use(morgan("dev"), express.json());
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
+const {
+  ActivityCard,
+  generateBuisnessNumber,
+} = require("./models/cards.model");
+
+const authMW = require("./middlewares/auth");
+const jwt = require("jsonwebtoken");
+const { JWTSecretToken } = require("./configs/config");
+const { User, validateUser } = require("./models/users");
 
 let tasks = [];
 
-app.get("/api/tasks", (req, res) => {
-  res.json([
-    {
-      isPaid: false,
-      inCalendar: false,
-      activityDate: "2024-01-19",
-      time: "12:0",
-      activityName: "Meeting with client",
-    },
-    {
-      isPaid: false,
-      inCalendar: false,
-      activityDate: "2024-01-20",
-      time: "10:00",
-      activityName: "Team brainstorming",
-    },
-    {
-      isPaid: true,
-      inCalendar: true,
-      activityDate: "2024-01-21",
-      time: "2",
-      activityName: "Project presentation",
-    },
-    {
-      isPaid: false,
-      inCalendar: false,
-      activityDate: "2024-01-22",
-      time: "09:00",
-      activityName: "Code review",
-    },
-  ]);
-});
+console.log(tasks);
 
-app.post("/api/tasks", (req, res) => {
-  const newTask = req.body;
+app.get("/api/tasks", async (req, res) => {
+  //should add authMw as middleware
+  let tasks = await ActivityCard.find({});
+  const token = req.header("x-auth-token");
+  console.log(token);
+  if (!token) {
+    res.status(200).json(tasks);
+    console.log("dsadsa");
+
+    return;
+  }
+  try {
+    const payload = jwt.verify(token, JWTSecretToken);
+    req.user = payload;
+    const user = await User.findById(req.user._id, { password: 0 });
+    res.send("{ a: user, b: tasks }");
+  } catch {
+    res.status(400).send("invalid token");
+  }
+});
+app.post("/api/tasks", async (req, res) => {
+  // const { error } = validateCard(req.body);
+  // if (error) {
+  //   res.status(400).send(error.details[0].message);
+  //   return;
+  // }
+
+  const activityCard = await new ActivityCard({
+    ...req.body,
+    activityImage:
+      req.body.activityImage ||
+      "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
+    activityNumber: await generateBuisnessNumber(),
+    user_id: req.body.phoneNumber,
+    isPaid: false,
+    inCalendar: false,
+  }).save();
+
+  const newTask = activityCard;
   tasks.push(newTask);
+  console.log(`new tack is ${newTask}`);
   res.status(201).json(tasks);
 });
 

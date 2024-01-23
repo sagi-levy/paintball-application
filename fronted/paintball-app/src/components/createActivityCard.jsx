@@ -15,7 +15,7 @@ const CreateActivityCard = () => {
       activityDescription: "",
       activityAddress: "",
       activityDate: "",
-      bizUserPhone: "",
+      phoneNumber: "",
       bizUserName: "",
       activityImage: "",
       activityTime: "",
@@ -25,7 +25,7 @@ const CreateActivityCard = () => {
       bizUserName: Joi.string().min(2).max(255).required(),
       activityDescription: Joi.string().min(2).max(1024).required(),
       activityAddress: Joi.string().min(2).max(400).required(),
-      bizUserPhone: Joi.string()
+      phoneNumber: Joi.string()
         .allow("")
         .min(9)
         .max(10)
@@ -33,7 +33,7 @@ const CreateActivityCard = () => {
         .regex(/^0[2-9]\d{7,8}$/),
       activityImage: Joi.string().allow("").min(11).max(1024),
       activityDate: Joi.date().allow(""),
-      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/)
+      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
     }),
     onSubmit: async (values) => {
       try {
@@ -117,10 +117,10 @@ const CreateActivityCard = () => {
         />
         <Input
           onChange={form.handleChange}
-          error={form.errors.bizUserPhone}
-          name="bizUserPhone"
+          error={form.errors.phoneNumber}
+          name="phoneNumber"
           type="text"
-          id="bizUserPhone"
+          id="phoneNumber"
         />
 
         <button
