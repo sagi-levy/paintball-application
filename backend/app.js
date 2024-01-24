@@ -35,25 +35,27 @@ let tasks = [];
 console.log(tasks);
 
 app.get("/api/tasks", async (req, res) => {
-  //should add authMw as middleware
-  let tasks = await ActivityCard.find({});
+  tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
+  // console.log(req.header("x-auth-token"));
   console.log(token);
   if (!token) {
     res.status(200).json(tasks);
-    console.log("dsadsa");
-
     return;
   }
   try {
     const payload = jwt.verify(token, JWTSecretToken);
     req.user = payload;
-    const user = await User.findById(req.user._id, { password: 0 });
-    res.send("{ a: user, b: tasks }");
+    console.log("payload", payload);
+    console.log("user id is:", req.user._id);
+    const user = await User.findOne({ user_id: req.user._id }, { password: 0 });
+    console.log(user);
+    res.send({ user: user, tasks: tasks });
   } catch {
     res.status(400).send("invalid token");
   }
 });
+
 app.post("/api/tasks", async (req, res) => {
   // const { error } = validateCard(req.body);
   // if (error) {
