@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+const TOKEN_KEY = "token";
 
 const Calendar = () => {
   console.dir(document)
@@ -8,7 +9,13 @@ const Calendar = () => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://localhost:3003/api/tasks");
+      const token = localStorage.getItem(TOKEN_KEY);
+      const response = await fetch("http://localhost:3003/api/tasks", {
+        method: "GET",
+        headers: {
+          Authorization: token
+        }
+      })
 
       if (!response.ok) {
         throw new Error("Failed to fetch tasks");
