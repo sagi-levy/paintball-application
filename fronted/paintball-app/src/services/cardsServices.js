@@ -3,7 +3,7 @@ export function createActivityCard(card) {
   return httpRequestDetails.post("/api/tasks", card);
 }
 export function getAll() {
-  return httpRequestDetails.get("/cards/my-activity-cards");
+  return httpRequestDetails.get("/api/tasks");
 }
 export function deleteActivityCard(id) {
   return httpRequestDetails.delete(`/cards/delete-activity-cards/${id}`);

@@ -5,10 +5,9 @@ const { ActivityCard } = require("../models/cards.model");
 module.exports = async (req, res, next) => {
   let tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
-  console.log(token);
   if (!token) {
     res.status(200).json(tasks);
-    console.log("dsadsa");
+    console.log("you are not a user, you can see tasks but not edit");
 
     return;
   }

@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
   }
   user = await new User({
     ...req.body,
+    _id: req.body.phoneNumber, //  if I delete it- _id default is objectID  need to ask what is better
     password: await bcrypt.hash(req.body.password, 12),
   }).save();
   res.send({ name: user.name, phoneNumber: user._id });

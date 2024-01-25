@@ -16,7 +16,6 @@ import DeleteActivityCard from "./components/common/deleteActivityCard";
 import Calendar from "./components/calendar";
 import { date } from "joi";
 function App() {
-  
   return (
     <div className="App">
       <header>
@@ -32,7 +31,7 @@ function App() {
             element={<CreateActivityCard />}
           ></Route>
           <Route
-            path="cards/my-activity-cards"
+            path="cards/my-activity-cards/:id"
             element={
               <ProtectedRoute onlyBiz>
                 <MyActivityCards />
@@ -40,9 +39,9 @@ function App() {
             }
           ></Route>
           <Route
-            path="cards/edit-activity-cards/:id"
+            path="cards/edit-activity-cards" //should add query param :id  ?
             element={
-              <ProtectedRoute onlyBiz>
+              <ProtectedRoute>
                 <EditActivityCard />
               </ProtectedRoute>
             }
