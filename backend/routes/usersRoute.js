@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  let user = await User.findOne({ email: req.body.email });
+  let user = await User.findOne({ phoneNumber: req.body.phoneNumber });
   if (user) {
     console.log("user is already registed");
     res.status(400).send("user is already registed");
@@ -26,6 +26,6 @@ router.post("/", async (req, res) => {
     ...req.body,
     password: await bcrypt.hash(req.body.password, 12),
   }).save();
-  res.send({ name: user.name, _id: user._id });
+  res.send({ name: user.name, phoneNumber: user._id });
 });
 module.exports = router;

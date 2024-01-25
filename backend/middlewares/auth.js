@@ -1,17 +1,16 @@
 const jwt = require("jsonwebtoken");
 const { JWTSecretToken } = require("../configs/config");
-
-module.exports = (req, res, next) => {
+const { ActivityCard } = require("../models/cards.model");
+//// should fix and then bring as middleware
+module.exports = async (req, res, next) => {
+  let tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
+  console.log(token);
   if (!token) {
-    res.status(401).send("you need to enter token");
+    res.status(200).json(tasks);
+    console.log("dsadsa");
+
     return;
   }
-  try {
-    const payload = jwt.verify(token, JWTSecretToken);
-    req.user = payload;
-    next();
-  } catch {
-    res.status(400).send("invalid token");
-  }
+  next();
 };

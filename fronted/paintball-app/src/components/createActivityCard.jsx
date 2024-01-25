@@ -15,16 +15,17 @@ const CreateActivityCard = () => {
       activityDescription: "",
       activityAddress: "",
       activityDate: "",
-      bizUserPhone: "",
+      phoneNumber: "",
       bizUserName: "",
       activityImage: "",
+      activityTime: "",
     },
     validate: FormikUsingJoi({
       activityName: Joi.string().min(2).max(255).required(),
       bizUserName: Joi.string().min(2).max(255).required(),
       activityDescription: Joi.string().min(2).max(1024).required(),
       activityAddress: Joi.string().min(2).max(400).required(),
-      bizUserPhone: Joi.string()
+      phoneNumber: Joi.string()
         .allow("")
         .min(9)
         .max(10)
@@ -32,6 +33,7 @@ const CreateActivityCard = () => {
         .regex(/^0[2-9]\d{7,8}$/),
       activityImage: Joi.string().allow("").min(11).max(1024),
       activityDate: Joi.date().allow(""),
+      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
     }),
     onSubmit: async (values) => {
       try {
@@ -39,8 +41,9 @@ const CreateActivityCard = () => {
         if (activityImage) {
           body.activityImage = activityImage;
         }
+        console.log(body);
         await createActivityCard(body);
-        navigate("/cards/my-activity-cards");
+        navigate("/");
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -52,7 +55,7 @@ const CreateActivityCard = () => {
   return (
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
-      <p>fill the form to create a card</p>
+      <p>fill the form to and it will send to the Admin</p>
       <form onSubmit={form.handleSubmit}>
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
@@ -83,6 +86,14 @@ const CreateActivityCard = () => {
         />
         <Input
           onChange={form.handleChange}
+          error={form.errors.activityTime}
+          name="activityTime"
+          type="time"
+          id="activityTime"
+          // {...form.getFieldProps("activityDate")}
+        />
+        <Input
+          onChange={form.handleChange}
           error={form.errors.activityImage}
           name="activityImage"
           type="text"
@@ -106,10 +117,10 @@ const CreateActivityCard = () => {
         />
         <Input
           onChange={form.handleChange}
-          error={form.errors.bizUserPhone}
-          name="bizUserPhone"
+          error={form.errors.phoneNumber}
+          name="phoneNumber"
           type="text"
-          id="bizUserPhone"
+          id="phoneNumber"
         />
 
         <button
@@ -117,7 +128,7 @@ const CreateActivityCard = () => {
           className="btn btn-primary"
           disabled={Object.keys(form.errors).length}
         >
-          create card
+          leave your activity details
         </button>
       </form>
     </>

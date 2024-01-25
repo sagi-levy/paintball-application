@@ -13,8 +13,10 @@ import SignIn from "./components/signIn";
 import SignUp from "./components/signUp";
 import SignUpBiz from "./components/signUpBiz";
 import DeleteActivityCard from "./components/common/deleteActivityCard";
+import Calendar from "./components/calendar";
+import { date } from "joi";
 function App() {
-  //
+  
   return (
     <div className="App">
       <header>
@@ -23,6 +25,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/calendar" element={<Calendar />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route
             path="/cards/create-activity-card"
