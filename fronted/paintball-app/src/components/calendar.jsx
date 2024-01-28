@@ -123,14 +123,14 @@ const Calendar = () => {
                               <i className="bi bi-calendar2-x-fill"></i>
                             )}
                           </span>
-                          <ProtectedRoute>
-                            <Link
+                          <ProtectedRoute >
+                            <Link 
                               style={{
                                 color: "blue",
                                 fontFamily: "cursive",
                                 justifyContent: "center",
                               }}
-                              to={"/cards/edit-activity-cards"}
+                              to={`/cards/edit-activity-cards/${user._id}`}
                             >
                               {" "}
                               edit this activity

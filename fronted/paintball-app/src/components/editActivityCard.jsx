@@ -8,9 +8,10 @@ import { updateActivityCard } from "../services/cardsServices";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import useActivityCard from "../hooks/useActivityCard";
-const EditActivityCard = () => {
+const EditActivityCard = (id) => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  console.log(useParams())
+  //const { id } = useParams();
   console.log(id);
   const ActivityCard = useActivityCard(id);
   console.log(ActivityCard);
