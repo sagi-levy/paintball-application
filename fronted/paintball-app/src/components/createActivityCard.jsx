@@ -6,9 +6,27 @@ import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { createActivityCard } from "../services/cardsServices";
 import { useNavigate } from "react-router-dom";
+import PaymentForm from "./common/payment";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  CardElement,
+  Elements,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
+import { useAppContext } from "../context/card.context";
+const stripePromise = loadStripe(
+  "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
+);
 const CreateActivityCard = () => {
+  const  {setProp}  = useAppContext();
+
+  
+
   const navigate = useNavigate();
   const [errorApiRequest, setErrorApiRequest] = useState("");
+ 
   const form = useFormik({
     initialValues: {
       activityName: "",
@@ -20,6 +38,7 @@ const CreateActivityCard = () => {
       activityImage: "",
       activityTime: "",
     },
+
     validate: FormikUsingJoi({
       activityName: Joi.string().min(2).max(255).required(),
       bizUserName: Joi.string().min(2).max(255).required(),
@@ -42,8 +61,11 @@ const CreateActivityCard = () => {
           body.activityImage = activityImage;
         }
         console.log(body);
-        await createActivityCard(body);
-        navigate("/");
+        const x = await createActivityCard(body);
+        console.log("new task is:", x.data.newTask);
+        setProp(x.data.newTask);
+
+        navigate(`/cards/payment/${values.phoneNumber}`);
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);

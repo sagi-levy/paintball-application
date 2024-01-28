@@ -14,8 +14,22 @@ export function updateActivityCard(id, activityCard) {
     activityCard
   );
 }
+export function updateActivityCardToPaidTrue(id, activityCard) {
+  return httpRequestDetails.put(`/cards/payment/${id}`, activityCard,{
+    method: 'PUT',
+  
+    body: JSON.stringify(activityCard),
+  });
+}
 export function getSpecificActivityCard(id) {
-  return httpRequestDetails.get(`/cards/my-activity-cards/${id}`);
+  return httpRequestDetails.get(`/cards/my-activity-cards/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": localStorage.token,
+      // Add other headers as needed
+    },
+  });
 }
 const acitivityCardServices = {
   createActivityCard,
