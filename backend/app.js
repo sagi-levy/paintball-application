@@ -37,7 +37,6 @@ console.log(tasks);
 app.get("/api/tasks", async (req, res) => {
   tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
-  // console.log(req.header("x-auth-token"));
   console.log(token);
   if (!token) {
     res.status(200).json(tasks);
@@ -77,7 +76,7 @@ app.post("/api/tasks", async (req, res) => {
   const newTask = activityCard;
   tasks.push(newTask);
   console.log(`new tack is ${newTask}`);
-  res.status(201).json(tasks);
+  res.status(201).json({ tasks: tasks, newTask: newTask });
 });
 
 const PORT = 3003;

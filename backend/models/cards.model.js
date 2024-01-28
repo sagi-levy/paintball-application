@@ -77,7 +77,9 @@ const ActivityCard = mongoose.model(
 );
 
 const validateCard = (activityCard) => {
-  const schema = Joi.object({
+  const schema = Joi.object({user_id:Joi.string(),
+    isPaid: Joi.boolean(),
+    inCalendar: Joi.boolean(),
     activityName: Joi.string().min(2).max(255).required(),
     bizUserName: Joi.string().min(2).max(255).required(),
     activityDescription: Joi.string().min(2).max(1024).required(),

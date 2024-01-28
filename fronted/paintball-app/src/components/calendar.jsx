@@ -4,11 +4,12 @@ import { useAuth } from "../context/auth.context";
 import { getUser } from "../services/userApiServices";
 import ProtectedRoute from "../components/protectedRoute";
 import EditActivityCard from "../components/editActivityCard";
+import DeleteActivityCard from "./common/deleteActivityCard";
 import { Link } from "react-router-dom";
 
 const Calendar = () => {
   const { logIn, user } = useAuth();
-  console.log(user);
+ // console.log(user._id);
   console.dir(localStorage.token);
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [tasks, setTasks] = useState([]); // should get from server
@@ -54,7 +55,8 @@ const Calendar = () => {
     }
     return days;
   };
-
+//console.log(tasks.filter((task)=>task.phoneNumber==user._id))
+//console.log(user._id)
   const renderCalendar = () => {
     const weekDays = getDaysInWeek(currentWeek);
 
@@ -123,19 +125,36 @@ const Calendar = () => {
                               <i className="bi bi-calendar2-x-fill"></i>
                             )}
                           </span>
-                          <ProtectedRoute >
-                            <Link 
-                              style={{
-                                color: "blue",
-                                fontFamily: "cursive",
-                                justifyContent: "center",
-                              }}
-                              to={`/cards/edit-activity-cards/${user._id}`}
-                            >
-                              {" "}
-                              edit this activity
-                            </Link>
-                          </ProtectedRoute>
+                          {user ? (
+                            <>
+                              <ProtectedRoute id={user._id} myTasks={tasks.filter((task)=>task.phoneNumber==user._id)}>
+                                <Link
+                                  style={{
+                                    color: "blue",
+                                    fontFamily: "cursive",
+                                    justifyContent: "center",
+                                  }}
+                                  to={`/cards/edit-activity-cards/${user._id}`}
+                                >
+                                  {" "}
+                                  edit this activity
+                                </Link>
+                              </ProtectedRoute>
+                              <ProtectedRoute id={user._id} myTasks={tasks.filter((task)=>task.phoneNumber==user._id)}>
+                                <Link
+                                  style={{
+                                    color: "red",
+                                    fontFamily: "cursive",
+                                    justifyContent: "center",
+                                  }}
+                                  to={`/cards/delete-activity-cards/${user._id}`}
+                                >
+                                  {" "}
+                                  delete this activity
+                                </Link>
+                              </ProtectedRoute>
+                            </>
+                          ) : null}
                         </li>
                       ))}
                   </ul>
