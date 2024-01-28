@@ -20,7 +20,7 @@ router.get("/my-activity-cards", authCheckMiddleWare, async (req, res) => {
 
 router.get("/my-activity-cards/:id", authCheckMiddleWare, async (req, res) => {
   const activityCard = await ActivityCard.findById({
-    _id: req.params.id,
+    phoneNumber: req.params.id,
     user_id: req.user._id,
   });
   res.send(activityCard);
