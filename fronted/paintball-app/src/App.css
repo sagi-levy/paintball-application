@@ -24,13 +24,13 @@ p {
 }
 #carouselExampleIndicators {
   margin: auto;
-  width: 50%;
+ 
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
 form {
   margin: auto;
-  width: 50%;
+  width: 75%;
   -webkit-box-shadow: 5px 15px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
