@@ -15,9 +15,8 @@ export function updateActivityCard(id, activityCard) {
   );
 }
 export function updateActivityCardToPaidTrue(id, activityCard) {
-  return httpRequestDetails.put(`/cards/payment/${id}`, activityCard,{
-    method: 'PUT',
-  
+  return httpRequestDetails.put(`/cards/payment/${id}`, activityCard, {
+    method: "PUT",
     body: JSON.stringify(activityCard),
   });
 }

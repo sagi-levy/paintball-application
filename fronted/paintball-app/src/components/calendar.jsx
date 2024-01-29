@@ -8,8 +8,9 @@ import DeleteActivityCard from "./common/deleteActivityCard";
 import { Link } from "react-router-dom";
 
 const Calendar = () => {
+
   const { logIn, user } = useAuth();
- // console.log(user._id);
+  // console.log(user._id);
   console.dir(localStorage.token);
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [tasks, setTasks] = useState([]); // should get from server
@@ -55,8 +56,9 @@ const Calendar = () => {
     }
     return days;
   };
-//console.log(tasks.filter((task)=>task.phoneNumber==user._id))
-//console.log(user._id)
+  
+  //console.log(tasks.filter((task)=>task.phoneNumber==user._id))
+  //console.log(user._id);
   const renderCalendar = () => {
     const weekDays = getDaysInWeek(currentWeek);
 
@@ -105,7 +107,7 @@ const Calendar = () => {
                         (task) =>
                           new Date(task.activityDate).toDateString() ===
                             day.toDateString() &&
-                          task.activityTime == hour &&
+                            new Date(`2000-01-01T${task.activityTime}`).getHours() === hour &&
                           task.inCalendar === true
                       )
                       .sort(
@@ -127,7 +129,12 @@ const Calendar = () => {
                           </span>
                           {user ? (
                             <>
-                              <ProtectedRoute id={user._id} myTasks={tasks.filter((task)=>task.phoneNumber==user._id)}>
+                              <ProtectedRoute
+                                id={user._id}
+                                myTasks={tasks.filter(
+                                  (task) => task.phoneNumber == user._id
+                                )}
+                              >
                                 <Link
                                   style={{
                                     color: "blue",
@@ -140,7 +147,12 @@ const Calendar = () => {
                                   edit this activity
                                 </Link>
                               </ProtectedRoute>
-                              <ProtectedRoute id={user._id} myTasks={tasks.filter((task)=>task.phoneNumber==user._id)}>
+                              <ProtectedRoute
+                                id={user._id}
+                                myTasks={tasks.filter(
+                                  (task) => task.phoneNumber == user._id
+                                )}
+                              >
                                 <Link
                                   style={{
                                     color: "red",

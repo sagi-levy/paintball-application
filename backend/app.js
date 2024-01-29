@@ -13,6 +13,7 @@ const morgan = require("morgan");
 const usersRouter = require("./routes/usersRoute");
 const authRouter = require("./routes/auth");
 const cardAuth = require("./routes/card.auth");
+const emailsRouter = require("./routes/emails");
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.use(morgan("dev"), express.json());
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
+app.use("/send-email", emailsRouter);
 const {
   ActivityCard,
   generateBuisnessNumber,

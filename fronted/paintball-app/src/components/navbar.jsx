@@ -38,6 +38,11 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li className="nav-item">
+                    <NavLink to="send-email" className="nav-link">
+                      contact us
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
                     <NavLink to="sign-out" className="nav-link">
                       Sign Out
                     </NavLink>
@@ -65,6 +70,11 @@ const Navbar = () => {
                       gallery
                     </NavLink>
                   </li>{" "}
+                  <li className="nav-item">
+                    <NavLink to="send-email" className="nav-link">
+                      contact us
+                    </NavLink>
+                  </li>
                   <li className="nav-item">
                     <NavLink to="calendar" className="nav-link">
                       calendar

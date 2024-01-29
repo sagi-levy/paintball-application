@@ -15,6 +15,7 @@ import SignUpBiz from "./components/signUpBiz";
 import DeleteActivityCard from "./components/common/deleteActivityCard";
 import PaymentForm from "./components/common/payment";
 import Calendar from "./components/calendar";
+import EmailForm from "./components/formToGmail";
 import { date } from "joi";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -63,7 +64,7 @@ function App() {
             <Route
               path="cards/edit-activity-cards/:id" //should add query param :id  ?
               element={
-                <ProtectedRoute>
+                <ProtectedRoute id>
                   <EditActivityCard />
                 </ProtectedRoute>
               }
@@ -77,6 +78,7 @@ function App() {
               }
             ></Route>
             <Route path="sign-in" element={<SignIn />}></Route>
+            <Route path="send-email" element={<EmailForm />}></Route>
             <Route path="sign-up" element={<SignUp />}></Route>
             <Route path="sign-out" element={<SignOut />}></Route>
             <Route path="sign-up-biz" element={<SignUpBiz />}></Route>{" "}
