@@ -30,11 +30,15 @@ export function getUser() {
     return null;
   }
 }
+export const changeUserPassword = function (id, password) {
+  return httpRequestDetails.put(`/users/change-password/${id}`, password);
+};
 
 const userServices = {
   createUser,
   logINUser,
   logOut,
   getJwt,
+  changeUserPassword,
 };
 export default userServices;

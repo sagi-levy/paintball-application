@@ -5,10 +5,10 @@ const ProtectedRoute = ({ id,tasks, children, myTasks }) => {
   // need to fix this code that user can edit/delete only his activities
   // now i get props as undefined
   const { user } = useAuth();
-  console.log(id);
-  console.log(user._id);
-  console.log(myTasks);
-  console.log("tasks:", tasks);
+  // console.log(id);
+  // console.log(user._id);
+  // console.log(myTasks);
+  // console.log("tasks:", tasks);
   if (
     !user
     //  ||

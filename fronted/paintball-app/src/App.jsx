@@ -16,6 +16,8 @@ import DeleteActivityCard from "./components/common/deleteActivityCard";
 import PaymentForm from "./components/common/payment";
 import Calendar from "./components/calendar";
 import EmailForm from "./components/formToGmail";
+import ChangePassword from "./components/changePassword";
+
 import { date } from "joi";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -79,6 +81,7 @@ function App() {
             ></Route>
             <Route path="sign-in" element={<SignIn />}></Route>
             <Route path="send-email" element={<EmailForm />}></Route>
+            <Route path="users/change-password/:id" element={ <ProtectedRoute id><ChangePassword /></ProtectedRoute>}></Route>
             <Route path="sign-up" element={<SignUp />}></Route>
             <Route path="sign-out" element={<SignOut />}></Route>
             <Route path="sign-up-biz" element={<SignUpBiz />}></Route>{" "}

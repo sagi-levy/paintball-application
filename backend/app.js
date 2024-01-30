@@ -49,7 +49,7 @@ app.get("/api/tasks", async (req, res) => {
     req.user = payload;
     console.log("payload", payload);
     console.log("user id is:", req.user._id);
-    const user = await User.findOne({ user_id: req.user._id }, { password: 0 });
+    const user = await User.findOne({ _id: req.user._id }, { password: 0 });
     console.log(user);
     res.send({ user: user, tasks: tasks });
   } catch {

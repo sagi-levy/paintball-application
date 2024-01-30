@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const { User, validateUser } = require("../models/users");
 const authMW = require("../middlewares/auth");
+const { JWTSecretToken } = require("../configs/config");
+const jwt = require("jsonwebtoken");
 
 router.get("/me", authMW, async (req, res) => {
   const user = await User.findById(req.user._id, { password: 0 });
@@ -28,5 +30,64 @@ router.post("/", async (req, res) => {
     password: await bcrypt.hash(req.body.password, 12),
   }).save();
   res.send({ name: user.name, phoneNumber: user._id });
+});
+router.put("/change-password/:id", async (req, res) => {
+  const token = req.header("x-auth-token");
+  if (!token) {
+    res.status(200).json(tasks);
+    return;
+  }
+  try {
+    console.log(jwt.verify(token, JWTSecretToken));
+
+    const payload = jwt.verify(token, JWTSecretToken);
+    req.user = payload;
+    req.jwtPayload = payload;
+
+    console.log("payload", payload);
+
+    console.log("user id is:", req.user._id);
+  } catch {
+    res.status(400).send("invalid token");
+    return
+  }
+  try {
+    if (req.body.newPassword !== req.body.confirmNewPassword) {
+      return res
+        .status(400)
+        .send("new password must be equal to confirmPassword");
+    }
+    // Find the user by ID
+    const user = await User.findOne({ _id: req.params.id });
+
+    if (!user) {
+      return res.status(404).send("No user found with the provided ID");
+    }
+
+    // Compare the old password with the hashed password in the database
+    const isPasswordValid = await bcrypt.compare(
+      req.body.oldPassword,
+      user.password
+    );
+
+    if (!isPasswordValid) {
+      return res.status(401).send("Incorrect old password");
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(req.body.newPassword, 10);
+
+    // Update the user's password in the database
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { password: hashedNewPassword },
+      { new: true }
+    );
+
+    res.send(updatedUser);
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).send("Internal server error");
+  }
 });
 module.exports = router;
