@@ -39,7 +39,7 @@ console.log(tasks);
 app.get("/api/tasks", async (req, res) => {
   tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
-  console.log(token);
+  //console.log(token);
   if (!token) {
     res.status(200).json(tasks);
     return;
@@ -47,10 +47,10 @@ app.get("/api/tasks", async (req, res) => {
   try {
     const payload = jwt.verify(token, JWTSecretToken);
     req.user = payload;
-    console.log("payload", payload);
-    console.log("user id is:", req.user._id);
+    //  console.log("payload", payload);
+    // console.log("user id is:", req.user._id);
     const user = await User.findOne({ _id: req.user._id }, { password: 0 });
-    console.log(user);
+    //console.log(user);
     res.send({ user: user, tasks: tasks });
   } catch {
     res.status(400).send("invalid token");
@@ -67,9 +67,10 @@ app.post("/api/tasks", async (req, res) => {
     activityTime: req.body.activityTime,
     activityDate: req.body.activityDate,
   });
-  console.log(card)
+  console.log(card);
   if (card) {
     console.log("there is already activity is this day and time", card);
+    return;
   } else {
     console.log("ok");
   }

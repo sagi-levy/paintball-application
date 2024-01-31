@@ -19,9 +19,9 @@ module.exports = async (req, res, next) => {
     req.user = payload;
     req.jwtPayload = payload;
 
-    console.log("payload", payload);
+    //console.log("payload", payload);
 
-    console.log("user id is:", req.user._id);
+    //console.log("user id is:", req.user._id);
 
     //const user = await User.findOne({ _id: req.user._id }, { password: 0 });
     //console.log(user);
