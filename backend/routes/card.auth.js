@@ -98,13 +98,13 @@ router.put("/payment/:id", async (req, res) => {
   // }
   // console.log(req.jwtPayload._id);
   // console.log(req.jwtPayload);
-console.log(req.body)
+  console.log(req.body);
   let activityCard = await ActivityCard.findOneAndUpdate(
     {
       phoneNumber: req.params.id,
       _id: req.body._id,
     },
-    { isPaid: true }
+    { isPaid: true, inCalendar: true }
   );
   if (!activityCard)
     return res.status(404).send("could not find a card with this specific id");

@@ -63,6 +63,16 @@ app.post("/api/tasks", async (req, res) => {
   //   res.status(400).send(error.details[0].message);
   //   return;
   // }
+  let card = await ActivityCard.findOne({
+    activityTime: req.body.activityTime,
+    activityDate: req.body.activityDate,
+  });
+  console.log(card)
+  if (card) {
+    console.log("there is already activity is this day and time", card);
+  } else {
+    console.log("ok");
+  }
 
   const activityCard = await new ActivityCard({
     ...req.body,
