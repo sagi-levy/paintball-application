@@ -34,7 +34,7 @@ const stripePromise = loadStripe(
 function App() {
   return (
     <div className="App">
-      <header>
+      <header className="mb-5">
         <Navbar />
       </header>
       <main>
