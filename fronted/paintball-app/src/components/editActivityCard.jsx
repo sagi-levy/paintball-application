@@ -20,8 +20,8 @@ const EditActivityCard = () => {
       return;
     }
 
-    /*only people who signed up as business can edit or create activities*/
     const {
+      _id,
       activityName,
       activityDescription,
       activityAddress,
@@ -35,6 +35,7 @@ const EditActivityCard = () => {
       inCalendar,
     } = ActivityCard;
     form.setValues({
+      _id,
       user_id,
       isPaid,
       inCalendar,
@@ -52,6 +53,7 @@ const EditActivityCard = () => {
 
   const form = useFormik({
     initialValues: {
+      _id: "",
       activityName: "",
       activityDescription: "",
       activityAddress: "",
@@ -81,12 +83,13 @@ const EditActivityCard = () => {
       isPaid: Joi.boolean(),
       inCalendar: Joi.boolean(),
       user_id: Joi.string(),
+      _id: Joi.string().allow(""),
     }),
 
     onSubmit: async (values) => {
-      // console.log("this is values:", values);
+      console.log("this is values:", values);
       try {
-        const { activityImage, ...body } = values;
+        const {_id, activityImage, ...body } = values;
         console.log(values);
         if (activityImage) {
           body.activityImage = activityImage;

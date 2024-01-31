@@ -94,6 +94,7 @@ const validateCard = (activityCard) => {
     activityImage: Joi.string().allow("").min(11).max(1024),
     activityDate: Joi.date().allow(""),
     activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+    _id: Joi.string().allow(""),
   });
 
   return schema.validate(activityCard);

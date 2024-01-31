@@ -11,7 +11,7 @@ const Calendar = () => {
 
   const { logIn, user } = useAuth();
   // console.log(user._id);
-  console.dir(localStorage.token);
+  //console.dir(localStorage.token);
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [tasks, setTasks] = useState([]); // should get from server
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -26,7 +26,7 @@ const Calendar = () => {
               headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": localStorage.token,
-                // Add other headers as needed
+               
               },
             }
           : null

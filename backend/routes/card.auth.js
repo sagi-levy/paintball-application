@@ -64,17 +64,20 @@ router.put(
   "/edit-activity-cards/:id",
   authCheckMiddleWare,
   async (req, res) => {
+    // console.log("activity card is is", req.body._id);
+
     const { error } = validateCard(req.body);
     if (error) {
       res.status(400).send(error.details[0].message);
       return;
     }
-    console.log(req.jwtPayload._id);
-    console.log(req.jwtPayload);
+    // console.log(req.jwtPayload._id);
+    // console.log(req.jwtPayload);
 
     let activityCard = await ActivityCard.findOneAndUpdate(
       {
         phoneNumber: req.params.id,
+        _id: req.body._id,
         //user_id: req.jwtPayload._id,
       },
       req.body
@@ -85,6 +88,7 @@ router.put(
         .send("could not find a card with this specific id");
     activityCard = await ActivityCard.findOne({
       phoneNumber: req.params.id,
+      _id: req.body._id,
       //user_id: req.user._id,
     });
     res.send(activityCard);
