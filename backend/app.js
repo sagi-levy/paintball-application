@@ -14,6 +14,7 @@ const usersRouter = require("./routes/usersRoute");
 const authRouter = require("./routes/auth");
 const cardAuth = require("./routes/card.auth");
 const emailsRouter = require("./routes/emails");
+const resetPasswordRouter = require("./routes/resetPassword");
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
 app.use("/send-email", emailsRouter);
+app.use("/reset-password", resetPasswordRouter);
 const {
   ActivityCard,
   generateBuisnessNumber,
@@ -47,10 +49,10 @@ app.get("/api/tasks", async (req, res) => {
   try {
     const payload = jwt.verify(token, JWTSecretToken);
     req.user = payload;
-    //  console.log("payload", payload);
-    // console.log("user id is:", req.user._id);
-    const user = await User.findOne({ _id: req.user._id }, { password: 0 });
-    //console.log(user);
+     console.log("payload", payload);
+     //console.log("user id is:", req.user._id);
+    const user = await User.findOne({ _id: payload._id }, { password: 0 });
+    console.log(user);
     res.send({ user: user, tasks: tasks });
   } catch {
     res.status(400).send("invalid token");
