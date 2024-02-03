@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const SignIn = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
   const { logIn, user } = useAuth();
-
   const navigate = useNavigate();
   const form = useFormik({
     initialValues: { phoneNumber: "", password: "" },
@@ -76,7 +75,7 @@ const SignIn = () => {
         }}
         to={"/reset-password"}
       >
-        forgor password?
+        forgot password?
       </Link>
     </>
   );

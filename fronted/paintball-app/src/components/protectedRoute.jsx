@@ -2,14 +2,25 @@ import { Navigate, useParams } from "react-router-dom";
 
 import { useAuth } from "../context/auth.context";
 import useActivityCard from "../hooks/useActivityCard";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 const ProtectedRoute = ({ tasks, children, myTasks }) => {
   const { id } = useParams();
+  const location = useLocation();
+  const [userFromLocation, setUserFromLocation] = useState(location.state);
+  useEffect(() => {
+    // Access and store the value in the user state variable
+    setUserFromLocation(location.state?.user || null);
+  }, []);
+  // console.log(x);
+
+  const { user } = useAuth();
 
   // const thisSpecificCard = useActivityCard(id);
   // console.log(thisSpecificCard);
   // need to fix this code that user can edit/delete only his activities
   // now i get props as undefined
-  const { user } = useAuth();
   // console.log(id);
   // console.log(user._id);
   // console.log(myTasks);
@@ -20,13 +31,15 @@ const ProtectedRoute = ({ tasks, children, myTasks }) => {
     console.log("now it got the data from server");
   }
   if (
-    !user
+    !user &&
+    !userFromLocation
     //  ||
     // !myTasks ||
     // myTasks.length === 0 ||
     // user._id !== id ||
     //myTasks[0].user_id !== user._id /*(onlyBiz && !user.biz)*/
   ) {
+   // console.log("no xx", x);
     return <Navigate to="/" />;
   } else if (myTasks && tasks === undefined) {
     return;

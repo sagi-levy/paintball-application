@@ -5,8 +5,12 @@ import Input from "../components/common/input";
 import Joi from "joi";
 import FormikUsingJoi from "../utils/formikUsingJoi";
 import { useFormik } from "formik";
+import { useLocation } from 'react-router-dom';
 
 const ChangePassword = () => {
+   const location = useLocation();
+  const user = location.state?.user || null;
+  console.log(user)
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
