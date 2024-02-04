@@ -7,15 +7,16 @@ import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ tasks, children, myTasks }) => {
   const { id } = useParams();
-  const location = useLocation();
-  const [userFromLocation, setUserFromLocation] = useState(location.state);
-  useEffect(() => {
-    // Access and store the value in the user state variable
-    setUserFromLocation(location.state?.user || null);
-  }, []);
+  // const location = useLocation();
+  // const [userFromLocation, setUserFromLocation] = useState(location.state);
+  // useEffect(() => {
+  //   // Access and store the value in the user state variable
+  //   setUserFromLocation(location.state?.user || null);
+  // }, []);
   // console.log(x);
 
   const { user } = useAuth();
+console.log(user)
 
   // const thisSpecificCard = useActivityCard(id);
   // console.log(thisSpecificCard);
@@ -31,8 +32,7 @@ const ProtectedRoute = ({ tasks, children, myTasks }) => {
     console.log("now it got the data from server");
   }
   if (
-    !user &&
-    !userFromLocation
+    !user 
     //  ||
     // !myTasks ||
     // myTasks.length === 0 ||
@@ -51,7 +51,7 @@ const ProtectedRoute = ({ tasks, children, myTasks }) => {
 
   {
     return children;
-    //return <Navigate to="/" />;
+
   }
 };
 export default ProtectedRoute;

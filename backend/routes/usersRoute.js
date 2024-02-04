@@ -49,7 +49,7 @@ router.put("/change-password/:id", async (req, res) => {
     console.log("user id is:", req.user._id);
   } catch {
     res.status(400).send("invalid token");
-    return
+    return;
   }
   try {
     if (req.body.newPassword !== req.body.confirmNewPassword) {
@@ -78,6 +78,56 @@ router.put("/change-password/:id", async (req, res) => {
     const hashedNewPassword = await bcrypt.hash(req.body.newPassword, 10);
 
     // Update the user's password in the database
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { password: hashedNewPassword },
+      { new: true }
+    );
+
+    res.send(updatedUser);
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).send("Internal server error");
+  }
+});
+router.put("/change-password/via-email-code/:id", async (req, res) => {
+  const token = req.header("x-auth-token");
+  if (!token) {
+    res.status(200).json(tasks);
+    return;
+  }
+  try {
+    console.log(jwt.verify(token, JWTSecretToken));
+
+    const payload = jwt.verify(token, JWTSecretToken);
+    req.user = payload;
+    req.jwtPayload = payload;
+
+    console.log("payload", payload);
+
+    console.log("user id is:", req.user._id);
+    if (user._id !== payload._id) {
+      return res.status(404).send("you cant change password to other user");
+    }
+  } catch {
+    res.status(400).send({message:"you cant change password to other user"});
+    return;
+  }
+  try {
+    if (req.body.newPassword !== req.body.confirmNewPassword) {
+      return res
+        .status(400)
+        .send("new password must be equal to confirmPassword");
+    }
+    // Find the user by ID
+    const user = await User.findOne({ _id: req.params.id });
+
+    if (!user) {
+      return res.status(404).send("No user found with the provided ID");
+    }
+
+    const hashedNewPassword = await bcrypt.hash(req.body.newPassword, 10);
+
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.params.id },
       { password: hashedNewPassword },

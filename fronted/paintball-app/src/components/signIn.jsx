@@ -28,6 +28,7 @@ const SignIn = () => {
       try {
         await logIn(values);
         console.log(user); // user shown after refresh, supposed to be render, don't know why not
+        console.log(values); // user shown after refresh, supposed to be render, don't know why not
 
         navigate("/about");
       } catch ({ response }) {

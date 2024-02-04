@@ -4,6 +4,8 @@ const router = express.Router();
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const { User, validateUser } = require("../models/users");
+const JWT = require("jsonwebtoken");
+const { JWTSecretToken } = require("../configs/config");
 let userPhoneNumber = "";
 
 let randomNumbers = [];
@@ -12,8 +14,6 @@ function getRandomInt(max) {
 }
 
 router.post("/", (req, res) => {
-  console.log("work");
-
   for (let i = 0; i <= 3; i++) {
     let result = getRandomInt(9);
     randomNumbers.push(result);
@@ -47,15 +47,20 @@ router.post("/", (req, res) => {
 router.post("/sent-email", async (req, res) => {
   const codeSentToEmail = req.body.verificationCode;
   if (codeSentToEmail !== randomNumbers.join("")) {
-
-    console.log(`we sent code ${randomNumbers.join("")} and you wrote ${codeSentToEmail}`);
+    console.log(
+      `we sent code ${randomNumbers.join("")} and you wrote ${codeSentToEmail}`
+    );
     console.log("not correct code");
     return;
   } else {
-    console.log(userPhoneNumber)
+    console.log(userPhoneNumber);
     const user = await User.findOne({ _id: userPhoneNumber });
     console.log(user);
-    res.send(user)
+    const userToken = JWT.sign(
+      { _id: user._id, biz: user.biz },
+      JWTSecretToken
+    );
+    res.send({user,userToken});
   }
 });
 
