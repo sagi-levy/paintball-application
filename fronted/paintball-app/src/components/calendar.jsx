@@ -129,14 +129,12 @@ const Calendar = () => {
                               <i className="bi bi-calendar2-x-fill"></i>
                             )}
                           </span>
-                          {user ? (
+                          {user && user._id == task.phoneNumber ? (
                             <>
                               <ProtectedRoute
                                 tasks={tasks}
                                 id={user._id}
-                                myTasks={tasks.filter(
-                                  (task) => task.phoneNumber == user._id
-                                )}
+                                myTasks={tasks}
                               >
                                 <Link
                                   style={{
