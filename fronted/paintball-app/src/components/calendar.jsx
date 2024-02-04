@@ -8,7 +8,6 @@ import DeleteActivityCard from "./common/deleteActivityCard";
 import { Link } from "react-router-dom";
 
 const Calendar = () => {
-
   const { logIn, user } = useAuth();
   // console.log(user._id);
   //console.dir(localStorage.token);
@@ -26,7 +25,6 @@ const Calendar = () => {
               headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": localStorage.token,
-               
               },
             }
           : null
@@ -42,9 +40,11 @@ const Calendar = () => {
       console.error(error.message);
     }
   };
+
   useEffect(() => {
     fetchTasks();
   }, [currentWeek]);
+  
   const getDaysInWeek = (week) => {
     const startOfWeek = new Date(week);
     startOfWeek.setDate(week.getDate() - week.getDay());
@@ -56,7 +56,7 @@ const Calendar = () => {
     }
     return days;
   };
-  
+
   //console.log(tasks.filter((task)=>task.phoneNumber==user._id))
   //console.log(user._id);
   const renderCalendar = () => {
@@ -107,7 +107,9 @@ const Calendar = () => {
                         (task) =>
                           new Date(task.activityDate).toDateString() ===
                             day.toDateString() &&
-                            new Date(`2000-01-01T${task.activityTime}`).getHours() === hour &&
+                          new Date(
+                            `2000-01-01T${task.activityTime}`
+                          ).getHours() === hour &&
                           task.inCalendar === true
                       )
                       .sort(
@@ -115,7 +117,7 @@ const Calendar = () => {
                           new Date(a.activityDate) - new Date(b.activityDate)
                       )
                       .map((task, taskIndex) => (
-                        <li key={taskIndex} className="list-group-item">
+                        <li key={task._id} className="list-group-item">
                           {task.activityName}
 
                           <span>
@@ -130,6 +132,7 @@ const Calendar = () => {
                           {user ? (
                             <>
                               <ProtectedRoute
+                                tasks={tasks}
                                 id={user._id}
                                 myTasks={tasks.filter(
                                   (task) => task.phoneNumber == user._id

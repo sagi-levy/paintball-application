@@ -5,12 +5,12 @@ import Input from "../components/common/input";
 import Joi from "joi";
 import FormikUsingJoi from "../utils/formikUsingJoi";
 import { useFormik } from "formik";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useAuth } from "../context/auth.context";
 
-const ChangePassword = () => {
-   const location = useLocation();
-  const user = location.state?.user || null;
-  console.log(user)
+const EnterNewPassword = () => {
+  const user = useAuth();
+  console.log(user);
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
@@ -18,10 +18,9 @@ const ChangePassword = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
 
   const form = useFormik({
-    initialValues: { oldPassword: "", newPassword: "", confirmNewPassword: "" },
+    initialValues: { newPassword: "", confirmNewPassword: "" },
     validateOnMount: true,
     validate: FormikUsingJoi({
-      oldPassword: Joi.string().min(2).max(255).required(),
       newPassword: Joi.string().max(10).min(4).required(),
       confirmNewPassword: Joi.string()
         .required()
@@ -37,7 +36,7 @@ const ChangePassword = () => {
       try {
         // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `http://localhost:3003/users/change-password/${id}`,
+          `http://localhost:3003/users/change-password/via-email-code/${id}`,
           {
             method: "PUT",
             headers: {
@@ -48,16 +47,18 @@ const ChangePassword = () => {
             body: JSON.stringify(formData),
           }
         );
+      
         if (!response.ok) {
-          const data = await response;
-          console.log(data);
-          setErrorApiRequest(data.statusText);
+          const data = await response.json();
+          console.log(data.message);
+          setErrorApiRequest(data.message);
         }
       } catch (error) {
         console.error(error);
+
         setErrorApiRequest("Internal server error");
       }
-      navigate("/calendar");
+      //navigate("/calendar");
     },
   });
 
@@ -70,13 +71,6 @@ const ChangePassword = () => {
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
-        <Input
-          {...form.getFieldProps("oldPassword")}
-          type="password"
-          name="oldPassword"
-          id="oldPassword"
-          error={form.touched.oldPassword && form.errors.oldPassword}
-        />
         <Input
           {...form.getFieldProps("newPassword")}
           type="password"
@@ -101,4 +95,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default EnterNewPassword;

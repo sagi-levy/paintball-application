@@ -17,6 +17,9 @@ import PaymentForm from "./components/common/payment";
 import Calendar from "./components/calendar";
 import EmailForm from "./components/formToGmail";
 import ChangePassword from "./components/changePassword";
+import ResetPassword from "./components/resetPassword";
+import SentSms from "./components/emailSentPass";
+import EnterNewPassword from "./components/enterNewPassword";
 
 import { date } from "joi";
 import { loadStripe } from "@stripe/stripe-js";
@@ -82,9 +85,12 @@ function App() {
             <Route path="sign-in" element={<SignIn />}></Route>
             <Route path="send-email" element={<EmailForm />}></Route>
             <Route path="users/change-password/:id" element={ <ProtectedRoute id><ChangePassword /></ProtectedRoute>}></Route>
+            <Route path="users/change-password/via-email-code/:id" element={ <ProtectedRoute id><EnterNewPassword /></ProtectedRoute>}></Route>
             <Route path="sign-up" element={<SignUp />}></Route>
             <Route path="sign-out" element={<SignOut />}></Route>
             <Route path="sign-up-biz" element={<SignUpBiz />}></Route>{" "}
+            <Route path="reset-password" element={<ResetPassword />}></Route>{" "}
+            <Route path="reset-password/sent-email" element={<SentSms />}></Route>{" "}
           </Routes>
         </AppProvider>
       </main>
