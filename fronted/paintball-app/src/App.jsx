@@ -15,12 +15,14 @@ import SignUpBiz from "./components/signUpBiz";
 import DeleteActivityCard from "./components/common/deleteActivityCard";
 import PaymentForm from "./components/common/payment";
 import Calendar from "./components/calendar";
-import EmailForm from "./components/formToGmail";
+import EmailForm from "./components/contactUs";
 import ChangePassword from "./components/changePassword";
 import ResetPassword from "./components/resetPassword";
 import SentSms from "./components/emailSentPass";
 import EnterNewPassword from "./components/enterNewPassword";
-
+import PaintballPage from "./components/common/activities/paintballPage";
+import LaserTagPage from "./components/common/activities/laserTagPage";
+import KartingPage from "./components/common/activities/kartingPage";
 import { date } from "joi";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -46,6 +48,9 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/calendar" element={<Calendar />}></Route>
             <Route path="/about" element={<About />}></Route>
+            <Route path="/paintball-page" element={<PaintballPage />}></Route>
+            <Route path="/laser-tag-page" element={<LaserTagPage />}></Route>
+            <Route path="/karting-page" element={<KartingPage />}></Route>
             <Route
               path="/cards/create-activity-card"
               element={<CreateActivityCard />}
@@ -84,13 +89,30 @@ function App() {
             ></Route>
             <Route path="sign-in" element={<SignIn />}></Route>
             <Route path="send-email" element={<EmailForm />}></Route>
-            <Route path="users/change-password/:id" element={ <ProtectedRoute id><ChangePassword /></ProtectedRoute>}></Route>
-            <Route path="users/change-password/via-email-code/:id" element={ <ProtectedRoute id><EnterNewPassword /></ProtectedRoute>}></Route>
+            <Route
+              path="users/change-password/:id"
+              element={
+                <ProtectedRoute id>
+                  <ChangePassword />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="users/change-password/via-email-code/:id"
+              element={
+                <ProtectedRoute id>
+                  <EnterNewPassword />
+                </ProtectedRoute>
+              }
+            ></Route>
             <Route path="sign-up" element={<SignUp />}></Route>
             <Route path="sign-out" element={<SignOut />}></Route>
             <Route path="sign-up-biz" element={<SignUpBiz />}></Route>{" "}
             <Route path="reset-password" element={<ResetPassword />}></Route>{" "}
-            <Route path="reset-password/sent-email" element={<SentSms />}></Route>{" "}
+            <Route
+              path="reset-password/sent-email"
+              element={<SentSms />}
+            ></Route>{" "}
           </Routes>
         </AppProvider>
       </main>
