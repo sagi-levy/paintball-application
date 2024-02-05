@@ -105,3 +105,7 @@ footer {
   filter: brightness(0.5); /* Adjust the value (0.0 to 1.0) for the desired darkness */
 
 }
+
+.bi-big {
+  font-size: 2rem; /* Adjust the value as needed */
+}

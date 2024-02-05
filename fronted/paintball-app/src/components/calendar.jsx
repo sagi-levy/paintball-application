@@ -44,7 +44,7 @@ const Calendar = () => {
   useEffect(() => {
     fetchTasks();
   }, [currentWeek]);
-  
+
   const getDaysInWeek = (week) => {
     const startOfWeek = new Date(week);
     startOfWeek.setDate(week.getDate() - week.getDay());
@@ -145,10 +145,11 @@ const Calendar = () => {
                                   to={`/cards/edit-activity-cards/${user._id}`}
                                 >
                                   {" "}
-                                  edit this activity
+                                  <i className="bi bi-pencil-fill"></i>
                                 </Link>
                               </ProtectedRoute>
                               <ProtectedRoute
+                                tasks={tasks}
                                 id={user._id}
                                 myTasks={tasks.filter(
                                   (task) => task.phoneNumber == user._id
@@ -163,7 +164,7 @@ const Calendar = () => {
                                   to={`/cards/delete-activity-cards/${user._id}`}
                                 >
                                   {" "}
-                                  delete this activity
+                                  <i className="bi bi-trash"></i>
                                 </Link>
                               </ProtectedRoute>
                             </>
