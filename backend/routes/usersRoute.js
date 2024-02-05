@@ -106,7 +106,7 @@ router.put("/change-password/via-email-code/:id", async (req, res) => {
     console.log("payload", payload);
 
     console.log("user id is:", req.user._id);
-    if (user._id !== payload._id) {
+    if (req.user._id !== payload._id) {
       return res.status(404).send("you cant change password to other user");
     }
   } catch {
