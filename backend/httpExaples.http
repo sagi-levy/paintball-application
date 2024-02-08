@@ -1,5 +1,5 @@
-@local=http://localhost:3000
- @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2OGNiMDlhMjY4NTA4NDFmMDJkM2UiLCJiaXoiOnRydWUsImlhdCI6MTY4MTMwNjU4Mn0.y9IgloANVBLosAQjP_lW-Zg9veNNnL1XgtD8gSsWwUM
+@local=http://localhost:3003
+ @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwNTU1NTU1NTU1IiwiYml6IjpmYWxzZSwiaWF0IjoxNzA2NzA5MDAyfQ.XAaLMz4tveQgoNOzPkIJVz3hEo2GjYE5hRdBBRhaHvc
 //Content-Type: application/json
 ###
 //send new user (sign in) request
@@ -63,18 +63,25 @@ x-auth-token:{{token}}
 
 ###
 // send card req
-POST {{local}}/card/create-activity-card
+POST {{local}}/api/tasks
 x-auth-token:{{token}}
-Content-Type: application/json
 
 {
-    "activityName": "paintball game 1",
-    "bizUserName": "sagi levy",
-    "activityDescription":"first paintball game card (activity card)",
-    "activityAddress": "kfar sava ",
-    "bizUserPhone": "0545454545",
-    "activityImage":"https://media.istockphoto.com/id/1349643226/photo/team-of-friends-paintball-players-playing-together-in-battle.jpg?s=2048x2048&w=is&k=20&c=0_TPof3tWNS4hHegpZtRRRUt7bu9IjepYh6caJqhnkk=" 
-  }
+  "isPaid": false,
+  "inCalendar": false,
+  "activityName": "paintball",
+  "bizUserName": "יוסי",
+  "activityDescription": "paintball-game",
+  "activityAddress": "kfar sava",
+  "phoneNumber": "0555555555",
+  "activityImage": "https://cdn.pixabay.com/photo/2017/04/11/03/28/paintball-2220450__340.jpg",
+  "activityNumber": "88153918",
+  "user_id": "0555545555",
+  "activityDate": "2024-01-28",
+  "activityTime": "18:50",}
+   
+ 
+
 
 ###
 GET {{local}}/cards/my-activity-cards/643ebbd08427d5bf67b98d31

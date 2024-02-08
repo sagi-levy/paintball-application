@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const _ = require("lodash");
 const activityCardSchema = new mongoose.Schema({
+  isPaid: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  inCalendar: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   activityName: {
     type: String,
     required: true,
@@ -26,7 +36,7 @@ const activityCardSchema = new mongoose.Schema({
     minLength: 2,
     maxLength: 400,
   },
-  bizUserPhone: {
+  phoneNumber: {
     type: String,
     required: true,
     minLength: 9,
@@ -46,11 +56,15 @@ const activityCardSchema = new mongoose.Schema({
     unique: true,
   },
   user_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String, // should be: mongoose.Schema.Types.ObjectId ??
     ref: "User",
     required: true,
   },
   activityDate: {
+    type: String,
+    required: true,
+  },
+  activityTime: {
     type: String,
     required: true,
   },
@@ -64,11 +78,14 @@ const ActivityCard = mongoose.model(
 
 const validateCard = (activityCard) => {
   const schema = Joi.object({
+    user_id: Joi.string(),
+    isPaid: Joi.boolean(),
+    inCalendar: Joi.boolean(),
     activityName: Joi.string().min(2).max(255).required(),
     bizUserName: Joi.string().min(2).max(255).required(),
     activityDescription: Joi.string().min(2).max(1024).required(),
     activityAddress: Joi.string().min(2).max(400).required(),
-    bizUserPhone: Joi.string()
+    phoneNumber: Joi.string()
       .allow("")
       .min(9)
       .max(10)
@@ -76,6 +93,8 @@ const validateCard = (activityCard) => {
       .regex(/^0[2-9]\d{7,8}$/),
     activityImage: Joi.string().allow("").min(11).max(1024),
     activityDate: Joi.date().allow(""),
+    activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+    _id: Joi.string().allow(""),
   });
 
   return schema.validate(activityCard);
