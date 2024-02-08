@@ -6,7 +6,7 @@ const useActivityCard = (id) => {
   useEffect(() => {
     const getActivityCard = async () => {
       const { data } = await getSpecificActivityCard(id);
-      setActivityCard(data);
+      setActivityCard(data); 
     };
     getActivityCard();
   }, []);

@@ -11,7 +11,7 @@ const DeleteActivityCard = () => {
     const remove = async () => {
       await deleteActivityCard(id);
 
-      navigate("/cards/my-activity-cards");
+      navigate("/calendar");
     };
 
     remove();

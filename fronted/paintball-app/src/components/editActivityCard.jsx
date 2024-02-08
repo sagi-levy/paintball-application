@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
   const navigate = useNavigate();
+  console.log(useParams());
   const { id } = useParams();
   console.log(id);
   const ActivityCard = useActivityCard(id);
@@ -19,62 +20,83 @@ const EditActivityCard = () => {
       return;
     }
 
-    /*only people who signed up as business can edit or create activities*/
     const {
+      _id,
       activityName,
       activityDescription,
       activityAddress,
       activityDate,
-      bizUserPhone,
+      phoneNumber,
       bizUserName,
       activityImage,
+      activityTime,
+      user_id,
+      isPaid,
+      inCalendar,
     } = ActivityCard;
     form.setValues({
+      _id,
+      user_id,
+      isPaid,
+      inCalendar,
       activityName,
       activityDescription,
       activityAddress,
       activityDate,
-      bizUserPhone,
+      phoneNumber,
       bizUserName,
       activityImage,
+      activityTime,
     });
   }, [ActivityCard]);
   const [errorApiRequest, setErrorApiRequest] = useState("");
 
   const form = useFormik({
     initialValues: {
+      _id: "",
       activityName: "",
       activityDescription: "",
       activityAddress: "",
       activityDate: "",
-      bizUserPhone: "",
+      phoneNumber: "",
       bizUserName: "",
       activityImage: "",
+      activityTime: "",
+      inCalendar: "",
+      isPaid: "",
+      user_id: "",
     },
     validate: FormikUsingJoi({
       activityName: Joi.string().min(2).max(255).required(),
       bizUserName: Joi.string().min(2).max(255).required(),
       activityDescription: Joi.string().min(2).max(1024).required(),
       activityAddress: Joi.string().min(2).max(400).required(),
-      bizUserPhone: Joi.string()
+      phoneNumber: Joi.string()
+        .allow("")
         .min(9)
         .max(10)
         .required()
         .regex(/^0[2-9]\d{7,8}$/),
-      activityImage: Joi.string().min(11).max(1024),
-      activityDate: Joi.date(),
+      activityImage: Joi.string().allow("").min(11).max(1024),
+      activityDate: Joi.date().allow(""),
+      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+      isPaid: Joi.boolean(),
+      inCalendar: Joi.boolean(),
+      user_id: Joi.string(),
+      _id: Joi.string().allow(""),
     }),
+
     onSubmit: async (values) => {
-      // console.log("this is values:", values);
+      console.log("this is values:", values);
       try {
-        const { activityImage, ...body } = values;
+        const {_id, activityImage, ...body } = values;
         console.log(values);
         if (activityImage) {
           body.activityImage = activityImage;
         }
 
         await updateActivityCard(id, values);
-        navigate("/cards/my-activity-cards");
+        navigate("/calendar");
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -142,13 +164,20 @@ const EditActivityCard = () => {
         />
         <Input
           onChange={form.handleChange}
-          error={form.errors.bizUserPhone}
-          name="bizUserPhone"
+          error={form.errors.phoneNumber}
+          name="phoneNumber"
           type="text"
-          id="bizUserPhone"
-          {...form.getFieldProps("bizUserPhone")}
+          id="phoneNumber"
+          {...form.getFieldProps("phoneNumber")}
         />
-
+        <Input
+          onChange={form.handleChange}
+          error={form.errors.activityTime}
+          name="activityTime"
+          type="time"
+          id="activityTime"
+          {...form.getFieldProps("activityTime")}
+        />
         <button
           type="submit"
           className="btn btn-primary"

@@ -1,4 +1,6 @@
 import PageHeader from "./common/pageHeader";
+import CreateActivityCard from "./createActivityCard";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
@@ -40,24 +42,73 @@ const Home = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
+              id="carousel-img"
               src="https://cdn.pixabay.com/photo/2017/07/09/03/37/paintball-2486109_960_720.jpg"
               className="d-block w-100"
               alt="..."
-            />
+            />{" "}
+            <div className="carousel-caption d-none d-md-block">
+              <Link
+                to={"/paintball-page"}
+                className="btn btn-link text-decoration-none  p-2 rounded"
+              >
+                {" "}
+                <p id="carousel-p-tag">paintball</p>
+              </Link>
+              <p
+                id="carousel-p-tag"
+                className="text-decoration-none  p-2 rounded"
+              >
+                paintball prices and terms
+              </p>
+            </div>
           </div>
-          <div className="carousel-item">
+
+          <div className="carousel-item active">
             <img
+              id="carousel-img"
               src="https://media.istockphoto.com/id/1281185274/photo/laser-tag-tactical-game-just-for-fun-forces-mission-science-fiction-playing-in-red-light.jpg?b=1&s=170667a&w=0&k=20&c=RqTQ9tfv5zYgcfxDazHcZrSyasj11mB_GyQKlxakKVk="
               className="d-block w-100"
               alt="..."
-            />
+            />{" "}
+            <div className="carousel-caption d-none d-md-block">
+              <Link
+                to={"/laser-tag-page"}
+                className="btn btn-link text-decoration-none  p-2 rounded"
+              >
+                {" "}
+                <p id="carousel-p-tag">laser tag</p>
+              </Link>
+              <p
+                id="carousel-p-tag"
+                className="text-decoration-none  p-2 rounded"
+              >
+                laser tag prices and terms
+              </p>
+            </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item active">
             <img
-              src="https://cdn.pixabay.com/photo/2021/11/27/12/47/paintball-6827953_960_720.jpg"
+              id="carousel-img"
+              src="https://cdn.pixabay.com/photo/2015/12/07/10/24/go-kart-1080492_1280.jpg"
               className="d-block w-100"
               alt="..."
-            />
+            />{" "}
+            <div className="carousel-caption d-none d-md-block">
+              <Link
+                to={"/karting-page"}
+                className="btn btn-link text-decoration-none  p-2 rounded"
+              >
+                {" "}
+                <p id="carousel-p-tag">karting</p>
+              </Link>
+              <p
+                id="carousel-p-tag"
+                className="text-decoration-none  p-2 rounded"
+              >
+                karting prices and terms
+              </p>
+            </div>
           </div>
         </div>
         <button
@@ -85,6 +136,7 @@ const Home = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      <CreateActivityCard />
     </>
   );
 };

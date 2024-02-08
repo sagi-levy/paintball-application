@@ -11,9 +11,9 @@ router.post("/", async (req, res) => {
     res.status(400).send(error.details[0].message);
     return;
   }
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ phoneNumber: req.body.phoneNumber });
   if (!user) {
-    res.status(400).send("invalid email");
+    res.status(400).send("this number had not registed yet");
     return;
   }
   const isValidPassword = await bcrypt.compare(
@@ -32,7 +32,13 @@ router.post("/", async (req, res) => {
 
 function validate(user) {
   const Schema = joi.object({
-    email: joi.string().required().min(5).max(1000).email(),
+    phoneNumber: joi
+      .string()
+      .allow("")
+      .min(9)
+      .max(10)
+      .required()
+      .regex(/^0[2-9]\d{7,8}$/),
     password: joi.string().required().min(5).max(1000),
   });
 
