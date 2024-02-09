@@ -27,31 +27,35 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ms-auto mb-2 mb-xl-0">
               {user ? (
-                <><div className="dropdown m-2 ">
-                <button
-                  className="btn btn-secondary dropdown-toggle nav-link"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  settings <i className="bi bi-gear"></i>
-                </button>
-                <ul
-                  className="dropdown-menu dropdown-menu-dark"
-                  aria-labelledby="dropdownMenuButton1"
-                >
-                  <li>
-                    <NavLink to={`users/change-password/${user._id}`} className="dropdown-item" >
-                      change password
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
+                <>
+                  <div className="dropdown m-2 ">
+                    <button
+                      className="btn btn-secondary dropdown-toggle nav-link"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      settings <i className="bi bi-gear"></i>
+                    </button>
+                    <ul
+                      className="dropdown-menu dropdown-menu-dark"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li>
+                        <NavLink
+                          to={`users/change-password/${user._id}`}
+                          className="dropdown-item"
+                        >
+                          change password
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
                   <li className="nav-item">
                     <NavLink to="about" className="nav-link">
                       About
@@ -105,7 +109,7 @@ const Navbar = () => {
               {user && user.biz && (
                 <li className="nav-item">
                   <NavLink
-                    to="cards/my-activity-cards/:id"
+                    to={`cards/my-activity-cards/${user._id}`}
                     className="nav-link"
                   >
                     My Cards

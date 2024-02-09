@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ActivityCardComponent = ({
+  _id,
   user_id,
   isPaid,
   inCalendar,
@@ -13,9 +14,10 @@ const ActivityCardComponent = ({
   activityImage,
   activityTime,
 }) => {
+  console.log("user id is :", user_id);
   return (
     <>
-      <div className="col-md-4 col-12" key={user_id}>
+      <div className="col-md-4 col-12" key={_id}>
         <div className="row my-2">
           <div className="card ">
             <img
@@ -39,13 +41,13 @@ const ActivityCardComponent = ({
             <div className="card-body justify-content-evenly mt-2 d-flex">
               <Link
                 className="text-success alert alert-success alert-link"
-                to={`/cards/edit-activity-cards/${user_id}`}
+                to={`/cards/edit-activity-cards/${user_id}?cardId=${_id}`}
               >
                 edit activity
               </Link>
               <Link
                 className="font-weight-bold text-danger alert alert-primary"
-                to={`/cards/delete-activity-cards/${user_id}`}
+                to={`/cards/delete-activity-cards/${user_id}?cardId=${_id}`}
               >
                 delete activity
               </Link>

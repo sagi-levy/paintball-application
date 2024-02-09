@@ -16,9 +16,9 @@ const BasicPackage = ({ packageData }) => {
   );
 
   return (
-    <div className="col-md-4 mb-4">
-      <div className="card h-100">
-        <div className="card-body">
+    <div className="col-md-4 mb-4 ">
+      <div className="card h-100 ">
+        <div className="card-body ">
           <h5 className="card-title">{packageData.name}</h5>
           <p className="card-text">Price: {packageData.price}</p>
           <ul className="list-group list-group-flush">
@@ -50,7 +50,7 @@ const BasicPackage = ({ packageData }) => {
 
 const BasicPackages = ({ packages }) => {
   return (
-    <div className="row">
+    <div className="row card-container">
       {packages.map((packageKind, index) => (
         <BasicPackage key={index} packageData={packageKind} />
       ))}

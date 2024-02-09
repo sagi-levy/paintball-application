@@ -119,6 +119,8 @@ const Calendar = () => {
                       .map((task, taskIndex) => (
                         <li key={task._id} className="list-group-item">
                           {task.activityName}
+                          task id is: 
+                          {task._id}
 
                           <span>
                             {" "}
@@ -142,7 +144,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/edit-activity-cards/${user._id}`}
+                                  to={`/cards/edit-activity-cards/${user._id}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-pencil-fill"></i>
@@ -161,7 +163,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/delete-activity-cards/${user._id}`}
+                                  to={`/cards/delete-activity-cards/${user._id}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-trash"></i>

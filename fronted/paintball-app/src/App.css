@@ -73,13 +73,14 @@ footer {
     5px 5px 20px 5px rgba(0, 0, 0, 0);
 }
 .card {
-  -webkit-box-shadow: 4px -4px 15px 0px #ff1f1f, 13px 12px 17px 0px #ff9527,
+  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
     -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
-  box-shadow: 4px -4px 15px 0px #ff1f1f, 13px 12px 17px 0px #ff9527,
-    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
+  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 17px 0px #522312,
+    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
   width: 80% !important;
   margin: auto !important;
 }
+
 .gallery-img {
   padding: 0 !important;
 }
@@ -91,21 +92,27 @@ footer {
   max-height: 20rem;
   margin-top: 1rem;
 }
-#carousel-p-tag{
+#carousel-p-tag {
   color: #942c2c;
 }
-.card-footer > form{
+.card-footer > form {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.text-decoration-none{
-  
+.text-decoration-none {
 }
-#carousel-img{
-  filter: brightness(0.5); /* Adjust the value (0.0 to 1.0) for the desired darkness */
-
+#carousel-img {
+  filter: brightness(
+    0.5
+  ); /* Adjust the value (0.0 to 1.0) for the desired darkness */
 }
 
 .bi-big {
   font-size: 2rem; /* Adjust the value as needed */
 }
+/* .card-container:hover {
+  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
+    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
+  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 100px 0px #522312,
+    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
+} */

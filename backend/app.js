@@ -49,10 +49,10 @@ app.get("/api/tasks", async (req, res) => {
   try {
     const payload = jwt.verify(token, JWTSecretToken);
     req.user = payload;
-     console.log("payload", payload);
-     //console.log("user id is:", req.user._id);
+    //console.log("payload", payload);
+    //console.log("user id is:", req.user._id);
     const user = await User.findOne({ _id: payload._id }, { password: 0 });
-    console.log(user);
+    // console.log(user);
     res.send({ user: user, tasks: tasks });
   } catch {
     res.status(400).send("invalid token");

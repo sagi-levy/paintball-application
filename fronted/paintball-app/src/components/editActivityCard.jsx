@@ -5,15 +5,22 @@ import { useState } from "react";
 import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { updateActivityCard } from "../services/cardsServices";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import queryString from 'query-string'; // Import query-string library
+
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
+  const location = useLocation();
+
+  const queryParams = queryString.parse(location.search);
+  const {cardId} = queryParams
+  console.log(cardId)
   const navigate = useNavigate();
   console.log(useParams());
   const { id } = useParams();
   console.log(id);
-  const ActivityCard = useActivityCard(id);
+  const ActivityCard = useActivityCard(id,cardId);
   console.log(ActivityCard);
   useEffect(() => {
     if (!ActivityCard) {
@@ -89,13 +96,13 @@ const EditActivityCard = () => {
     onSubmit: async (values) => {
       console.log("this is values:", values);
       try {
-        const {_id, activityImage, ...body } = values;
+        const { _id, activityImage, ...body } = values;
         console.log(values);
         if (activityImage) {
           body.activityImage = activityImage;
         }
 
-        await updateActivityCard(id, values);
+        await updateActivityCard(id,cardId, values);
         navigate("/calendar");
       } catch ({ response }) {
         if (response && response.status === 400) {

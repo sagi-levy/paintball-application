@@ -58,7 +58,7 @@ const EnterNewPassword = () => {
 
         setErrorApiRequest("Internal server error");
       }
-      //navigate("/calendar");
+      navigate("/calendar");
     },
   });
 

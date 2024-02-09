@@ -14,6 +14,11 @@ function getRandomInt(max) {
 }
 
 router.post("/", (req, res) => {
+  randomNumbers = [];
+  setTimeout(() => {
+    randomNumbers = [];
+  }, 10000);
+  //setInterval(() => console.log(randomNumbers), 500);
   for (let i = 0; i <= 3; i++) {
     let result = getRandomInt(9);
     randomNumbers.push(result);
@@ -43,6 +48,7 @@ router.post("/", (req, res) => {
       res.status(200).send("Email sent successfully!");
     }
   });
+ 
 });
 router.post("/sent-email", async (req, res) => {
   const codeSentToEmail = req.body.verificationCode;
@@ -51,16 +57,22 @@ router.post("/sent-email", async (req, res) => {
       `we sent code ${randomNumbers.join("")} and you wrote ${codeSentToEmail}`
     );
     console.log("not correct code");
+    res.send("not correct code or time passed for code, send another request");
     return;
   } else {
     console.log(userPhoneNumber);
+    randomNumbers = [];
     const user = await User.findOne({ _id: userPhoneNumber });
+    if (!user) {
+      res.status(404).send({ error: "no such a user" });
+      return;
+    }
     console.log(user);
     const userToken = JWT.sign(
       { _id: user._id, biz: user.biz },
       JWTSecretToken
     );
-    res.send({user,userToken});
+    res.send({ user, userToken });
   }
 });
 

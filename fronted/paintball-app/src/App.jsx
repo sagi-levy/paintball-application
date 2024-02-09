@@ -6,6 +6,8 @@ import CreateActivityCard from "./components/createActivityCard";
 import SignOut from "./components/signOut";
 import MyActivityCards from "./components/myActivityCards";
 import ProtectedRoute from "./components/protectedRoute";
+import ProtectedRouteOnlyBiz from "./components/protectedRouteOnlyBiz";
+
 import About from "./components/about";
 import EditActivityCard from "./components/editActivityCard";
 import Home from "./components/home";
@@ -32,7 +34,8 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { AppProvider } from "./context/card.context";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const stripePromise = loadStripe(
   "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
 );
@@ -42,6 +45,7 @@ function App() {
       <header className="mb-5">
         <Navbar />
       </header>
+      <ToastContainer />
       <main>
         <AppProvider>
           <Routes>
@@ -66,9 +70,9 @@ function App() {
             <Route
               path="cards/my-activity-cards/:id"
               element={
-                <ProtectedRoute onlyBiz>
+                <ProtectedRouteOnlyBiz onlyBiz>
                   <MyActivityCards />
-                </ProtectedRoute>
+                </ProtectedRouteOnlyBiz>
               }
             ></Route>
             <Route

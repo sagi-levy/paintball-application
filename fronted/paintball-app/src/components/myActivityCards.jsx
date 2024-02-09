@@ -93,8 +93,8 @@ const MyActivityCards = () => {
             filteredData.map((activityCard) => {
               return (
                 <ActivityCardComponent
-                  key={activityCard._id}
-                  id={activityCard._id}
+                user_id={activityCard.user_id}
+                  _id={activityCard._id}
                   activityName={activityCard.activityName}
                   activityDescription={activityCard.activityDescription}
                   activityAddress={activityCard.activityAddress}
