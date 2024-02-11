@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/common/footer";
+import FooterMenu from "./components/common/footerMenu";
 import CreateActivityCard from "./components/createActivityCard";
 import SignOut from "./components/signOut";
 import MyActivityCards from "./components/myActivityCards";
@@ -121,8 +122,9 @@ function App() {
         </AppProvider>
       </main>
       <footer>
-        <Footer />
-       
+      
+        <FooterMenu />
+         <Footer />
       </footer>
     </div>
   );

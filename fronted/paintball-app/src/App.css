@@ -53,6 +53,7 @@ footer {
   position: sticky;
   top: 95%;
   margin-top: 10px;
+  background-color: #262f39;
 }
 /* .carousel-inner {
   border-top: 5px solid;
@@ -160,8 +161,40 @@ footer {
 }
 
 #basic-package-card:hover h5,
-#basic-package-card:hover p,#basic-package-card:hover li {
-  color: white
+#basic-package-card:hover p,
+#basic-package-card:hover li {
+  color: white;
 }
 
+.footer-menu {
+  position: relative; /* Ensure footer-menu is positioned relatively */
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+  background-size: cover; /* Adjust the size of the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
 
+.footer-menu::after {
+  content: ""; /* Create a pseudo-element */
+  position: absolute; /* Position the pseudo-element */
+  top: 0; /* Position from the top of the footer-menu */
+  left: 0; /* Position from the left of the footer-menu */
+  width: 100%; /* Take the full width of the footer-menu */
+  height: 100%; /* Take the full height of the footer-menu */
+  background-color: rgba(
+    28,
+    35,
+    49,
+    0.5
+  ); /* Overlay background color with opacity */
+  z-index: 1; /* Ensure the overlay is behind the content */
+}
+
+.footer-content {
+  position: relative; /* Ensure the content is positioned relatively */
+  z-index: 2; /* Ensure the content is above the overlay */
+}
+
+.footer-content a {
+  position: relative; /* Ensure the links are positioned relatively */
+  z-index: 3; /* Ensure the links are above the overlay */
+}
