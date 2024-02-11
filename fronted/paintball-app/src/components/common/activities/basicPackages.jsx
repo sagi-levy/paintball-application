@@ -17,13 +17,13 @@ const BasicPackage = ({ packageData }) => {
 
   return (
     <div className="col-md-4 mb-4 ">
-      <div className="card h-100 ">
+      <div className="card h-100 " id="basic-package-card">
         <div className="card-body ">
           <h5 className="card-title">{packageData.name}</h5>
           <p className="card-text">Price: {packageData.price}</p>
-          <ul className="list-group list-group-flush">
+          <ul className=" list-group-flush p-0">
             {packageData.features.map((feature, i) => (
-              <li key={i} className="list-group-item">
+              <li key={i} className="list-group-item border-bottom mt-2">
                 {feature}
               </li>
             ))}
@@ -36,7 +36,7 @@ const BasicPackage = ({ packageData }) => {
           >
             Book Now
           </button>
-          
+
           {clickedPay ? (
             <Elements stripe={stripePromise}>
               <PaymentCard amountToCharge={packageData.price} />

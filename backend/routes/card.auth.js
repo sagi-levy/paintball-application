@@ -51,6 +51,8 @@ router.delete(
       const activityCard = await ActivityCard.findOneAndRemove({
         phoneNumber: req.params.id,
         _id: req.query.cardId,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
+
         //user_id: req.jwtPayload._id,
       });
 
@@ -87,29 +89,6 @@ router.put(
       res.status(400).send(error.details[0].message);
       return;
     }
-
-
-    let card = await ActivityCard.findOne({
-      activityTime: req.body.activityTime,
-      activityDate: req.body.activityDate,
-    });
-    console.log(card);
-    if (card) {
-      console.log("there is already activity is this day and time", card);
-      return;
-    } else {
-      console.log("ok");
-    }
-
-
-
-
-
-
-
-
-
-
     // console.log(req.jwtPayload._id);
     // console.log(req.jwtPayload);
 
@@ -118,7 +97,7 @@ router.put(
         phoneNumber: req.params.id,
         _id: req.query.cardId,
         // _id: req.body._id,
-        //user_id: req.jwtPayload._id,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
       },
       req.body
     );
@@ -132,6 +111,32 @@ router.put(
       //_id: req.body._id,
       //user_id: req.user._id,
     });
+    // if (user.biz === false && user._id !== req.body.phoneNumber) {
+    //   let userChangingId = await User.findOneAndUpdate(
+    //     {
+    //       phoneNumber: req.body.phoneNumber,
+    //     },
+    //     { phoneNumber: req.body.phoneNumber },
+    //     { new: true }
+    //   );
+    //   console.log(userChangingId);
+    //   if (userChangingId) {
+    //     console.log(
+    //       " changed this User phone number cause the card changed phone number",
+    //       userChangingId
+    //     );
+
+    //     return;
+    //   } else {
+    //     console.log("ok");
+    //     res.send({ activityCard, userChangingId });
+    //   }
+    // } else {
+    //   console.log("cadacsacs");
+    //   res.send(activityCard);
+    //   return;
+    // }
+
     res.send(activityCard);
   }
 );

@@ -64,34 +64,81 @@ app.post("/api/tasks", async (req, res) => {
   // if (error) {
   //   res.status(400).send(error.details[0].message);
   //   return;
-  // }
-  let card = await ActivityCard.findOne({
-    activityTime: req.body.activityTime,
-    activityDate: req.body.activityDate,
-  });
-  console.log(card);
-  if (card) {
-    console.log("there is already activity is this day and time", card);
+  // }tasks = await ActivityCard.find({});
+
+  const token = req.header("x-auth-token");
+
+  if (!token) {
+    let card = await ActivityCard.findOne({
+      activityTime: req.body.activityTime,
+      activityDate: req.body.activityDate,
+    });
+    console.log(card);
+    if (card) {
+      console.log("there is already activity is this day and time", card);
+      res.status(400).send("there is already activity is this day and time");
+      return;
+    } else {
+      console.log("ok");
+    }
+
+    const activityCard = await new ActivityCard({
+      ...req.body,
+      activityImage:
+        req.body.activityImage ||
+        "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
+      activityNumber: await generateBuisnessNumber(),
+      user_id: "the guy who created this activity hasn't registed yet",
+      isPaid: false,
+      inCalendar: false,
+    }).save();
+
+    const newTask = activityCard;
+    tasks.push(newTask);
+    console.log(`new tack is ${newTask}`);
+    res.status(201).json({ tasks: tasks, newTask: newTask });
+
     return;
-  } else {
-    console.log("ok");
   }
+  try {
+    const payload = jwt.verify(token, JWTSecretToken);
+    req.user = payload;
+    if (payload._id !== req.body.phoneNumber) {
+      res.status(400).send("phone number has to be same as user id");
+      return;
+    }
+    let card = await ActivityCard.findOne({
+      activityTime: req.body.activityTime,
+      activityDate: req.body.activityDate,
+    });
+    console.log(card);
+    if (card) {
+      console.log("there is already activity is this day and time", card);
+      res.status(400).send("there is already activity is this day and time");
+      return;
+    } else {
+      console.log("ok");
+    }
 
-  const activityCard = await new ActivityCard({
-    ...req.body,
-    activityImage:
-      req.body.activityImage ||
-      "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
-    activityNumber: await generateBuisnessNumber(),
-    user_id: req.body.phoneNumber,
-    isPaid: false,
-    inCalendar: false,
-  }).save();
-
-  const newTask = activityCard;
-  tasks.push(newTask);
-  console.log(`new tack is ${newTask}`);
-  res.status(201).json({ tasks: tasks, newTask: newTask });
+    const activityCard = await new ActivityCard({
+      ...req.body,
+      activityImage:
+        req.body.activityImage ||
+        "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
+      activityNumber: await generateBuisnessNumber(),
+      user_id: req.body.phoneNumber,
+      isPaid: false,
+      inCalendar: false,
+    }).save();
+    //console.log("payload", payload);
+    //console.log("user id is:", req.user._id);
+    const newTask = activityCard;
+    tasks.push(newTask);
+    console.log(`new tack is ${newTask}`);
+    res.status(200).json({ tasks: tasks, newTask: newTask });
+  } catch {
+    res.status(400).send("invalid token");
+  }
 });
 
 const PORT = 3003;

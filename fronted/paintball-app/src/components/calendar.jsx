@@ -119,9 +119,8 @@ const Calendar = () => {
                       .map((task, taskIndex) => (
                         <li key={task._id} className="list-group-item">
                           {task.activityName}
-                          task id is: 
+                          task id is:
                           {task._id}
-
                           <span>
                             {" "}
                             paid?
@@ -131,12 +130,15 @@ const Calendar = () => {
                               <i className="bi bi-calendar2-x-fill"></i>
                             )}
                           </span>
-                          {user && user._id == task.phoneNumber ? (
+                          {(user && user._id == task.phoneNumber) ||
+                          (user && user.biz) ? (
                             <>
                               <ProtectedRoute
                                 tasks={tasks}
                                 id={user._id}
-                                myTasks={tasks}
+                                myTasks={tasks.filter(
+                                  (task) => task.phoneNumber == user._id
+                                )}
                               >
                                 <Link
                                   style={{
@@ -144,7 +146,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/edit-activity-cards/${user._id}?cardId=${task._id}`}
+                                  to={`/cards/edit-activity-cards/${task.phoneNumber}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-pencil-fill"></i>
@@ -163,7 +165,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/delete-activity-cards/${user._id}?cardId=${task._id}`}
+                                  to={`/cards/delete-activity-cards/${task.phoneNumber}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-trash"></i>

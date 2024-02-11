@@ -7,20 +7,23 @@ import Input from "../components/common/input";
 import { updateActivityCard } from "../services/cardsServices";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import queryString from 'query-string'; // Import query-string library
+import queryString from "query-string"; // Import query-string library
+import { useAuth } from "../context/auth.context";
 
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
+  const { user } = useAuth();
+  const isAdmin = user && user.biz;
   const location = useLocation();
 
   const queryParams = queryString.parse(location.search);
-  const {cardId} = queryParams
-  console.log(cardId)
+  const { cardId } = queryParams;
+  console.log(cardId);
   const navigate = useNavigate();
   console.log(useParams());
   const { id } = useParams();
   console.log(id);
-  const ActivityCard = useActivityCard(id,cardId);
+  const ActivityCard = useActivityCard(id, cardId);
   console.log(ActivityCard);
   useEffect(() => {
     if (!ActivityCard) {
@@ -102,7 +105,7 @@ const EditActivityCard = () => {
           body.activityImage = activityImage;
         }
 
-        await updateActivityCard(id,cardId, values);
+        await updateActivityCard(id, cardId, values);
         navigate("/calendar");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -175,6 +178,8 @@ const EditActivityCard = () => {
           name="phoneNumber"
           type="text"
           id="phoneNumber"
+          value={ActivityCard ? ActivityCard.phoneNumber : ""}
+          disabled
           {...form.getFieldProps("phoneNumber")}
         />
         <Input
@@ -185,6 +190,35 @@ const EditActivityCard = () => {
           id="activityTime"
           {...form.getFieldProps("activityTime")}
         />
+        {/* Your existing code... */}
+        {isAdmin && ( // Conditionally render inputs only if user is an admin
+          <>
+            <div className="checkbox-group">
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="isPaid"
+                name="isPaid"
+                checked={form.values.isPaid}
+                {...form.getFieldProps("isPaid")}
+                className="form-check-input w-25"
+              />
+
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="inCalendar"
+                name="inCalendar"
+                checked={form.values.inCalendar}
+                {...form.getFieldProps("inCalendar")}
+                className="form-check-input w-25"
+              />
+            </div>
+          </>
+        )}
+
         <button
           type="submit"
           className="btn btn-primary"

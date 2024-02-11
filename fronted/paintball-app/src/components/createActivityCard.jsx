@@ -25,6 +25,7 @@ const CreateActivityCard = () => {
   const [tasksTimes, setTasksTimes] = useState([]); // should get from server
   const { logIn, user } = useAuth();
 
+  const isUser = user;
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
@@ -85,7 +86,7 @@ const CreateActivityCard = () => {
       activityDescription: "",
       activityAddress: "",
       activityDate: "",
-      phoneNumber: "",
+      phoneNumber: user ? user._id : "",
       bizUserName: "",
       activityImage: "",
       activityTime: "",
@@ -115,11 +116,14 @@ const CreateActivityCard = () => {
           body.activityImage = activityImage;
         }
         console.log(body);
+
         const x = await createActivityCard(body);
         console.log("new task is:", x.data.newTask);
         setProp(x.data.newTask);
 
-        navigate(`/cards/payment/${values.phoneNumber}`);
+        navigate(
+          `/cards/payment/${values.phoneNumber}?cardId=${x.data.newTask._id}`
+        );
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -135,13 +139,17 @@ const CreateActivityCard = () => {
         activity.activityDate === inputDate
     );
   }
-  const checkTimeValidity = (inputTime,inputDate, activitiesArray) => {
-    if (isTimeInArray(inputTime,inputDate, activitiesArray)) {
+  const checkTimeValidity = (inputTime, inputDate, activitiesArray) => {
+    if (isTimeInArray(inputTime, inputDate, activitiesArray)) {
       form.errors.activityTime = "there is already activity in this time";
     }
   };
   try {
-    checkTimeValidity(form.values.activityTime,form.values.activityDate, tasksTimes);
+    checkTimeValidity(
+      form.values.activityTime,
+      form.values.activityDate,
+      tasksTimes
+    );
     console.log("Input time is valid.");
   } catch (error) {
     console.error(error.message);
@@ -215,6 +223,8 @@ const CreateActivityCard = () => {
           name="phoneNumber"
           type="text"
           id="phoneNumber"
+          value={isUser ? user._id : form.values.phoneNumber}
+          disabled={isUser}
         />
 
         <button

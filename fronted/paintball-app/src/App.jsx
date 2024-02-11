@@ -76,7 +76,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="cards/edit-activity-cards/:id" //should add query param :id  ?
+              path="cards/edit-activity-cards/:id" 
               element={
                 <ProtectedRoute id>
                   <EditActivityCard />
@@ -122,6 +122,7 @@ function App() {
       </main>
       <footer>
         <Footer />
+       
       </footer>
     </div>
   );
