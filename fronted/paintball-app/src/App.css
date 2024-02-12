@@ -24,7 +24,7 @@ p {
 }
 #carouselExampleIndicators {
   margin: auto;
-  width: 50%;
+  /* width: 50%; */
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
@@ -36,7 +36,8 @@ form {
   box-shadow: 5px 5px 15px 5px #000000;
 }
 
-h1 {
+h1,
+h3 {
   text-align: center;
   font-family: "sigmar", cursive;
 }
@@ -204,7 +205,7 @@ footer {
   right: 20px; /* Adjust this value to position it horizontally */
   background-color: #ffffff;
   border: 1px solid #ccc;
-  transition: right 0.5s ease-in-out; 
+  transition: right 0.5s ease-in-out;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -219,7 +220,19 @@ footer {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  z-index: 1001;
 }
 .main-content {
-  padding-top: 70px; /* Adjust this value to match the height of your navbar */
+  /* padding-top: 70px;  */
+}
+
+.navbar {
+  box-shadow: 5px 7px 15px 5px #000000;
+}
+.page-header-on-carousel {
+  padding-bottom: 500px;
+}
+.page-header-on-carousel > h3 {
+  text-shadow: 2px 20px 40px rgba(19, 15, 15, 0.5);
+  line-height: 1.5;
 }
