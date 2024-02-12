@@ -44,7 +44,7 @@ const SendUsMailComp = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" >
       <div className="row ">
         <div className="">
           <form

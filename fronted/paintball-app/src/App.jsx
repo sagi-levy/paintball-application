@@ -47,7 +47,7 @@ function App() {
         <Navbar />
       </header>
       <ToastContainer />
-      <main>
+      <main className="main-content">
         <AppProvider>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -77,7 +77,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="cards/edit-activity-cards/:id" 
+              path="cards/edit-activity-cards/:id"
               element={
                 <ProtectedRoute id>
                   <EditActivityCard />
@@ -122,9 +122,8 @@ function App() {
         </AppProvider>
       </main>
       <footer>
-      
         <FooterMenu />
-         <Footer />
+        <Footer />
       </footer>
     </div>
   );

@@ -9,7 +9,7 @@ function FooterMenu() {
     >
       <section
         className="d-flex justify-content-between p-4"
-        style={{ backgroundColor: "#6351ce" }}
+        style={{ backgroundColor: "#212529" }}
       >
         <div className="me-5">
           <span>Get connected with us on social networks:</span>

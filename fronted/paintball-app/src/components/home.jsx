@@ -1,10 +1,43 @@
+import { useEffect, useState } from "react";
 import PageHeader from "./common/pageHeader";
 import CreateActivityCard from "./createActivityCard";
 import { Link } from "react-router-dom";
+import SendUsMailComp from "./common/sendUsMailComp";
 const Home = () => {
+  const [showCallUs, setShowCallUs] = useState(false);
+
+  const [visitCount, setVisitCount] = useState(0);
+
+  useEffect(() => {
+    const storedVisitCount = localStorage.getItem("visitCount");
+    const parsedVisitCount = parseInt(storedVisitCount);
+
+    if (!isNaN(parsedVisitCount)) {
+      setVisitCount(parsedVisitCount);
+    }
+
+    setVisitCount(visitCount + 1);
+    localStorage.setItem("visitCount", visitCount + 1);
+
+    if ((visitCount + 1) % 5 === 0) {
+      setShowCallUs(true);
+    }
+  }, []);
+  const handleDeleteClick = () => {
+    setShowCallUs(false);
+  };
   return (
     <>
-      <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+     <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+      {showCallUs && (
+        <div className="call-us-card" style={{ width: "30%" }}>
+          <button className="delete-button" onClick={handleDeleteClick}>
+            <i classNames="bi bi-x-lg"></i>
+          </button>
+          <p>Call Us: 123-456-7890</p>
+          <SendUsMailComp />
+        </div>
+      )}
       <p>
         Hello and welcome to the home page of the Paintball Israel website. In
         order to get more details, watch a video of activities and proceed to
@@ -14,7 +47,7 @@ const Home = () => {
 
       <div
         id="carouselExampleIndicators"
-        className="carousel slide"
+        className="carousel slide mb-4"
         data-bs-ride="true"
       >
         <div className="carousel-indicators">
