@@ -12,13 +12,19 @@ module.exports = async (req, res, next) => {
     return;
   }
   try {
+    console.log(token);
+
     const payload = jwt.verify(token, JWTSecretToken);
+    console.log(payload);
+
+    console.log(req.user);
+
     req.user = payload;
     req.jwtPayload = payload;
 
-    console.log("payload", payload);
+    //console.log("payload", payload);
 
-    console.log("user id is:", req.user._id);
+    //console.log("user id is:", req.user._id);
 
     //const user = await User.findOne({ _id: req.user._id }, { password: 0 });
     //console.log(user);

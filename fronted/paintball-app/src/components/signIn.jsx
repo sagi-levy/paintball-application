@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { useAuth } from "../context/auth.context";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
   const { logIn, user } = useAuth();
-
   const navigate = useNavigate();
+
   const form = useFormik({
     initialValues: { phoneNumber: "", password: "" },
     validate(values) {
@@ -28,6 +31,16 @@ const SignIn = () => {
       try {
         await logIn(values);
         console.log(user); // user shown after refresh, supposed to be render, don't know why not
+        console.log(values); // user shown after refresh, supposed to be render, don't know why not
+        toast.success(`welcome`, {
+          autoClose: 2000,
+          style: {
+            background: "black",
+            color: "white",
+            borderRadius: "8px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          },
+        });
 
         navigate("/about");
       } catch ({ response }) {
@@ -42,7 +55,7 @@ const SignIn = () => {
     <>
       <PageHeader title={<h1>Sign in page</h1>} />
       <p>sign in to enter</p>
-      <form onSubmit={form.handleSubmit}>
+      <form className="mb-4" onSubmit={form.handleSubmit}>
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
@@ -66,6 +79,17 @@ const SignIn = () => {
           submit
         </button>
       </form>
+
+      <Link
+        style={{
+          color: "black",
+          fontFamily: "cursive",
+          justifyContent: "center",
+        }}
+        to={"/reset-password"}
+      >
+        forgot password?
+      </Link>
     </>
   );
 };

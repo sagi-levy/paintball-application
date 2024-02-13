@@ -1,10 +1,47 @@
+import { useEffect, useState } from "react";
 import PageHeader from "./common/pageHeader";
 import CreateActivityCard from "./createActivityCard";
+import { Link } from "react-router-dom";
+import SendUsMailComp from "./common/sendUsMailComp";
 const Home = () => {
+  const [showCallUs, setShowCallUs] = useState(false);
+
+  const [visitCount, setVisitCount] = useState(0);
+
+  useEffect(() => {
+    const storedVisitCount = localStorage.getItem("visitCount");
+    const parsedVisitCount = parseInt(storedVisitCount);
+
+    if (!isNaN(parsedVisitCount)) {
+      setVisitCount(parsedVisitCount);
+    }
+
+    setVisitCount(visitCount + 1);
+    localStorage.setItem("visitCount", visitCount + 1);
+
+    if ((visitCount + 1) % 5 === 0) {
+      setShowCallUs(true);
+    }
+  }, []);
+  const handleDeleteClick = () => {
+    setShowCallUs(false);
+  };
   return (
     <>
-      <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
-      <p>
+      {/* <PageHeader title={<h1>Welcome To Paintball Israel</h1>} /> */}
+      {showCallUs && (
+        <div
+          className="call-us-card z-3 position-absolute"
+          style={{ width: "30%" }}
+        >
+          <button className="delete-button" onClick={handleDeleteClick}>
+            <i classNames="bi bi-x-lg">X</i>
+          </button>
+          <p>Call Us: 123-456-7890</p>
+          <SendUsMailComp />
+        </div>
+      )}
+      {/* <p>
         Hello and welcome to the home page of the Paintball Israel website. In
         order to get more details, watch a video of activities and proceed to
         determine the date of the activity, you must sign in to the website. in

@@ -5,23 +5,33 @@ import { useState } from "react";
 import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { updateActivityCard } from "../services/cardsServices";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import queryString from "query-string"; // Import query-string library
+import { useAuth } from "../context/auth.context";
+
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
+  const { user } = useAuth();
+  const isAdmin = user && user.biz;
+  const location = useLocation();
+
+  const queryParams = queryString.parse(location.search);
+  const { cardId } = queryParams;
+  console.log(cardId);
   const navigate = useNavigate();
   console.log(useParams());
   const { id } = useParams();
   console.log(id);
-  const ActivityCard = useActivityCard(id);
+  const ActivityCard = useActivityCard(id, cardId);
   console.log(ActivityCard);
   useEffect(() => {
     if (!ActivityCard) {
       return;
     }
 
-    /*only people who signed up as business can edit or create activities*/
     const {
+      _id,
       activityName,
       activityDescription,
       activityAddress,
@@ -35,6 +45,7 @@ const EditActivityCard = () => {
       inCalendar,
     } = ActivityCard;
     form.setValues({
+      _id,
       user_id,
       isPaid,
       inCalendar,
@@ -52,6 +63,7 @@ const EditActivityCard = () => {
 
   const form = useFormik({
     initialValues: {
+      _id: "",
       activityName: "",
       activityDescription: "",
       activityAddress: "",
@@ -81,18 +93,19 @@ const EditActivityCard = () => {
       isPaid: Joi.boolean(),
       inCalendar: Joi.boolean(),
       user_id: Joi.string(),
+      _id: Joi.string().allow(""),
     }),
 
     onSubmit: async (values) => {
-      // console.log("this is values:", values);
+      console.log("this is values:", values);
       try {
-        const { activityImage, ...body } = values;
+        const { _id, activityImage, ...body } = values;
         console.log(values);
         if (activityImage) {
           body.activityImage = activityImage;
         }
 
-        await updateActivityCard(id, values);
+        await updateActivityCard(id, cardId, values);
         navigate("/calendar");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -165,6 +178,8 @@ const EditActivityCard = () => {
           name="phoneNumber"
           type="text"
           id="phoneNumber"
+          value={ActivityCard ? ActivityCard.phoneNumber : ""}
+          disabled
           {...form.getFieldProps("phoneNumber")}
         />
         <Input
@@ -175,6 +190,35 @@ const EditActivityCard = () => {
           id="activityTime"
           {...form.getFieldProps("activityTime")}
         />
+        {/* Your existing code... */}
+        {isAdmin && ( // Conditionally render inputs only if user is an admin
+          <>
+            <div className="checkbox-group">
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="isPaid"
+                name="isPaid"
+                checked={form.values.isPaid}
+                {...form.getFieldProps("isPaid")}
+                className="form-check-input w-25"
+              />
+
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="inCalendar"
+                name="inCalendar"
+                checked={form.values.inCalendar}
+                {...form.getFieldProps("inCalendar")}
+                className="form-check-input w-25"
+              />
+            </div>
+          </>
+        )}
+
         <button
           type="submit"
           className="btn btn-primary"

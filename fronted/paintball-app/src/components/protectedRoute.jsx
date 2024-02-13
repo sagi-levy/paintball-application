@@ -1,24 +1,30 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
 
-const ProtectedRoute = ({ id,tasks, children, myTasks }) => {
-  // need to fix this code that user can edit/delete only his activities
-  // now i get props as undefined
+const ProtectedRoute = ({ tasks, children, myTasks }) => {
+  const { id } = useParams();
+
+  // console.log("my tasks :   ", myTasks);
+  // console.log(" tasks :   ", tasks);
+  // console.log(myTasks.length > 0);
   const { user } = useAuth();
-  console.log(id);
-  console.log(user._id);
-  console.log(myTasks);
-  console.log("tasks:", tasks);
-  if (
-    !user
-    //  ||
-    // !myTasks ||
-    // myTasks.length === 0 ||
-    // user._id !== id ||
-    // myTasks[0]?.user_id !== user._id /*(onlyBiz && !user.biz)*/
-  ) {
+
+  // console.log(user._id);
+  // if (user._id === myTasks[0].phoneNumber) {
+  //   console.log(true);
+  // }
+
+  if (!user) {
     return <Navigate to="/" />;
   }
-  return children;
+  if (!user.biz) {
+    if (myTasks && tasks === undefined) {
+      return;
+    }
+  }
+
+  {
+    return children;
+  }
 };
 export default ProtectedRoute;
