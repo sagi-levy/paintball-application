@@ -41,7 +41,7 @@ const Home = () => {
           <SendUsMailComp />
         </div>
       )}
-      {/* <p>
+       <p>
         Hello and welcome to the home page of the Paintball Israel website. In
         order to get more details, watch a video of activities and proceed to
         determine the date of the activity, you must sign in to the website. in
