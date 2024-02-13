@@ -28,24 +28,27 @@ const Home = () => {
   };
   return (
     <>
-     <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+      {/* <PageHeader title={<h1>Welcome To Paintball Israel</h1>} /> */}
       {showCallUs && (
-        <div className="call-us-card" style={{ width: "30%" }}>
+        <div
+          className="call-us-card z-3 position-absolute"
+          style={{ width: "30%" }}
+        >
           <button className="delete-button" onClick={handleDeleteClick}>
-            <i classNames="bi bi-x-lg"></i>
+            <i classNames="bi bi-x-lg">X</i>
           </button>
           <p>Call Us: 123-456-7890</p>
           <SendUsMailComp />
         </div>
       )}
-      <p>
+      {/* <p>
         Hello and welcome to the home page of the Paintball Israel website. In
         order to get more details, watch a video of activities and proceed to
         determine the date of the activity, you must sign in to the website. in
         order to create activities, sign in as admin
-      </p>
+      </p> */}
 
-      <div
+      <div 
         id="carouselExampleIndicators"
         className="carousel slide mb-4"
         data-bs-ride="true"
@@ -81,12 +84,22 @@ const Home = () => {
               alt="..."
             />{" "}
             <div className="carousel-caption d-none d-md-block">
+              <div className="page-header-on-carousel">
+                <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+                <h3 className="text-light pt-5">
+                  Hello and welcome to the home page of the Paintball Israel
+                  website. In order to get more details, watch a video of
+                  activities and proceed to determine the date of the activity,
+                  you must sign in to the website. in order to create
+                  activities, sign in as admin
+                </h3>
+              </div>
               <Link
                 to={"/paintball-page"}
                 className="btn btn-link text-decoration-none  p-2 rounded"
               >
                 {" "}
-                <p id="carousel-p-tag">paintball</p>
+                <h3 id="carousel-p-tag">paintball</h3>
               </Link>
               <p
                 id="carousel-p-tag"
@@ -105,12 +118,22 @@ const Home = () => {
               alt="..."
             />{" "}
             <div className="carousel-caption d-none d-md-block">
+              <div className="page-header-on-carousel">
+                <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+                <h3 className="text-light pt-5">
+                  Hello and welcome to the home page of the Paintball Israel
+                  website. In order to get more details, watch a video of
+                  activities and proceed to determine the date of the activity,
+                  you must sign in to the website. in order to create
+                  activities, sign in as admin
+                </h3>
+              </div>
               <Link
                 to={"/laser-tag-page"}
                 className="btn btn-link text-decoration-none  p-2 rounded"
               >
                 {" "}
-                <p id="carousel-p-tag">laser tag</p>
+                <ph3 id="carousel-p-tag">laser tag</ph3>
               </Link>
               <p
                 id="carousel-p-tag"
@@ -128,12 +151,23 @@ const Home = () => {
               alt="..."
             />{" "}
             <div className="carousel-caption d-none d-md-block">
+              {" "}
+              <div className="page-header-on-carousel">
+                <PageHeader title={<h1>Welcome To Paintball Israel</h1>} />
+                <h3 className="text-light pt-5">
+                  Hello and welcome to the home page of the Paintball Israel
+                  website. In order to get more details, watch a video of
+                  activities and proceed to determine the date of the activity,
+                  you must sign in to the website. in order to create
+                  activities, sign in as admin
+                </h3>
+              </div>
               <Link
                 to={"/karting-page"}
                 className="btn btn-link text-decoration-none  p-2 rounded"
               >
                 {" "}
-                <p id="carousel-p-tag">karting</p>
+                <h3 id="carousel-p-tag">karting</h3>
               </Link>
               <p
                 id="carousel-p-tag"

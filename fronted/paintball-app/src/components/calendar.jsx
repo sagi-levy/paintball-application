@@ -188,7 +188,7 @@ const Calendar = () => {
   // console.log(new Date(tasks[0].activityDate).getHours());
   // console.log((tasks[0].time));
   return (
-    <div className="container mt-4">
+    <div className="container mt-4"  style={{ paddingTop: "70px" }}>
       <h2>Calendar</h2>
       {renderCalendar()}
     </div>

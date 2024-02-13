@@ -7,7 +7,7 @@ const EmailForm = () => {
   
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: "70px" }}>
       <div className="row ">
         <div className="col">
           <iframe
