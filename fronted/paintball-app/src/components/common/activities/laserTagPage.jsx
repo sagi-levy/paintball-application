@@ -26,7 +26,7 @@ const LaserTagPage = () => {
     <div className="container mt-5 ">
       {" "}
       <PageHeader
-        title={<h1 className="text-center mb-4">laser tag Packages</h1>}
+        title={<h1 style={{ paddingTop: "70px" }} className="text-center mb-4">laser tag Packages</h1>}
       /> 
       <BasicPackages packages={paintballPackages} />
       <div className="col-md-4 mb-4">

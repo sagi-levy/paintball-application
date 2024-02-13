@@ -3,11 +3,8 @@ import axios from "axios";
 import SendUsMailComp from "./common/sendUsMailComp";
 
 const EmailForm = () => {
- 
-  
-
   return (
-    <div className="container" style={{ paddingTop: "70px" }}>
+    <div className="container pb-md-5 pb-sm-2" style={{ paddingTop: "70px" }}>
       <div className="row ">
         <div className="col">
           <iframe
@@ -16,11 +13,12 @@ const EmailForm = () => {
           ></iframe>{" "}
         </div>
         <div className="col-6">
-         <SendUsMailComp/>       </div>
+          <SendUsMailComp />{" "}
+        </div>
         <div className="col m-auto" id="contact-us-icons">
           <div className="d-flex flex-column justify-content-center align-items-center">
-            <div><h1>contact us</h1>
-              {" "}
+            <div>
+              <h1>contact us</h1>{" "}
               <a href="tel:0779975649">
                 <h3 className="badge bg-success  m-2">call us</h3>
               </a>
@@ -42,7 +40,7 @@ const EmailForm = () => {
                 rel="noopener noreferrer"
               >
                 {" "}
-                <h3 className="badge bg-success m-2">Paintball-Israel</h3>
+                <h3 className="badge bg-success m-2 ">Paintball-Israel</h3>
               </a>
               <i className="bi bi-instagram"></i>{" "}
             </div>
@@ -51,6 +49,6 @@ const EmailForm = () => {
       </div>
     </div>
   );
-}
+};
 
 export default EmailForm;

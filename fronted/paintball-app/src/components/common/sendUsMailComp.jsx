@@ -44,17 +44,17 @@ const SendUsMailComp = () => {
   };
 
   return (
-    <div className="container" >
-      <div className="row ">
-        <div className="">
-          <form
-            style={{ padding: 0, margin: "auto", width: "100%" }}
+    <div className="container ">
+      <div className="row " >
+        <div>
+          <form 
+            style={{ margin: "auto", width: "100%", background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}
             onSubmit={handleSubmit}
           >
-            <div>
+            <div >
               <label htmlFor="name">Name:</label>
               <input
-                className="form-control"
+                className="form-control "
                 type="text"
                 id="name"
                 name="name"

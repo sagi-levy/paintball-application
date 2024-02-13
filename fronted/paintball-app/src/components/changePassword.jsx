@@ -76,7 +76,7 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <h2>Change Password</h2>
+      <h2 style={{ paddingTop: "70px" }}>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>
         {" "}

@@ -158,9 +158,9 @@ const CreateActivityCard = () => {
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
-      <form onSubmit={form.handleSubmit}>
+      <form onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
         {errorApiRequest && (
-          <div className="alert alert-danger">{errorApiRequest}</div>
+          <div className="alert alert-danger" >{errorApiRequest}</div>
         )}
         <Input
           onChange={form.handleChange}

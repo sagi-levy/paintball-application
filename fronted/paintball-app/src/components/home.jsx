@@ -80,7 +80,7 @@ const Home = () => {
                   alt="..."
                 />{" "}
                 <div className="carousel-caption d-none d-md-block">
-                <div className="page-header-on-carousel ">
+                  <div className="page-header-on-carousel ">
                     {" "}
                     <PageHeader
                       title={<h1 className="mb-5"> Paintball Israel</h1>}
@@ -117,7 +117,7 @@ const Home = () => {
                   alt="..."
                 />{" "}
                 <div className="carousel-caption d-none d-md-block">
-                <div className="page-header-on-carousel ">
+                  <div className="page-header-on-carousel ">
                     {" "}
                     <PageHeader
                       title={<h1 className="mb-5"> Paintball Israel</h1>}
@@ -208,8 +208,15 @@ const Home = () => {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-          <div className="col-12">
+          <div className="col-lg-8 col-sm-12 m-5">
             <CreateActivityCard />
+          </div>
+          <div className="col-lg-3 col-sm-12">
+            <img
+              src="https://cdn.pixabay.com/photo/2014/04/02/16/27/paintball-307322_640.png"
+              alt=""
+              srcset=""
+            />
           </div>
         </div>
       </div>

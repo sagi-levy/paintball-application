@@ -14,7 +14,7 @@ function FooterMenu() {
         <div className="me-5">
           <span>Get connected with us on social networks:</span>
         </div>
-        <div>
+        <div style={{ zIndex: 2 }}>
           <a
             target="_blank"
             href="https://www.facebook.com/groups/399219820420340/?locale=he_IL"
