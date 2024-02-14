@@ -8,14 +8,17 @@ module.exports = async (req, res, next) => {
   let tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
   if (!token) {
-    
     res.status(200).json(tasks);
     return;
   }
   try {
-   
+    console.log(token);
 
     const payload = jwt.verify(token, JWTSecretToken);
+    console.log(payload);
+
+    console.log(req.user);
+
     req.user = payload;
     req.jwtPayload = payload;
 

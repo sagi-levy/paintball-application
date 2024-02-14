@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SendUsMailComp = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -25,6 +27,15 @@ const SendUsMailComp = () => {
       .post("/send-email", formData)
       .then((response) => {
         console.log("Email sent successfully!");
+        toast.success(`password changed`, {
+          autoClose: 2000,
+          style: {
+            background: "black",
+            color: "white",
+            borderRadius: "8px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          },
+        });
       })
 
       .catch((error) => {
@@ -33,17 +44,16 @@ const SendUsMailComp = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row ">
-        <div className="">
-          <form
-            style={{ padding: 0, margin: "auto", width: "100%" }}
+    
+        <div className="pb-sm-4">
+          <form 
+            style={{ margin: "auto", width: "100%", background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}
             onSubmit={handleSubmit}
           >
-            <div>
+            <div >
               <label htmlFor="name">Name:</label>
               <input
-                className="form-control"
+                className="form-control "
                 type="text"
                 id="name"
                 name="name"
@@ -84,8 +94,7 @@ const SendUsMailComp = () => {
             </p>
           </form>
         </div>
-      </div>
-    </div>
+   
   );
 };
 

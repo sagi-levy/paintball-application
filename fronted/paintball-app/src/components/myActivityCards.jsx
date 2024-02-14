@@ -56,7 +56,7 @@ const MyActivityCards = () => {
 
   return (
     <>
-      <PageHeader title={<h1>my activities cards</h1>} />
+      <PageHeader title={<h1 className="m-lg-2 m-sm-5 pt-5">my activities cards</h1>} />
       <h2>here you can see all your booked paintball activities</h2>
       <input
         type="text"
@@ -93,8 +93,8 @@ const MyActivityCards = () => {
             filteredData.map((activityCard) => {
               return (
                 <ActivityCardComponent
-                  key={activityCard._id}
-                  id={activityCard._id}
+                user_id={activityCard.user_id}
+                  _id={activityCard._id}
                   activityName={activityCard.activityName}
                   activityDescription={activityCard.activityDescription}
                   activityAddress={activityCard.activityAddress}

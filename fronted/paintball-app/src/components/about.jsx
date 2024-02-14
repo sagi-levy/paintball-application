@@ -3,7 +3,7 @@ import PageHeader from "./common/pageHeader";
 const About = () => {
   return (
     <>
-      <PageHeader title={<h1>About Us</h1>} />
+      <PageHeader title={<h1 style={{ paddingTop: "70px" }}>About Us</h1>} />
       <p>
         Hello, we are a site that provides options for scheduling activities in
         the field of paintball and laser tag. It has been 30 years that we have
