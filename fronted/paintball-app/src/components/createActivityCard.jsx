@@ -160,7 +160,7 @@ const CreateActivityCard = () => {
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
-      <form className="w-50 w-md-100" onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
+      <form className="create-form1"/*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
         {errorApiRequest && (
           <div className="alert alert-danger" >{errorApiRequest}</div>
         )}
@@ -231,7 +231,7 @@ const CreateActivityCard = () => {
 
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary mt-4"
           disabled={Object.keys(form.errors).length}
         >
           leave your activity details

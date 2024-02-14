@@ -31,7 +31,7 @@ const Home = () => {
       {/* <PageHeader title={<h1>Welcome To Paintball Israel</h1>} /> */}
       {showCallUs && (
         <div
-          className="call-us-card z-3 position-absolute"
+          className="call-us-card z-3Z position-absolute"
           style={{ width: "30%" }}
         >
           <button className="delete-button" onClick={handleDeleteClick}>
@@ -42,7 +42,7 @@ const Home = () => {
         </div>
       )}
 
-      <div className="contzainer">
+      <div className="contzainer mr-0" style={{ marginRight: "0" }}>
         <div className="row align-items-center">
           <div
             id="carouselExampleIndicators"
@@ -79,7 +79,7 @@ const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />{" "}
-                <div className="carousel-caption d-none d-md-block">
+                <div className="carousel-caption">
                   <div className="page-header-on-carousel ">
                     {" "}
                     <PageHeader
@@ -95,7 +95,7 @@ const Home = () => {
                   </div>
                   <Link
                     to={"/paintball-page"}
-                    className="h1 text-decoration-none  p-2 rounded"
+                    className="h1 text-decoration-none p-2 rounded"
                   >
                     {" "}
                     <p id="carousel-p-tag">paintball</p>
@@ -109,14 +109,14 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="carousel-item active">
+              <div className="carousel-item active ">
                 <img
                   id="carousel-img"
                   src="https://media.istockphoto.com/id/1281185274/photo/laser-tag-tactical-game-just-for-fun-forces-mission-science-fiction-playing-in-red-light.jpg?b=1&s=170667a&w=0&k=20&c=RqTQ9tfv5zYgcfxDazHcZrSyasj11mB_GyQKlxakKVk="
                   className="d-block w-100"
                   alt="..."
                 />{" "}
-                <div className="carousel-caption d-none d-md-block">
+                <div className="carousel-caption k">
                   <div className="page-header-on-carousel ">
                     {" "}
                     <PageHeader
@@ -152,8 +152,8 @@ const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />{" "}
-                <div className="carousel-caption d-none d-md-block">
-                  <div className="page-header-on-carousel ">
+                <div className="carousel-caption">
+                  <div className="page-header-on-carousel">
                     {" "}
                     <PageHeader
                       title={<h1 className="mb-5"> Paintball Israel</h1>}
@@ -208,11 +208,12 @@ const Home = () => {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-          <div className="col-lg-8 col-sm-12 m-lg-5 ">
+          <div className="col-lg-8 col-sm-12 m-lg-5 w--sm100 ">
             <CreateActivityCard />
           </div>
           <div className="col-lg-3 col-sm-12">
             <img
+            id="paintball-player-img"
               src="https://cdn.pixabay.com/photo/2014/04/02/16/27/paintball-307322_640.png"
               alt=""
               srcset=""

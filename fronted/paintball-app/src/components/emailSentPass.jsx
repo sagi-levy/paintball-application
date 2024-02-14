@@ -110,18 +110,22 @@ const SentEmail = () => {
   };
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Enter Verification Code</h2>
       <p>Please enter the 4-digit verification code sent to your email.</p>
 
       <input
+        className="form-control w-25 d-inline m-2"
         type="text"
         value={verificationCode}
         onChange={handleVerificationCodeChange}
         maxLength={4}
       />
 
-      <button onClick={handleVerificationCodeSubmit}>
+      <button
+        className="btn btn-secondary"
+        onClick={handleVerificationCodeSubmit}
+      >
         Submit Verification Code
       </button>
 

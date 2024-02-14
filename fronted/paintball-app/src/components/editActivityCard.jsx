@@ -140,7 +140,7 @@ const EditActivityCard = () => {
   console.log(Object.keys(form.errors));
   return (
     <>
-      <PageHeader title={<h1>edit card page</h1>} />
+      <PageHeader title={<h1 className="pt-5">edit card page</h1>} />
       <p>you can edit the card by savig the new valus</p>
       <form onSubmit={form.handleSubmit}>
         {errorApiRequest && (

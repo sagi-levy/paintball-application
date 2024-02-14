@@ -63,7 +63,7 @@ const EnterNewPassword = () => {
   });
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>

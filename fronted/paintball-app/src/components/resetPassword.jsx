@@ -39,12 +39,13 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Reset Password</h2>
       <p>Enter your email address to receive a password reset link.</p>
 
       <label>email:</label>
       <input
+      className="form-control w-50 m-auto"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +53,8 @@ const ResetPassword = () => {
       />
       <label>phone:</label>
       <input
+            className="form-control w-50 m-auto"
+
         type="text"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
@@ -59,6 +62,7 @@ const ResetPassword = () => {
       />
 
       <button
+      className="btn btn-secondary m-2"
         onClick={handleResetPassword}
         disabled={isLoading || !email || !phoneNumber}
       >

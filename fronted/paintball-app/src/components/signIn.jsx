@@ -82,7 +82,7 @@ const SignIn = () => {
 
       <Link
         style={{
-          color: "black",
+          color: "#ecd8d8",
           fontFamily: "cursive",
           justifyContent: "center",
         }}
