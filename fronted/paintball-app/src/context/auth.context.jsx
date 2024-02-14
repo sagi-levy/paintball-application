@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
         user,
         logIn,
         logout,
+        refreshUser,
 
         createUser: userServices.createUser,
       }}

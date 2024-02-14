@@ -16,15 +16,16 @@ const SignUpBiz = () => {
   const { logIn } = useAuth();
   const navigate = useNavigate();
   const form = useFormik({
-    initialValues: { email: "", name: "", password: "" },
+    initialValues: { phoneNumber: "", name: "", password: "" },
     validateOnMount: true,
     validate: FormikUsingJoi({
       name: Joi.string().min(2).max(255).required(),
-      email: Joi.string()
-        .min(6)
-        .max(255)
-        .email({ tlds: { allow: false } })
-        .required(),
+      phoneNumber: Joi.string()
+        .allow("")
+        .min(9)
+        .max(10)
+        .required()
+        .regex(/^0[2-9]\d{7,8}$/),
       password: Joi.string().min(6).max(255).required(),
     }),
 
@@ -32,8 +33,8 @@ const SignUpBiz = () => {
       try {
         console.log(values);
         await createUser({ ...values, biz: true });
-        await logIn({ email: values.email, password: values.password });
-        navigate("/about");
+        await logIn({ phoneNumber: values.phoneNumber, password: values.password });
+        navigate(`/cards/my-activity-cards/${values.phoneNumber}`);
       } catch ({ response }) {
         if (response && response.status === 400) {
           setErrorApiRequest(response.data);
@@ -57,11 +58,11 @@ const SignUpBiz = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
-          {...form.getFieldProps("email")}
-          type="email"
-          name="email"
-          id="email"
-          error={form.touched.email && form.errors.email}
+          {...form.getFieldProps("phoneNumber")}
+          type="text"
+          name="phoneNumber"
+          id="phoneNumber"
+          error={form.touched.phoneNumber && form.errors.phoneNumber}
         />
         <Input
           {...form.getFieldProps("name")}
