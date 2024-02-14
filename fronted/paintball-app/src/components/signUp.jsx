@@ -36,7 +36,7 @@ const SignUp = () => {
       <PageHeader
         title={
           <>
-            <h2> you need to sign up to the page</h2>
+            <h2 className="pt-5"> you need to sign up to the page</h2>
             <p>please fill the inputs</p>
           </>
         }
