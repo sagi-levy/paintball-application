@@ -208,7 +208,7 @@ const Home = () => {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-          <div className="col-lg-8 col-sm-12 m-5">
+          <div className="col-lg-8 col-sm-12 m-lg-5 ">
             <CreateActivityCard />
           </div>
           <div className="col-lg-3 col-sm-12">

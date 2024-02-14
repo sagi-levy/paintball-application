@@ -12,8 +12,8 @@ const Navbar = () => {
       >
         <div className="container-fluid">
           <Link to="/">
-            {" "}
-            <i className="bi bi-house-door"> home</i>
+            {" "} 
+            <i className="bi bi-house-door bi-big"></i>
           </Link>
 
           <button

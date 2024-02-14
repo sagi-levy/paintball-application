@@ -22,8 +22,10 @@ const stripePromise = loadStripe(
 );
 
 const CreateActivityCard = () => {
-  const [tasksTimes, setTasksTimes] = useState([]); // should get from server
+  //const [tasksTimes, setTasksTimesAlreadyCatches] = useState([]); // should get from server
   const { logIn, user } = useAuth();
+  const {  setTasksTimesAlreadyCatches,tasksTimes} = useAppContext();
+  console.log("tasks times:",tasksTimes)
 
   const isUser = user;
   const fetchTasksTimes = async () => {
@@ -48,7 +50,7 @@ const CreateActivityCard = () => {
       const data = await response.json();
 
       user
-        ? setTasksTimes(
+        ? setTasksTimesAlreadyCatches(
             data.tasks
               .filter(
                 (activity) => activity.activityTime && activity.activityDate
@@ -58,7 +60,7 @@ const CreateActivityCard = () => {
                 activityDate,
               }))
           )
-        : setTasksTimes(
+        : setTasksTimesAlreadyCatches(
             data
               .filter(
                 (activity) => activity.activityTime && activity.activityDate
@@ -158,7 +160,7 @@ const CreateActivityCard = () => {
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
-      <form onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
+      <form className="w-50 w-md-100" onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
         {errorApiRequest && (
           <div className="alert alert-danger" >{errorApiRequest}</div>
         )}

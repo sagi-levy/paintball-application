@@ -56,7 +56,7 @@ const MyActivityCards = () => {
 
   return (
     <>
-      <PageHeader title={<h1 style={{ paddingTop: "70px" }}>my activities cards</h1>} />
+      <PageHeader title={<h1 className="m-lg-2 m-sm-5 pt-5">my activities cards</h1>} />
       <h2>here you can see all your booked paintball activities</h2>
       <input
         type="text"

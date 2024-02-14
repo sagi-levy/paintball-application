@@ -44,9 +44,8 @@ const SendUsMailComp = () => {
   };
 
   return (
-    <div className="container ">
-      <div className="row " >
-        <div>
+    
+        <div className="pb-sm-4">
           <form 
             style={{ margin: "auto", width: "100%", background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}
             onSubmit={handleSubmit}
@@ -95,8 +94,7 @@ const SendUsMailComp = () => {
             </p>
           </form>
         </div>
-      </div>
-    </div>
+   
   );
 };
 

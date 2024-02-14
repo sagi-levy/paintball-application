@@ -9,12 +9,21 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import queryString from "query-string"; // Import query-string library
 import { useAuth } from "../context/auth.context";
+import { useAppContext } from "../context/card.context";
 
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
   const { user } = useAuth();
   const isAdmin = user && user.biz;
   const location = useLocation();
+  const {
+    setTasksTimesAlreadyCatches,
+    tasksTimes,
+    isTimeInArray,
+    checkTimeValidity,
+    tasksTimesAlreadyCatches,
+  } = useAppContext();
+  console.log("tasks times:", tasksTimes);
 
   const queryParams = queryString.parse(location.search);
   const { cardId } = queryParams;
@@ -25,6 +34,7 @@ const EditActivityCard = () => {
   console.log(id);
   const ActivityCard = useActivityCard(id, cardId);
   console.log(ActivityCard);
+
   useEffect(() => {
     if (!ActivityCard) {
       return;
@@ -89,7 +99,9 @@ const EditActivityCard = () => {
         .regex(/^0[2-9]\d{7,8}$/),
       activityImage: Joi.string().allow("").min(11).max(1024),
       activityDate: Joi.date().allow(""),
-      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+      activityTime: Joi.string()
+        .regex(/^([0-9]{2})\:([0-9]{2})$/)
+        .custom(() => checkTimeValidity),
       isPaid: Joi.boolean(),
       inCalendar: Joi.boolean(),
       user_id: Joi.string(),
@@ -114,6 +126,16 @@ const EditActivityCard = () => {
       }
     },
   });
+  // if (
+  //   checkTimeValidity(
+  //     form.values.activityTime,
+  //     form.values.activityDate,
+  //     tasksTimes
+  //   )
+  // ) {
+  //   form.errors.activityTime = "there is already activity in the time";
+  // } 
+  
 
   console.log(Object.keys(form.errors));
   return (

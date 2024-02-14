@@ -47,7 +47,7 @@ function App() {
         <Navbar />
       </header>
       <ToastContainer />
-      <main className="main-content">
+      <main className="main-content ">
         <AppProvider>
           <Routes>
             <Route path="/" element={<Home />}></Route>

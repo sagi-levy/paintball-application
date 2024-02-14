@@ -63,10 +63,10 @@ const Calendar = () => {
     const weekDays = getDaysInWeek(currentWeek);
 
     return (
-      <table className="table table-bordered">
+      <table className="table table-bordered" >
         <thead>
           <tr>
-            <th>
+            <th >
               <button
                 className="btn btn-primary"
                 onClick={() =>
@@ -82,7 +82,7 @@ const Calendar = () => {
               <th key={index}>{`${daysOfWeek[index]} ${day.getDate()}`}</th>
             ))}
             <th>
-              <button
+              <button 
                 className="btn btn-primary"
                 onClick={() =>
                   setCurrentWeek(
@@ -100,8 +100,8 @@ const Calendar = () => {
             <tr key={hour}>
               <td>{`${hour}:00`}</td>
               {weekDays.map((day, index) => (
-                <td key={index}>
-                  <ul className="list-group">
+                <td key={index} style={{ width: "200px" }}>
+                  <ul className="list-group ">
                     {tasks
                       .filter(
                         (task) =>
@@ -117,11 +117,17 @@ const Calendar = () => {
                           new Date(a.activityDate) - new Date(b.activityDate)
                       )
                       .map((task, taskIndex) => (
-                        <li key={task._id} className="list-group-item">
-                          {task.activityName}
-                          task id is:
-                          {task._id}
-                          <span>
+                        <li
+                          key={task._id}
+                          className="list-group-item"
+                          id="li-in-calendar"
+                        >
+                          <p className="text-light m-auto">
+                            {" "}
+                            {task.activityName} of {task.bizUserName}
+                          </p>
+
+                          <span className="text-light">
                             {" "}
                             paid?
                             {task.isPaid ? (
@@ -188,10 +194,14 @@ const Calendar = () => {
   // console.log(new Date(tasks[0].activityDate).getHours());
   // console.log((tasks[0].time));
   return (
-    <div className="container mt-4"  style={{ paddingTop: "70px" }}>
-      <h2>Calendar</h2>
-      {renderCalendar()}
+    <div className="container mt-4 pt-5">
+    <h2>Calendar</h2>
+    <div className="table-responsive">
+     
+        {renderCalendar()}
+      
     </div>
+  </div>
   );
 };
 

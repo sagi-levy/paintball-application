@@ -30,7 +30,7 @@ p {
 }
 form {
   margin: auto;
-  width: 50%;
+  /* width: 50%; */
   -webkit-box-shadow: 5px 15px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
@@ -188,12 +188,7 @@ footer {
   left: 0; /* Position from the left of the footer-menu */
   width: 100%; /* Take the full width of the footer-menu */
   height: 100%; /* Take the full height of the footer-menu */
-  background-color: rgba(
-    28,
-    35,
-    49,
-    0.5
-  ); /* Overlay background color with opacity */
+  background-color: #1c233180; /* Overlay background color with opacity */
   z-index: 1; /* Ensure the overlay is behind the content */
 }
 
@@ -284,4 +279,8 @@ footer {
 }
 .bi-geo, .bi-geo-alt,.bi-flag {
   color: #ffffff;
+}
+#li-in-calendar{
+  /* background-color: #dc2c2c;; */
+  background: rgba(111,111,111,0.3)
 }

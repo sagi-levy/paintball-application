@@ -1,5 +1,4 @@
 const Input = ({ error, name, type, ...rest }) => {
-  console.log(rest, type);
   return (
     <div>
       <div className="form-group m-5 my-2">

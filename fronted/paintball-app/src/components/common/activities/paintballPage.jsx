@@ -33,7 +33,7 @@ const PaintballPage = () => {
         }
       />
       <BasicPackages packages={paintballPackages} />
-      <div className="col-md-4 mb-4">
+      <div className="row">
         <ActivityDetails
           title={"Who is it suitable for?"}
           description={
