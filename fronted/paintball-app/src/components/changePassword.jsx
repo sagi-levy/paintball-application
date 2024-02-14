@@ -5,12 +5,14 @@ import Input from "../components/common/input";
 import Joi from "joi";
 import FormikUsingJoi from "../utils/formikUsingJoi";
 import { useFormik } from "formik";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChangePassword = () => {
-   const location = useLocation();
+  const location = useLocation();
   const user = location.state?.user || null;
-  console.log(user)
+  console.log(user);
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
@@ -48,22 +50,33 @@ const ChangePassword = () => {
             body: JSON.stringify(formData),
           }
         );
+
         if (!response.ok) {
           const data = await response;
           console.log(data);
           setErrorApiRequest(data.statusText);
+          return;
         }
       } catch (error) {
         console.error(error);
         setErrorApiRequest("Internal server error");
       }
+      toast.success(`password changed`, {
+        autoClose: 2000,
+        style: {
+          background: "black",
+          color: "white",
+          borderRadius: "8px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+        },
+      });
       navigate("/calendar");
     },
   });
 
   return (
     <div>
-      <h2>Change Password</h2>
+      <h2 style={{ paddingTop: "70px" }}>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>
         {" "}

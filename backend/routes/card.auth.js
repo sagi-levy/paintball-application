@@ -20,16 +20,27 @@ router.get("/my-activity-cards", authCheckMiddleWare, async (req, res) => {
 
 router.get("/my-activity-cards/:id", authCheckMiddleWare, async (req, res) => {
   const user = req.jwtPayload;
-  console.log("params", req.params.id);
-  const activityCard = await ActivityCard.findOne({
-    phoneNumber: req.params.id,
-    user_id: req.jwtPayload._id,
-  });
-  if (!activityCard) {
-    res.status(404).send("their is not such a card with this specific id");
-    return;
+  // console.log("params", req.params.id);
+  // console.log("query params is: ", req.query.cardId);
+  if (req.jwtPayload.biz) {
+    const activityCard = await ActivityCard.findOne({
+      phoneNumber: req.params.id,
+
+      _id: req.query.cardId,
+    });
+    res.send(activityCard);
+  } else {
+    const activityCard = await ActivityCard.findOne({
+      phoneNumber: req.params.id,
+      user_id: req.jwtPayload._id,
+      _id: req.query.cardId,
+    });
+    if (!activityCard) {
+      res.status(404).send("their is not such a card with this specific id");
+      return;
+    }
+    res.send(activityCard);
   }
-  res.send(activityCard);
 });
 
 router.delete(
@@ -39,6 +50,9 @@ router.delete(
     try {
       const activityCard = await ActivityCard.findOneAndRemove({
         phoneNumber: req.params.id,
+        _id: req.query.cardId,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
+
         //user_id: req.jwtPayload._id,
       });
 
@@ -65,6 +79,10 @@ router.put(
   authCheckMiddleWare,
   async (req, res) => {
     // console.log("activity card is is", req.body._id);
+    console.log("query params is: ", req.query.cardId);
+    console.log("body ", req.body);
+    const user = req.jwtPayload;
+    console.log("user ", user);
 
     const { error } = validateCard(req.body);
     if (error) {
@@ -77,8 +95,9 @@ router.put(
     let activityCard = await ActivityCard.findOneAndUpdate(
       {
         phoneNumber: req.params.id,
-        _id: req.body._id,
-        //user_id: req.jwtPayload._id,
+        _id: req.query.cardId,
+        // _id: req.body._id,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
       },
       req.body
     );
@@ -88,9 +107,36 @@ router.put(
         .send("could not find a card with this specific id");
     activityCard = await ActivityCard.findOne({
       phoneNumber: req.params.id,
-      _id: req.body._id,
+      _id: req.query.cardId,
+      //_id: req.body._id,
       //user_id: req.user._id,
     });
+    // if (user.biz === false && user._id !== req.body.phoneNumber) {
+    //   let userChangingId = await User.findOneAndUpdate(
+    //     {
+    //       phoneNumber: req.body.phoneNumber,
+    //     },
+    //     { phoneNumber: req.body.phoneNumber },
+    //     { new: true }
+    //   );
+    //   console.log(userChangingId);
+    //   if (userChangingId) {
+    //     console.log(
+    //       " changed this User phone number cause the card changed phone number",
+    //       userChangingId
+    //     );
+
+    //     return;
+    //   } else {
+    //     console.log("ok");
+    //     res.send({ activityCard, userChangingId });
+    //   }
+    // } else {
+    //   console.log("cadacsacs");
+    //   res.send(activityCard);
+    //   return;
+    // }
+
     res.send(activityCard);
   }
 );

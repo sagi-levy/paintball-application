@@ -5,16 +5,36 @@ import { useState } from "react";
 import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { updateActivityCard } from "../services/cardsServices";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import queryString from "query-string"; // Import query-string library
+import { useAuth } from "../context/auth.context";
+import { useAppContext } from "../context/card.context";
+
 import useActivityCard from "../hooks/useActivityCard";
 const EditActivityCard = () => {
+  const { user } = useAuth();
+  const isAdmin = user && user.biz;
+  const location = useLocation();
+  const {
+    setTasksTimesAlreadyCatches,
+    tasksTimes,
+    isTimeInArray,
+    checkTimeValidity,
+    tasksTimesAlreadyCatches,
+  } = useAppContext();
+  console.log("tasks times:", tasksTimes);
+
+  const queryParams = queryString.parse(location.search);
+  const { cardId } = queryParams;
+  console.log(cardId);
   const navigate = useNavigate();
   console.log(useParams());
   const { id } = useParams();
   console.log(id);
-  const ActivityCard = useActivityCard(id);
+  const ActivityCard = useActivityCard(id, cardId);
   console.log(ActivityCard);
+
   useEffect(() => {
     if (!ActivityCard) {
       return;
@@ -79,7 +99,9 @@ const EditActivityCard = () => {
         .regex(/^0[2-9]\d{7,8}$/),
       activityImage: Joi.string().allow("").min(11).max(1024),
       activityDate: Joi.date().allow(""),
-      activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+      activityTime: Joi.string()
+        .regex(/^([0-9]{2})\:([0-9]{2})$/)
+        .custom(() => checkTimeValidity),
       isPaid: Joi.boolean(),
       inCalendar: Joi.boolean(),
       user_id: Joi.string(),
@@ -89,13 +111,13 @@ const EditActivityCard = () => {
     onSubmit: async (values) => {
       console.log("this is values:", values);
       try {
-        const {_id, activityImage, ...body } = values;
+        const { _id, activityImage, ...body } = values;
         console.log(values);
         if (activityImage) {
           body.activityImage = activityImage;
         }
 
-        await updateActivityCard(id, values);
+        await updateActivityCard(id, cardId, values);
         navigate("/calendar");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -104,6 +126,16 @@ const EditActivityCard = () => {
       }
     },
   });
+  // if (
+  //   checkTimeValidity(
+  //     form.values.activityTime,
+  //     form.values.activityDate,
+  //     tasksTimes
+  //   )
+  // ) {
+  //   form.errors.activityTime = "there is already activity in the time";
+  // } 
+  
 
   console.log(Object.keys(form.errors));
   return (
@@ -168,6 +200,8 @@ const EditActivityCard = () => {
           name="phoneNumber"
           type="text"
           id="phoneNumber"
+          value={ActivityCard ? ActivityCard.phoneNumber : ""}
+          disabled
           {...form.getFieldProps("phoneNumber")}
         />
         <Input
@@ -178,6 +212,35 @@ const EditActivityCard = () => {
           id="activityTime"
           {...form.getFieldProps("activityTime")}
         />
+        {/* Your existing code... */}
+        {isAdmin && ( // Conditionally render inputs only if user is an admin
+          <>
+            <div className="checkbox-group">
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="isPaid"
+                name="isPaid"
+                checked={form.values.isPaid}
+                {...form.getFieldProps("isPaid")}
+                className="form-check-input w-25"
+              />
+
+              <Input
+                style={{ width: "5px", margin: "auto" }}
+                onChange={form.handleChange}
+                type="checkbox"
+                id="inCalendar"
+                name="inCalendar"
+                checked={form.values.inCalendar}
+                {...form.getFieldProps("inCalendar")}
+                className="form-check-input w-25"
+              />
+            </div>
+          </>
+        )}
+
         <button
           type="submit"
           className="btn btn-primary"

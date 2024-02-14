@@ -24,22 +24,25 @@ p {
 }
 #carouselExampleIndicators {
   margin: auto;
-  width: 50%;
+  width: 100%;
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
 form {
   margin: auto;
-  width: 50%;
-  border-radius: 5px;
+  /* width: 50%; */
   -webkit-box-shadow: 5px 15px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
 
-h1 {
+h1,
+h3,
+h2 {
   text-align: center;
   font-family: "sigmar", cursive;
+  color: #ffffff;
 }
+
 h2,
 .container .create-btn {
   text-align: center;
@@ -47,12 +50,18 @@ h2,
 p {
   font-family: "sigmar", cursive;
   text-align: center;
+  color: #ffffff;
 }
-
+th,
+tr,
+label {
+  color: rgb(255, 255, 255); /* Change 'red' to your desired text color */
+}
 footer {
   position: sticky;
   top: 95%;
-  margin-top: 10px;
+
+  background-color: #212529;
 }
 /* .carousel-inner {
   border-top: 5px solid;
@@ -73,13 +82,14 @@ footer {
     5px 5px 20px 5px rgba(0, 0, 0, 0);
 }
 .card {
-  -webkit-box-shadow: 4px -4px 15px 0px #ff1f1f, 13px 12px 17px 0px #ff9527,
+  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
     -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
-  box-shadow: 4px -4px 15px 0px #ff1f1f, 13px 12px 17px 0px #ff9527,
-    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
+  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 17px 0px #522312,
+    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
   width: 80% !important;
   margin: auto !important;
 }
+
 .gallery-img {
   padding: 0 !important;
 }
@@ -91,21 +101,186 @@ footer {
   max-height: 20rem;
   margin-top: 1rem;
 }
-#carousel-p-tag{
+#carousel-p-tag {
   color: #942c2c;
 }
-.card-footer > form{
+.card-footer > form {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.text-decoration-none{
-  
+.text-decoration-none {
 }
-#carousel-img{
-  filter: brightness(0.5); /* Adjust the value (0.0 to 1.0) for the desired darkness */
-
+#carousel-img {
+  filter: brightness(
+    0.5
+  ); /* Adjust the value (0.0 to 1.0) for the desired darkness */
 }
 
 .bi-big {
   font-size: 2rem; /* Adjust the value as needed */
+}
+/* .card-container:hover {
+  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
+    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
+  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 100px 0px #522312,
+    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
+} */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center; /* Align items vertically in the center */
+}
+
+#basic-package-card {
+  position: relative;
+  height: 300px;
+  overflow: hidden; /* Ensure the overflow is hidden to clip the pseudo-element */
+}
+
+#basic-package-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0; /* Initial opacity */
+  filter: brightness(0%); /* Initial brightness */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Add transition effect */
+}
+
+#basic-package-card:hover::before {
+  opacity: 0.9; /* Adjust opacity on hover */
+  filter: brightness(50%); /* Adjust brightness on hover */
+}
+#basic-package-card .card-body,
+#basic-package-card .card-footer {
+  position: relative; /* Ensure z-index works */
+  z-index: 1; /* Ensure the elements are on top of the pseudo-element */
+}
+#basic-package-card:hover::before {
+  opacity: 0.9; /* Adjust opacity on hover */
+  filter: brightness(65%); /* Adjust brightness on hover */
+}
+
+#basic-package-card:hover h5,
+#basic-package-card:hover p,
+#basic-package-card:hover li {
+  color: white;
+}
+
+.footer-menu {
+  position: relative; /* Ensure footer-menu is positioned relatively */
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+  background-size: cover; /* Adjust the size of the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+
+.footer-menu::after {
+  content: ""; /* Create a pseudo-element */
+  position: absolute; /* Position the pseudo-element */
+  top: 0; /* Position from the top of the footer-menu */
+  left: 0; /* Position from the left of the footer-menu */
+  width: 100%; /* Take the full width of the footer-menu */
+  height: 100%; /* Take the full height of the footer-menu */
+  background-color: #1c233180; /* Overlay background color with opacity */
+  z-index: 1; /* Ensure the overlay is behind the content */
+}
+
+.footer-content {
+  position: relative; /* Ensure the content is positioned relatively */
+  z-index: 2; /* Ensure the content is above the overlay */
+}
+
+.footer-content a {
+  position: relative; /* Ensure the links are positioned relatively */
+  z-index: 3; /* Ensure the links are above the overlay */
+}
+.call-us-card {
+  position: fixed;
+  top: 50px; /* Adjust this value to position it vertically */
+  right: 20px; /* Adjust this value to position it horizontally */
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  transition: right 0.5s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the card appears above other elements */
+  max-width: calc(100vw - 40px); /* Adjust the maximum width as needed */
+}
+.delete-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+.main-content {
+  position: relative;
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/paintballImages/paintball-5407710_1280.png");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: brightness(0.4); /* Adjust the brightness as needed */
+  z-index: -1; /* Ensure the overlay stays behind other content */
+}
+.navbar {
+  box-shadow: 5px 7px 15px 5px #000000;
+}
+.page-header-on-carousel {
+  padding-bottom: 350px;
+}
+@media screen and (max-width: 768px) {
+  .page-header-on-carousel {
+    padding-bottom: 200px; /* Adjusted padding for smaller screens */
+  }
+}
+
+/* Media query for extra small screens */
+@media screen and (max-width: 576px) {
+  .page-header-on-carousel {
+    padding-bottom: 150px; /* Further adjusted padding for extra small screens */
+  }
+}
+
+.page-header-on-carousel > h3 {
+  text-shadow: 40px 40px 40px rgba(19, 15, 15, 0.5);
+  line-height: 2;
+  color: #ecd8d8;
+}
+.page-header-on-carousel > h1 {
+  text-shadow: 40px 40px 40px rgba(19, 15, 15, 0.5);
+  line-height: 2;
+  color: #ecd8d8;
+}
+.badge {
+  letter-spacing: 1px; /* Change the value as needed */
+}
+.bi-instagram, .bi-envelope,.bi-telephone-inbound {
+  color: #ecd8d8;
+}
+.bi-geo, .bi-geo-alt,.bi-flag {
+  color: #ffffff;
+}
+#li-in-calendar{
+  /* background-color: #dc2c2c;; */
+  background: rgba(111,111,111,0.3)
 }
