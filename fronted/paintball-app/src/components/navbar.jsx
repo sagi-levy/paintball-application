@@ -1,9 +1,17 @@
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
 import { getUser } from "../services/userApiServices";
 
 const Navbar = () => {
   const { user } = useAuth() || {};
+  const [collapseOpen, setCollapseOpen] = useState(false);
+
+  const handleNavLinkClick = () => {
+    // Close the collapse when a NavLink is clicked
+    setCollapseOpen(false);
+  };
+
   return (
     <>
       <nav
@@ -12,23 +20,20 @@ const Navbar = () => {
       >
         <div className="container-fluid">
           <Link to="/">
-            {" "} 
+            {" "}
             <i className="bi bi-house-door bi-big"></i>
           </Link>
 
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample06"
-            aria-controls="navbarsExample06"
-            aria-expanded="false"
+            onClick={() => setCollapseOpen(!collapseOpen)}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse">
+          <div className={`collapse navbar-collapse ${collapseOpen ? 'show' : ''}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-xl-0">
               {user ? (
                 <>
@@ -50,6 +55,7 @@ const Navbar = () => {
                         <NavLink
                           to={`users/change-password/${user._id}`}
                           className="dropdown-item"
+                          onClick={handleNavLinkClick}
                         >
                           change password
                         </NavLink>
@@ -57,22 +63,22 @@ const Navbar = () => {
                     </ul>
                   </div>
                   <li className="nav-item">
-                    <NavLink to="about" className="nav-link">
+                    <NavLink to="about" className="nav-link" onClick={handleNavLinkClick}>
                       About
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="send-email" className="nav-link">
+                    <NavLink to="send-email" className="nav-link" onClick={handleNavLinkClick}>
                       contact us
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="sign-out" className="nav-link">
+                    <NavLink to="sign-out" className="nav-link" onClick={handleNavLinkClick}>
                       Sign Out
                     </NavLink>
                   </li>{" "}
                   <li className="nav-item">
-                    <NavLink to="calendar" className="nav-link">
+                    <NavLink to="calendar" className="nav-link" onClick={handleNavLinkClick}>
                       calendar
                     </NavLink>
                   </li>{" "}
@@ -80,27 +86,27 @@ const Navbar = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink to="sign-in" className="nav-link">
+                    <NavLink to="sign-in" className="nav-link" onClick={handleNavLinkClick}>
                       sign in
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="sign-up" className="nav-link">
+                    <NavLink to="sign-up" className="nav-link" onClick={handleNavLinkClick}>
                       sign up
                     </NavLink>
                   </li>{" "}
                   <li className="nav-item">
-                    <NavLink to="about" className="nav-link">
+                    <NavLink to="about" className="nav-link" onClick={handleNavLinkClick}>
                       gallery
                     </NavLink>
                   </li>{" "}
                   <li className="nav-item">
-                    <NavLink to="send-email" className="nav-link">
+                    <NavLink to="send-email" className="nav-link" onClick={handleNavLinkClick}>
                       contact us
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="calendar" className="nav-link">
+                    <NavLink to="calendar" className="nav-link" onClick={handleNavLinkClick}>
                       calendar
                     </NavLink>
                   </li>{" "}
@@ -111,6 +117,7 @@ const Navbar = () => {
                   <NavLink
                     to={`cards/my-activity-cards/${user._id}`}
                     className="nav-link"
+                    onClick={handleNavLinkClick}
                   >
                     My Cards
                   </NavLink>
@@ -123,4 +130,5 @@ const Navbar = () => {
     </>
   );
 };
+
 export default Navbar;

@@ -36,7 +36,7 @@ const EnterNewPassword = () => {
       try {
         // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `http://localhost:3003/users/change-password/via-email-code/${id}`,
+          `https://paintball-application-server.onrender.com/users/change-password/via-email-code/${id}`,
           {
             method: "PUT",
             headers: {
@@ -63,7 +63,7 @@ const EnterNewPassword = () => {
   });
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>

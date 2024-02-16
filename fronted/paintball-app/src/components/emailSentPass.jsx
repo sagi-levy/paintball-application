@@ -58,7 +58,7 @@ const SentEmail = () => {
 
     if (isValidCode && isTimerActive) {
       const response = await fetch(
-        "http://localhost:3003/reset-password/sent-email",
+        "https://paintball-application-server.onrender.com/reset-password/sent-email",
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ const SentEmail = () => {
     const fetchForCode = async () => {
       try {
         // Add your backend API endpoint for password reset
-        const response = await fetch("http://localhost:3003/reset-password", {
+        const response = await fetch("https://paintball-application-server.onrender.com/reset-password", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -110,18 +110,22 @@ const SentEmail = () => {
   };
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Enter Verification Code</h2>
       <p>Please enter the 4-digit verification code sent to your email.</p>
 
       <input
+        className="form-control w-25 d-inline m-2"
         type="text"
         value={verificationCode}
         onChange={handleVerificationCodeChange}
         maxLength={4}
       />
 
-      <button onClick={handleVerificationCodeSubmit}>
+      <button
+        className="btn btn-secondary"
+        onClick={handleVerificationCodeSubmit}
+      >
         Submit Verification Code
       </button>
 

@@ -27,7 +27,7 @@ function FooterMenu() {
             href="https://www.instagram.com/paintball.israel/"
             className="text-white me-4"
           >
-            <i className="bi bi-instagram"></i>
+            <i className="bi bi-instagram text-light"></i>
           </a>
           <a
             target="_blank"

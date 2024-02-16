@@ -53,7 +53,7 @@ const SignIn = () => {
 
   return (
     <>
-      <PageHeader title={<h1>Sign in page</h1>} />
+      <PageHeader title={<h1 className="pt-5 ">Sign in page</h1>} />
       <p>sign in to enter</p>
       <form className="mb-4" onSubmit={form.handleSubmit}>
         {errorApiRequest && (
@@ -82,7 +82,7 @@ const SignIn = () => {
 
       <Link
         style={{
-          color: "black",
+          color: "#ecd8d8",
           fontFamily: "cursive",
           justifyContent: "center",
         }}

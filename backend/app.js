@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect("mongodb://127.0.0.1/paintball-activities")
+  .connect(
+    "mongodb+srv://sagilevy1612:MongoDB-paintball@cluster0.o6lbx2w.mongodb.net/paintball-application"
+  )
   .then(() => console.log("connected to mongo"))
   .catch(() => console.log("could not connect to mongo"));
 

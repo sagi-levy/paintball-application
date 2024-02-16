@@ -88,7 +88,7 @@ const SendUsMailComp = () => {
             <button className="btn btn-success" type="submit">
               Send Email
             </button>
-            <p>
+            <p className="text-d-sm-none">
               Send us an email and the manager will insert your activity in the
               calendar and update with a return email{" "}
             </p>

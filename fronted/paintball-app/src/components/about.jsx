@@ -4,7 +4,7 @@ const About = () => {
   return (
     <>
       <PageHeader title={<h1 style={{ paddingTop: "70px" }}>About Us</h1>} />
-      <p>
+      <p className="m-lg-4 p-4">
         Hello, we are a site that provides options for scheduling activities in
         the field of paintball and laser tag. It has been 30 years that we have
         been engaged in the field and we have the most advanced equipment, the
@@ -60,7 +60,7 @@ const About = () => {
             />
           </div>
           <div className="col-md-3 gallery-img">
-            <iframe
+            <iframe className="h-100"
               src="https://www.youtube.com/embed/q1YaZw3E-hY"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
