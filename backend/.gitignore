@@ -3,3 +3,14 @@
 
 # Ignore node_modules directory
 node_modules/
+DATA_BASE_MONGO_URL=mongodb://127.0.0.1/paintball-activities
+SERVER_PORT=3001
+JWT_SECRET_TOKEN=secretive
+
+GMAIL_ADRESS_TO_SEND_MAIL=sagilevy1612@gmail.com
+PASSWORD_FOR_GMAIL_NODEMAILER=gnofeoeknyhgsmqp
+STRIPE_SECRET_KEY=sk_test_51OXTK9FzIkHLxdyfS5njmpOUoEN5moPZcPpnfZukNRy5e9mVfbJs8rqLGK628tUYHmOP3zkJynU1l1JZZfS2EVyF00ocDGGL0j
+TWILIO_AUTH_KEY = AC6cef0ff01d77c9fc6567a3db2fe4bfcb
+TWILIO_SECONED_ARGUMENT= e5fe05accf725abfe5f20ccaba54a6ef
+TWILIO_FROM_NUMBER= 16318562207
+# recovery_code_from_twilio = SK7YZLC67S45A2Q6N3S2JQ3L
