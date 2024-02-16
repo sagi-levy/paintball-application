@@ -226,7 +226,7 @@ footer {
 }
 .main-content {
   position: relative;
-  
+  min-height: 60vh;
 }
 
 .main-content::before {
@@ -251,15 +251,22 @@ footer {
 }
 @media screen and (max-width: 768px) {
   .page-header-on-carousel {
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
     /* Adjusted padding for smaller screens */
-  
+  }
+}
+@media screen and (max-width: 500px) {
+  .page-header-on-carousel {
+    padding-bottom: 0;
+    padding-top: 40px;
+   
+    /* Adjusted padding for smaller screens */
   }
 }
 
 /* Media query for extra small screens */
 @media screen and (max-width: 576px) {
-  .page-header-on-carousel {
+  .page-header-on-carousel>h3{
     display: none;
     height: 100px;
     padding-bottom: 10px; /* Further adjusted padding for extra small screens */
@@ -279,28 +286,35 @@ footer {
 .badge {
   letter-spacing: 1px; /* Change the value as needed */
 }
-.bi-instagram, .bi-envelope,.bi-telephone-inbound {
+.bi-instagram,
+.bi-envelope,
+.bi-telephone-inbound {
   color: #ecd8d8;
 }
-.bi-geo, .bi-geo-alt,.bi-flag {
+.bi-geo,
+.bi-geo-alt,
+.bi-flag {
   color: #ffffff;
 }
-#li-in-calendar{
+#li-in-calendar {
   /* background-color: #dc2c2c;; */
-  background: rgba(111,111,111,0.3)
+  background: rgba(111, 111, 111, 0.3);
 }
-.carousel-caption{}
+.carousel-caption {
+}
 @media (min-width: 776px) {
-  
   /* Apply width: 100% to form elements on small screens and above */
   form.create-form1 {
     width: 50% !important; /* Use !important to ensure it overrides other styles */
   }
 }
 @media (min-width: 100px) {
-  
   /* Apply width: 100% to form elements on small screens and above */
-  #paintball-player-img{
-    width: 100%
+  #paintball-player-img {
+    width: 100%;
   }
 }
+@media screen and (max-width: 600px) {
+  .text-d-sm-none {
+    display: none;
+  }}

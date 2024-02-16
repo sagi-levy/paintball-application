@@ -58,7 +58,7 @@ const SentEmail = () => {
 
     if (isValidCode && isTimerActive) {
       const response = await fetch(
-        "http://localhost:3003/reset-password/sent-email",
+        "https://paintball-application-server.onrender.com/reset-password/sent-email",
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ const SentEmail = () => {
     const fetchForCode = async () => {
       try {
         // Add your backend API endpoint for password reset
-        const response = await fetch("http://localhost:3003/reset-password", {
+        const response = await fetch("https://paintball-application-server.onrender.com/reset-password", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -31,7 +31,7 @@ const CreateActivityCard = () => {
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3003/api/tasks",
+        "https://paintball-application-server.onrender.com/api/tasks",
         user
           ? {
               method: "GET",

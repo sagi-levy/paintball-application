@@ -31,8 +31,8 @@ const Home = () => {
       {/* <PageHeader title={<h1>Welcome To Paintball Israel</h1>} /> */}
       {showCallUs && (
         <div
-          className="call-us-card z-3Z position-absolute"
-          style={{ width: "30%" }}
+          className="call-us-card z-3Z position-absolute w-sm-100"
+          style={{ width: "30%", background: "rgba(111,111,111,0.3)" }}
         >
           <button className="delete-button" onClick={handleDeleteClick}>
             <i classNames="bi bi-x-lg">X</i>
@@ -46,10 +46,10 @@ const Home = () => {
         <div className="row align-items-center">
           <div
             id="carouselExampleIndicators"
-            className="carousel slide mb-4"
+            className="carousel slide mb-4 p-0 " 
             data-bs-ride="true"
           >
-            <div className="carousel-indicators">
+            <div className="carousel-indicators" >
               <button
                 type="button"
                 data-bs-target="#carouselExampleIndicators"
@@ -156,9 +156,11 @@ const Home = () => {
                   <div className="page-header-on-carousel">
                     {" "}
                     <PageHeader
-                      title={<h1 className="mb-5"> Paintball Israel</h1>}
+                      title={
+                        <h1 className="mb-lg-5 mb-sm-0"> Paintball Israel</h1>
+                      }
                     />
-                    <h3>
+                    <h3 className="text-d-sm-none">
                       Hello and welcome to the home page of the Paintball Israel
                       website. In order to get more details, watch a video of
                       activities and proceed to determine the date of the
@@ -176,7 +178,7 @@ const Home = () => {
                   </Link>
                   <p
                     id="carousel-p-tag"
-                    className="text-decoration-none  p-2 rounded"
+                    className="text-decoration-none   rounded"
                   >
                     karting prices and terms
                   </p>
@@ -211,9 +213,9 @@ const Home = () => {
           <div className="col-lg-8 col-sm-12 m-lg-5 w--sm100 ">
             <CreateActivityCard />
           </div>
-          <div className="col-lg-3 col-sm-12">
+          <div className="col-lg-3 col-sm-12 p-0 m-sm-3">
             <img
-            id="paintball-player-img"
+              id="paintball-player-img"
               src="https://cdn.pixabay.com/photo/2014/04/02/16/27/paintball-307322_640.png"
               alt=""
               srcset=""

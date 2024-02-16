@@ -14,7 +14,7 @@ const ResetPassword = () => {
     try {
       setIsLoading(true);
       // Add your backend API endpoint for password reset
-      const response = await fetch("http://localhost:3003/reset-password", {
+      const response = await fetch("https://paintball-application-server.onrender.com/reset-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
