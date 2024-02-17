@@ -38,7 +38,7 @@ import { AppProvider } from "./context/card.context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const stripePromise = loadStripe(
-  "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
+  process.env.LOAD_STRIPE_STRING
 );
 function App() {
   return (

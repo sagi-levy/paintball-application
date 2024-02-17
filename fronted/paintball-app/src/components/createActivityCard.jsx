@@ -18,20 +18,20 @@ import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/card.context";
 
 const stripePromise = loadStripe(
-  "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
+  process.env.LOAD_STRIPE_STRING
 );
 
 const CreateActivityCard = () => {
   //const [tasksTimes, setTasksTimesAlreadyCatches] = useState([]); // should get from server
   const { logIn, user } = useAuth();
-  const {  setTasksTimesAlreadyCatches,tasksTimes} = useAppContext();
-  console.log("tasks times:",tasksTimes)
+  const { setTasksTimesAlreadyCatches, tasksTimes } = useAppContext();
+  console.log("tasks times:", tasksTimes);
 
   const isUser = user;
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
-        "https://paintball-application-server.onrender.com/api/tasks",
+        `${process.env.REACT_APP_URL}/api/tasks`,
         user
           ? {
               method: "GET",
@@ -160,30 +160,38 @@ const CreateActivityCard = () => {
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
-      <form className="create-form1"/*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}  style={{ background: "rgba(111,111,111,0.3)", padding: "20px", borderRadius: "8px" }}>
+      <form
+        className="create-form1"
+        /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}
+        style={{
+          background: "rgba(111,111,111,0.3)",
+          padding: "20px",
+          borderRadius: "8px",
+        }}
+      >
         {errorApiRequest && (
-          <div className="alert alert-danger" >{errorApiRequest}</div>
+          <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
           onChange={form.handleChange}
           error={form.errors.activityName}
-          name="activity-name"
+          name="activity name"
           type="text"
           id="activity-name"
-          {...form.getFieldProps("activityName")}
+          // {...form.getFieldProps("activityName")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDescription}
-          name="activity-Description"
+          name="activity Description"
           type="text"
           id="activity-Description"
-          {...form.getFieldProps("activityDescription")}
+          // {...form.getFieldProps("activityDescription")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDate}
-          name="activityDate"
+          name="activity Date"
           type="date"
           id="activityDate"
           // {...form.getFieldProps("activityDate")}
@@ -191,38 +199,38 @@ const CreateActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityTime}
-          name="activityTime"
+          name="activity Time"
           type="time"
           id="activityTime"
-          {...form.getFieldProps("activityTime")}
+          //  {...form.getFieldProps("activityTime")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityImage}
-          name="activityImage"
+          name="activity Image"
           type="text"
           id="activityImage"
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityAddress}
-          name="activity-Address"
+          name="activity Address"
           type="text"
           id="activity-Address"
-          {...form.getFieldProps("activityAddress")}
+          // {...form.getFieldProps("activityAddress")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.bizUserName}
-          name="bizUserName"
+          name="User Name"
           type="text"
           id="bizUserName"
-          {...form.getFieldProps("bizUserName")}
+          // {...form.getFieldProps("bizUserName")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.phoneNumber}
-          name="phoneNumber"
+          name="phone Number"
           type="text"
           id="phoneNumber"
           value={isUser ? user._id : form.values.phoneNumber}

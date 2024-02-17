@@ -18,7 +18,7 @@ const Calendar = () => {
   const fetchTasks = async () => {
     try {
       const response = await fetch(
-        "https://paintball-application-server.onrender.com/api/tasks",
+        `${process.env.REACT_APP_URL}/api/tasks`,
         user
           ? {
               method: "GET",

@@ -12,11 +12,11 @@ const EmailForm = () => {
             className="m-auto"
           ></iframe>{" "}
         </div>
-        <div className="col-lg-4 col-sm-12">
+        <div className="col-lg-4 col-sm-12 p-3">
           <SendUsMailComp />{" "}
         </div>
-        <div className="col-lg-4 col-sm-12 m-auto" id="contact-us-icons">
-          <div className="d-flex flex-column justify-content-center align-items-center">
+        <div className="col-lg-4 col-sm-12 m-auto " id="contact-us-icons">
+          <div className="d-flex flex-column justify-content-center align-items-center p-3">
             <div>
               <h1>contact us</h1>{" "}
               <a href="tel:0779975649">

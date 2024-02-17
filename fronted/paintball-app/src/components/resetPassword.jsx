@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
@@ -10,11 +10,10 @@ const ResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleResetPassword = async () => {
-    navigate("sent-email", { state: { email, phoneNumber } });
     try {
       setIsLoading(true);
       // Add your backend API endpoint for password reset
-      const response = await fetch("https://paintball-application-server.onrender.com/reset-password", {
+      const response = await fetch(`${process.env.REACT_APP_URL}/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +25,7 @@ const ResetPassword = () => {
 
       if (response.ok) {
         setMessage(data.message);
-        console.log(message);
+        navigate("sent-email", { state: { email, phoneNumber } });
       } else {
         setMessage(data.error || "Failed to reset password.");
       }
@@ -34,9 +33,15 @@ const ResetPassword = () => {
       console.error("Error resetting password:", error.message);
       setMessage("Something went wrong. Please try again later.");
     } finally {
+      navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
+
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log(message);
+  }, [message]);
 
   return (
     <div className="p-5">
@@ -45,7 +50,7 @@ const ResetPassword = () => {
 
       <label>email:</label>
       <input
-      className="form-control w-50 m-auto"
+        className="form-control w-50 m-auto"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -53,23 +58,21 @@ const ResetPassword = () => {
       />
       <label>phone:</label>
       <input
-            className="form-control w-50 m-auto"
-
+        className="form-control w-50 m-auto"
         type="text"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
         placeholder="Enter your phone"
       />
+      <p>{message}</p>
 
       <button
-      className="btn btn-secondary m-2"
+        className="btn btn-secondary m-2"
         onClick={handleResetPassword}
         disabled={isLoading || !email || !phoneNumber}
       >
         {isLoading ? "Resetting..." : "Reset Password"}
       </button>
-
-      {message && <p>{message}</p>}
     </div>
   );
 };
