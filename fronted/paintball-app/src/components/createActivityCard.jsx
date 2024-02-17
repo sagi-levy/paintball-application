@@ -31,7 +31,7 @@ const CreateActivityCard = () => {
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_URL}/api/tasks`,
+        `${process.env.RENDER_API_URL}/api/tasks`,
         user
           ? {
               method: "GET",

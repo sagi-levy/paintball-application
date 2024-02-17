@@ -39,7 +39,7 @@ const ChangePassword = () => {
       try {
         // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `${process.env.REACT_APP_URL}/users/change-password/${id}`,
+          `${process.env.RENDER_API_URL}/users/change-password/${id}`,
           {
             method: "PUT",
             headers: {

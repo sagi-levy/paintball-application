@@ -13,7 +13,7 @@ const ResetPassword = () => {
     try {
       setIsLoading(true);
       // Add your backend API endpoint for password reset
-      const response = await fetch(`${process.env.REACT_APP_URL}/reset-password`, {
+      const response = await fetch(`${process.env.RENDER_API_URL}/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

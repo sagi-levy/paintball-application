@@ -36,7 +36,7 @@ const EnterNewPassword = () => {
       try {
         // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `${process.env.REACT_APP_URL}/users/change-password/via-email-code/${id}`,
+          `${process.env.RENDER_API_URL}/users/change-password/via-email-code/${id}`,
           {
             method: "PUT",
             headers: {
