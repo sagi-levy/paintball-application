@@ -1,6 +1,6 @@
 import httpRequestDetails, { setCommonHeader } from "./basicIrlAxios";
 import jwtDecode from "jwt-decode";
-const TOKEN_KEY = "token";
+const TOKEN_KEY = process.env.REACT_APP_TOKEN;
 setTokenHeader();
 function getJwt() {
   return localStorage.getItem(TOKEN_KEY);

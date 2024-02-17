@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function FooterMenu() {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (link) => {
+    navigate(link);
+    window.scrollTo(0, 0); // Scroll to the top after navigation
+  };
+
   return (
     <footer
       className="text-center text-lg-start text-white footer-menu"
@@ -15,34 +22,42 @@ function FooterMenu() {
           <span>Get connected with us on social networks:</span>
         </div>
         <div style={{ zIndex: 2 }}>
-          <a
-            target="_blank"
-            href="https://www.facebook.com/groups/399219820420340/?locale=he_IL"
+          <span
             className="text-white me-4"
+            onClick={() =>
+              handleLinkClick(
+                "https://www.facebook.com/groups/399219820420340/?locale=he_IL"
+              )
+            }
           >
             <i className="bi bi-facebook"></i>
-          </a>
-          <a
-            target="_blank"
-            href="https://www.instagram.com/paintball.israel/"
+          </span>
+          <span
             className="text-white me-4"
+            onClick={() =>
+              handleLinkClick("https://www.instagram.com/paintball.israel/")
+            }
           >
             <i className="bi bi-instagram text-light"></i>
-          </a>
-          <a
-            target="_blank"
-            href="https://api.whatsapp.com/send?phone=972508639354&text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A4%D7%A2%D7%99%D7%9C%D7%95%D7%AA%20%D7%A4%D7%99%D7%99%D7%A0%D7%98%D7%91%D7%95%D7%9C%20%F0%9F%99%82"
+          </span>
+          <span
             className="text-white me-4"
+            onClick={() =>
+              handleLinkClick(
+                "https://api.whatsapp.com/send?phone=972508639354&text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A4%D7%A2%D7%99%D7%9C%D7%95%D7%AA%20%D7%A4%D7%99%D7%99%D7%A0%D7%98%D7%91%D7%95%D7%9C%20%F0%9F%99%82"
+              )
+            }
           >
             <i className="bi bi-whatsapp"></i>
-          </a>
-          <a
-            target="_blank"
-            href="https://www.tiktok.com/tag/paintball"
+          </span>
+          <span
             className="text-white me-4"
+            onClick={() =>
+              handleLinkClick("https://www.tiktok.com/tag/paintball")
+            }
           >
             <i className="bi bi-tiktok"></i>
-          </a>
+          </span>
         </div>
       </section>
       <section
@@ -57,10 +72,12 @@ function FooterMenu() {
           <FooterColumn
             title="Activities"
             links={["paintball-page", "karting-page", "laser-tag-page", "about"]}
+            handleLinkClick={handleLinkClick}
           />
           <FooterColumn
             title="Navigation Menu"
             links={["about", "calendar", "send-email"]}
+            handleLinkClick={handleLinkClick}
           />
           <FooterContactColumn />
         </div>
@@ -69,7 +86,7 @@ function FooterMenu() {
   );
 }
 
-function FooterColumn({ title, content, links }) {
+function FooterColumn({ title, content, links, handleLinkClick }) {
   return (
     <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
       <h6 className="text-uppercase fw-bold">{title}</h6>
@@ -81,9 +98,9 @@ function FooterColumn({ title, content, links }) {
       {links &&
         links.map((link, index) => (
           <p key={index}>
-            <Link to={link} className="text-white">
+            <span className="text-white" onClick={() => handleLinkClick(link)}>
               {link}
-            </Link>
+            </span>
           </p>
         ))}
     </div>
