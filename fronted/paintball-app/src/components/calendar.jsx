@@ -16,6 +16,7 @@ const Calendar = () => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const fetchTasks = async () => {
+   
     try {
       const response = await fetch(
         `${process.env.RENDER_API_URL}/api/tasks`,
@@ -34,7 +35,8 @@ const Calendar = () => {
       }
 
       const data = await response.json();
-
+      console.log("process.env.RENDER_API_URL: ",process.env.RENDER_API_URL)
+      console.log(data)
       user ? setTasks(data.tasks) : setTasks(data); // when there is user (token) data gives me also user and also tasks in an object
     } catch (error) {
       console.error(error.message);
