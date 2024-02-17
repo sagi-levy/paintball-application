@@ -1,15 +1,15 @@
-const Input = ({ error, name, type, ...rest }) => {
+const Input = ({ error, names, type, ...rest }) => {
   return (
     <div>
       <div className="form-group m-5 my-2">
-        <label htmlFor={`${name}`}>{name}</label>
+        <label htmlFor={`${names}`}>{names}</label>
         <input
           className={`form-control ${error ? "is-invalid" : ""}`}
           {...rest}
-          placeholder={`enter your ${name}`}
+          placeholder={ `enter your ${names}`}
           type={type}
           id={rest.id}
-          name={name}
+          names={names}
         />
         <span className="invalid-feedback">{error}</span>
       </div>

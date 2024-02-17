@@ -17,9 +17,7 @@ import { useAuth } from "../context/auth.context";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/card.context";
 
-const stripePromise = loadStripe(
-  process.env.REACT_APP_LOAD_STRIPE_STRING
-);
+const stripePromise = loadStripe(process.env.REACT_APP_LOAD_STRIPE_STRING);
 
 const CreateActivityCard = () => {
   //const [tasksTimes, setTasksTimesAlreadyCatches] = useState([]); // should get from server
@@ -119,15 +117,15 @@ const CreateActivityCard = () => {
         }
         console.log(body);
 
-        const x = await createActivityCard(body);
-        console.log("new task is:", x.data.newTask);
-        setProp(x.data.newTask);
+        const dataServer = await createActivityCard(body);
+        console.log("new task is:", dataServer.data.newTask);
+        setProp(dataServer.data.newTask);
 
         navigate(
-          `/cards/payment/${values.phoneNumber}?cardId=${x.data.newTask._id}`
+          `/cards/payment/${values.phoneNumber}?cardId=${dataServer.data.newTask._id}`
         );
       } catch ({ response }) {
-        if (response && response.status === 400) {
+        if ((response && response.status === 400) || response.status === 502) {
           setErrorApiRequest(response.data);
         }
       }
@@ -175,62 +173,63 @@ const CreateActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityName}
-          name="activity name"
+          names="activity name"
           type="text"
           id="activity-name"
-          // {...form.getFieldProps("activityName")}
+          {...form.getFieldProps("activityName")}
         />
+
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDescription}
-          name="activity Description"
+          names="activity Description"
           type="text"
           id="activity-Description"
-          // {...form.getFieldProps("activityDescription")}
+          {...form.getFieldProps("activityDescription")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDate}
-          name="activity Date"
+          names="activity Date"
           type="date"
           id="activityDate"
-          // {...form.getFieldProps("activityDate")}
+          {...form.getFieldProps("activityDate")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityTime}
-          name="activity Time"
+          names="activity Time"
           type="time"
           id="activityTime"
-          //  {...form.getFieldProps("activityTime")}
+          {...form.getFieldProps("activityTime")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityImage}
-          name="activity Image"
+          names="activity Image"
           type="text"
           id="activityImage"
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.activityAddress}
-          name="activity Address"
+          names="activity Address"
           type="text"
           id="activity-Address"
-          // {...form.getFieldProps("activityAddress")}
+          {...form.getFieldProps("activityAddress")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.bizUserName}
-          name="User Name"
+          names="User Name"
           type="text"
           id="bizUserName"
-          // {...form.getFieldProps("bizUserName")}
+          {...form.getFieldProps("bizUserName")}
         />
         <Input
           onChange={form.handleChange}
           error={form.errors.phoneNumber}
-          name="phone Number"
+          names="phone Number"
           type="text"
           id="phoneNumber"
           value={isUser ? user._id : form.values.phoneNumber}

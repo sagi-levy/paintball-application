@@ -88,10 +88,11 @@ const MyActivityCards = () => {
         </Link>
       </button>
       <div className="container">
-        <div className="row">
+        <div className="row d-flex">
           {filteredData.length ? (
             filteredData.map((activityCard) => {
               return (
+                
                 <ActivityCardComponent
                 user_id={activityCard.user_id}
                   _id={activityCard._id}

@@ -42,7 +42,7 @@ const Home = () => {
         </div>
       )}
 
-      <div className="contzainer mr-0" style={{ marginRight: "0" }}>
+      <div className="d-inline container mr-0" style={{ marginRight: "0" }}>
         <div
           id="carouselExampleIndicators"
           className="carousel slide mb-4 "
@@ -209,17 +209,19 @@ const Home = () => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <div className="w-100 d-lg-flex">
-          <div className="col-lg-7 col-sm-12 m-lg-5 w--sm100">
-            <CreateActivityCard />
-          </div>
-          <div className="col-lg-4 col-sm-12 p-0 m-sm-3">
-            <img
-              id="paintball-player-img"
-              src="https://cdn.pixabay.com/photo/2014/04/02/16/27/paintball-307322_640.png"
-              alt=""
-              srcset=""
-            />
+        <div id="container-image-and-form" className="container">
+          <div className="row">
+            <div className="col-lg-7 col-sm-12 ">
+              <CreateActivityCard />
+            </div>
+            <div className="col-lg-5 col-sm-12 ">
+              <img
+                id="paintball-player-img"
+                src="https://cdn.pixabay.com/photo/2014/04/02/16/27/paintball-307322_640.png"
+                alt=""
+                srcset=""
+              />
+            </div>
           </div>
         </div>
       </div>

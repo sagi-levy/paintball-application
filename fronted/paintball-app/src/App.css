@@ -36,7 +36,7 @@ form {
 }
 @media screen and (max-width:3000px){
   form{
-    width: 75%;
+    width: 90%;
   }
 }
 
@@ -310,9 +310,9 @@ footer {
  
 }
 @media (min-width: 776px) {
-  /* Apply width: 100% to form elements on small screens and above */
+  
   form.create-form1 {
-    width: 75% !important; /* Use !important to ensure it overrides other styles */
+    width: 90% !important; /* Use !important to ensure it overrides other styles */
   }
 }
 @media (min-width: 100px) {
@@ -325,6 +325,11 @@ footer {
   .text-d-sm-none {
     display: none;
   }
+@media screen and (max-width: 1520px) {
+  #container-image-and-form{
+    margin-right: 0px;
+  }
+}
   #dropdownMenuButton1 {
     width: 50px;
   }
