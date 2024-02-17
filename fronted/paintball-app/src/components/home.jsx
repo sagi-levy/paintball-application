@@ -210,7 +210,7 @@ const Home = () => {
           </button>
         </div>
         <div className="w-100 d-lg-flex">
-          <div className="col-lg-8 col-sm-12 m-lg-5 w--sm100">
+          <div className="col-lg-7 col-sm-12 m-lg-5 w--sm100">
             <CreateActivityCard />
           </div>
           <div className="col-lg-4 col-sm-12 p-0 m-sm-3">
