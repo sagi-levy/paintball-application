@@ -12,7 +12,7 @@ import {
 const BasicPackage = ({ packageData }) => {
   const [clickedPay, setClickedPay] = useState(false);
   const stripePromise = loadStripe(
-    process.env.LOAD_STRIPE_STRING
+    process.env.REACT_APP_LOAD_STRIPE_STRING
   );
 
   return (

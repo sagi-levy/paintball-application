@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(process.env.MONGO_ATLAS_CONNECECTION_URL)
+  .connect(process.env.DATA_BASE_MONGO_URL)
   .then(() => console.log("connected to mongo"))
   .catch(() => console.log("could not connect to mongo"));
 

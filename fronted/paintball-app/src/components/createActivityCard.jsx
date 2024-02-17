@@ -18,7 +18,7 @@ import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/card.context";
 
 const stripePromise = loadStripe(
-  process.env.LOAD_STRIPE_STRING
+  process.env.REACT_APP_LOAD_STRIPE_STRING
 );
 
 const CreateActivityCard = () => {
@@ -31,7 +31,7 @@ const CreateActivityCard = () => {
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
-        `${process.env.RENDER_API_URL}/api/tasks`,
+        `${process.env.REACT_APP_RENDER_API_URL}/api/tasks`,
         user
           ? {
               method: "GET",

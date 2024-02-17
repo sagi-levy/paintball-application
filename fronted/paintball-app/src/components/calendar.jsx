@@ -16,11 +16,12 @@ const Calendar = () => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const fetchTasks = async () => {
-    console.log("process.env.RENDER_API_URL: ",process.env.RENDER_API_URL)
+    // console.log("process.env.REACT_APP_RENDER_API_URL: ",process.env.REACT_APP_RENDER_API_URL)
+    // console.log(`process.env=${JSON.stringify(process.env,null,2)}`)
    
     try {
       const response = await fetch(
-        `${process.env.RENDER_API_URL}/api/tasks`,
+        `${process.env.REACT_APP_RENDER_API_URL}/api/tasks`,
         user
           ? {
               method: "GET",
