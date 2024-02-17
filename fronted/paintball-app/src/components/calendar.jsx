@@ -17,7 +17,6 @@ const Calendar = () => {
 
   const fetchTasks = async () => {
     console.log("process.env.RENDER_API_URL: ",process.env.RENDER_API_URL)
-    console.log(data)
    
     try {
       const response = await fetch(
@@ -37,7 +36,8 @@ const Calendar = () => {
       }
 
       const data = await response.json();
-     
+      console.log(data)
+
       user ? setTasks(data.tasks) : setTasks(data); // when there is user (token) data gives me also user and also tasks in an object
     } catch (error) {
       console.error(error.message);
