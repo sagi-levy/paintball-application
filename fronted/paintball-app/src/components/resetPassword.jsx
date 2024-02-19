@@ -31,9 +31,9 @@ const ResetPassword = () => {
       }
     } catch (error) {
       console.error("Error resetting password:", error.message);
-      setMessage("Something went wrong. Please try again later.");
+      setMessage(error);
     } finally {
-      navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
+     navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
 
       setIsLoading(false);
     }
