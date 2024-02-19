@@ -24,8 +24,7 @@ const Navbar = () => {
         <div className="container-fluid">
           <Link to="/" onClick={handleNavLinkClick}>
             {" "}
-            <i className="bi bi-house-door bi-big"></i>
-          </Link>
+<div className="logo-image"></div>          </Link>
 
           <button
             className="navbar-toggler"

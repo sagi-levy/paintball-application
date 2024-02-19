@@ -34,7 +34,6 @@ const EnterNewPassword = () => {
 
     async onSubmit(formData) {
       try {
-        // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
           `${process.env.REACT_APP_RENDER_API_URL}/users/change-password/via-email-code/${id}`,
           {

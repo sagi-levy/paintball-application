@@ -265,6 +265,11 @@ footer {
     /* Adjusted padding for smaller screens */
   }
 }
+/* @media screen and (min-width: 768px) {
+  #row-image-and-form {
+    width: 100rem;
+  }
+} */
 @media screen and (max-width: 500px) {
   .page-header-on-carousel {
     padding-bottom: 0;
@@ -338,4 +343,13 @@ footer {
   #dropdownMenuButton1 {
     width: 50px;
   }
+}
+.logo-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-image: url("../public/paintballImages/Photoroom-20240219_222438\ \(1\).png");
+  background-size: cover; /* Optional: adjust as needed */
+border-radius: 50%;
+filter: brightness(0.8);
 }

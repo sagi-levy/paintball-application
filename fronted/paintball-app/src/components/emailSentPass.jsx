@@ -87,14 +87,12 @@ const SentEmail = () => {
           },
         });
         refreshUser();
-        // Navigate to the "Change Password" component
         navigate(`/users/change-password/via-email-code/${user._id}`, {
           state: { user },
         });
         setIsTimerActive(true); // Set the timer as active
       } else {
         setErrorApiRequest("invalid code");
-        // Handle invalid code (show an error message or perform other actions)
         console.error("Invalid verification code");
       }
     } catch (error) {

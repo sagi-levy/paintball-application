@@ -25,8 +25,7 @@ const ResetPassword = () => {
       );
 
       const data = await response.json();
-      
-     
+
       if (response.ok) {
         setMessage(data.message);
         navigate("sent-email", { state: { email, phoneNumber } });
@@ -36,9 +35,9 @@ const ResetPassword = () => {
     } catch (error) {
       setMessage(error);
       console.error("Error resetting password:", error.message);
-     // setMessage("Something went wrong. Please try again later.");
+      // setMessage("Something went wrong. Please try again later.");
     } finally {
-     //navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
+      navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
 
       setIsLoading(false);
     }
