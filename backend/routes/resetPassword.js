@@ -13,7 +13,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-router.post("/", (req, res) => {
+router.post("/", async(req, res) => {
   randomNumbers = [];
   setTimeout(() => {
    randomNumbers = [];
@@ -26,6 +26,11 @@ router.post("/", (req, res) => {
   console.log("reandomNumbers is:", randomNumbers);
   const { email, phoneNumber } = req.body;
   userPhoneNumber = phoneNumber;
+  const user = await User.findOne({ _id: userPhoneNumber });
+    if (!user) {
+      res.status(404).send({ error: "no such a user" });
+      return;
+    }
   const mailOptions = {
     from: process.env.GMAIL_ADDRESS_TO_SEND_MAIL,
     to: email,
@@ -42,7 +47,7 @@ router.post("/", (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Error sending email:", error);
-      res.status(500).send("Error sending email");
+      res.status(500).send({error:"Error sending email"});
     } else {
       console.log("Email sent:", info.response);
       res.status(200).send("Email sent successfully!");

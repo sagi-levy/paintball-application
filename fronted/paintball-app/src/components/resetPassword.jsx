@@ -34,7 +34,7 @@ const ResetPassword = () => {
         setMessage(data.error || "Failed to reset password.");
       }
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error);
       console.error("Error resetting password:", error.message);
      // setMessage("Something went wrong. Please try again later.");
     } finally {
