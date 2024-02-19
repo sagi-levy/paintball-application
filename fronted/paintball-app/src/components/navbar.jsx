@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="fixed-top navbar navbar-expand-sm navbar-dark bg-dark"
+        className="fixed navbar navbar-expand-sm navbar-dark bg-dark"
         aria-label="Sixth navbar example"
       >
         <div className="container-fluid">

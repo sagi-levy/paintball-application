@@ -42,7 +42,7 @@ const Home = () => {
         </div>
       )}
 
-      <div className="d-inline container mr-0" style={{ marginRight: "0" }}>
+      <div className="d-inline coxntainer mr-0" style={{ marginRight: "0" }}>
         <div
           id="carouselExampleIndicators"
           className="carousel slide mb-4 "
@@ -71,7 +71,7 @@ const Home = () => {
             ></button>
           </div>
           <div className="carousel-inner">
-            <div className="carousel-item active">
+          <div className="carousel-item active">
               <img
                 id="carousel-img"
                 src="https://cdn.pixabay.com/photo/2017/07/09/03/37/paintball-2486109_960_720.jpg"
@@ -79,12 +79,14 @@ const Home = () => {
                 alt="..."
               />{" "}
               <div className="carousel-caption">
-                <div className="page-header-on-carousel ">
+                <div className="page-header-on-carousel">
                   {" "}
                   <PageHeader
-                    title={<h1 className="mb-5"> Paintball Israel</h1>}
+                    title={
+                      <h1 className="mb-lg-5 mb-sm-0"> Paintball Israel</h1>
+                    }
                   />
-                  <h3>
+                  <h3 className="text-d-sm-none">
                     Hello and welcome to the home page of the Paintball Israel
                     website. In order to get more details, watch a video of
                     activities and proceed to determine the date of the
@@ -92,36 +94,39 @@ const Home = () => {
                     create activities, sign in as admin
                   </h3>{" "}
                 </div>
+
                 <Link
                   to={"/paintball-page"}
-                  className="h1 text-decoration-none p-2 rounded"
+                  className="text-decoration-none  p-2 rounded"
                 >
                   {" "}
-                  <p id="carousel-p-tag">paintball</p>
+                  <h1 id="carousel-p-tag">paintball</h1>
                 </Link>
                 <p
                   id="carousel-p-tag"
-                  className="text-decoration-none  p-2 rounded"
+                  className="text-decoration-none   rounded"
                 >
                   paintball prices and terms
                 </p>
               </div>
             </div>
 
-            <div className="carousel-item active ">
+            <div className="carousel-item active">
               <img
                 id="carousel-img"
                 src="https://media.istockphoto.com/id/1281185274/photo/laser-tag-tactical-game-just-for-fun-forces-mission-science-fiction-playing-in-red-light.jpg?b=1&s=170667a&w=0&k=20&c=RqTQ9tfv5zYgcfxDazHcZrSyasj11mB_GyQKlxakKVk="
                 className="d-block w-100"
                 alt="..."
               />{" "}
-              <div className="carousel-caption k">
-                <div className="page-header-on-carousel ">
+              <div className="carousel-caption">
+                <div className="page-header-on-carousel">
                   {" "}
                   <PageHeader
-                    title={<h1 className="mb-5"> Paintball Israel</h1>}
+                    title={
+                      <h1 className="mb-lg-5 mb-sm-0"> Paintball Israel</h1>
+                    }
                   />
-                  <h3>
+                  <h3 className="text-d-sm-none">
                     Hello and welcome to the home page of the Paintball Israel
                     website. In order to get more details, watch a video of
                     activities and proceed to determine the date of the
@@ -129,16 +134,17 @@ const Home = () => {
                     create activities, sign in as admin
                   </h3>{" "}
                 </div>
+
                 <Link
                   to={"/laser-tag-page"}
-                  className="h1 text-decoration-none  p-2 rounded"
+                  className="text-decoration-none  p-2 rounded"
                 >
                   {" "}
-                  <p id="carousel-p-tag">laser tag</p>
+                  <h1 id="carousel-p-tag">laser tag</h1>
                 </Link>
                 <p
                   id="carousel-p-tag"
-                  className="text-decoration-none  p-2 rounded"
+                  className="text-decoration-none   rounded"
                 >
                   laser tag prices and terms
                 </p>

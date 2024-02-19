@@ -1,12 +1,12 @@
-const Input = ({ error, names, type, ...rest }) => {
+const Input = ({ error, names, type,example, ...rest }) => {
   return (
     <div>
-      <div className="form-group m-5 my-2">
+      <div className="form-group m-5 my-2 ">
         <label htmlFor={`${names}`}>{names}</label>
         <input
           className={`form-control ${error ? "is-invalid" : ""}`}
           {...rest}
-          placeholder={ `enter your ${names}`}
+          placeholder={window.innerWidth > 768 ? `enter your ${names}` : `${example}`}
           type={type}
           id={rest.id}
           names={names}

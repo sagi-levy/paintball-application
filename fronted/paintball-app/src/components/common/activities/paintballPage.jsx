@@ -27,7 +27,7 @@ const PaintballPage = () => {
       {" "}
       <PageHeader
         title={
-          <h1 style={{ paddingTop: "70px" }} className="text-center mb-4">
+          <h1 className="text-center mb-4">
             Paintball Packages
           </h1>
         }

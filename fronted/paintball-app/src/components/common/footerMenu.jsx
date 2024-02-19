@@ -71,7 +71,7 @@ function FooterMenu() {
           />
           <FooterColumn
             title="Activities"
-            links={["paintball-page", "karting-page", "laser-tag-page", "about"]}
+            links={["paintball-page", "karting-page", "laser-tag-page"]}
             handleLinkClick={handleLinkClick}
           />
           <FooterColumn

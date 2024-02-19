@@ -1,12 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sigmar&display=swap");
 #root,
-.App,
 body {
   min-height: 100vh;
+  position: relative;
 }
 .App {
-  position: relative;
   text-align: center;
+}
+@media screen and (max-width: 290px) {
+  body {
+    position: absolute !important; /* Reset position for smaller screens */
+  }
 }
 .App::before {
   content: "";
@@ -30,12 +34,12 @@ p {
 }
 form {
   margin: auto;
-  
+
   -webkit-box-shadow: 5px 15px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
-@media screen and (max-width:3000px){
-  form{
+@media screen and (max-width: 3000px) {
+  form {
     width: 90%;
   }
 }
@@ -230,7 +234,7 @@ footer {
   z-index: 1001;
 }
 .main-content {
-  position: relative;
+  /* position: relative; */
   min-height: 60vh;
 }
 
@@ -250,6 +254,7 @@ footer {
 }
 .navbar {
   box-shadow: 5px 7px 15px 5px #000000;
+  z-index: 5000;
 }
 .page-header-on-carousel {
   padding-bottom: 350px;
@@ -276,7 +281,6 @@ footer {
     height: 100px;
     padding-bottom: 10px; /* Further adjusted padding for extra small screens */
   }
-  
 }
 
 .page-header-on-carousel > h3 {
@@ -306,11 +310,12 @@ footer {
   /* background-color: #dc2c2c;; */
   background: rgba(111, 111, 111, 0.3);
 }
-.carousel-caption {
- 
+@media (max-width: 290px) {
+  .carousel-caption {
+    line-height: 1;
+  }
 }
 @media (min-width: 776px) {
-  
   form.create-form1 {
     width: 90% !important; /* Use !important to ensure it overrides other styles */
   }
@@ -325,11 +330,11 @@ footer {
   .text-d-sm-none {
     display: none;
   }
-@media screen and (max-width: 1520px) {
-  #container-image-and-form{
-    margin-right: 0px;
+  @media screen and (max-width: 1520px) {
+    #container-image-and-form {
+      margin-right: 0px;
+    }
   }
-}
   #dropdownMenuButton1 {
     width: 50px;
   }

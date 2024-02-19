@@ -13,16 +13,20 @@ const ResetPassword = () => {
     try {
       setIsLoading(true);
       // Add your backend API endpoint for password reset
-      const response = await fetch(`${process.env.REACT_APP_RENDER_API_URL}/reset-password`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, phoneNumber }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_RENDER_API_URL}/reset-password`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, phoneNumber }),
+        }
+      );
 
       const data = await response.json();
-
+      
+     
       if (response.ok) {
         setMessage(data.message);
         navigate("sent-email", { state: { email, phoneNumber } });
@@ -30,10 +34,11 @@ const ResetPassword = () => {
         setMessage(data.error || "Failed to reset password.");
       }
     } catch (error) {
+      setMessage(error.message);
       console.error("Error resetting password:", error.message);
-      setMessage("Something went wrong. Please try again later.");
+     // setMessage("Something went wrong. Please try again later.");
     } finally {
-      navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
+     //navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
 
       setIsLoading(false);
     }

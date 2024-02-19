@@ -159,7 +159,7 @@ const CreateActivityCard = () => {
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
       <form
-        className="create-form1"
+        className="create-form1 "
         /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}
         style={{
           background: "rgba(111,111,111,0.3)",
@@ -171,6 +171,7 @@ const CreateActivityCard = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+        example={"paintball"} 
           onChange={form.handleChange}
           error={form.errors.activityName}
           names="activity name"
@@ -180,6 +181,7 @@ const CreateActivityCard = () => {
         />
 
         <Input
+        example={"birthday party"}
           onChange={form.handleChange}
           error={form.errors.activityDescription}
           names="activity Description"
@@ -188,6 +190,7 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityDescription")}
         />
         <Input
+        example={"12/12/2023"}
           onChange={form.handleChange}
           error={form.errors.activityDate}
           names="activity Date"
@@ -196,6 +199,7 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityDate")}
         />
         <Input
+        example={"12:00"}
           onChange={form.handleChange}
           error={form.errors.activityTime}
           names="activity Time"
@@ -204,6 +208,7 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityTime")}
         />
         <Input
+        example={"image url"}
           onChange={form.handleChange}
           error={form.errors.activityImage}
           names="activity Image"
@@ -211,6 +216,7 @@ const CreateActivityCard = () => {
           id="activityImage"
         />
         <Input
+        example={"kfar sava"}
           onChange={form.handleChange}
           error={form.errors.activityAddress}
           names="activity Address"
@@ -219,6 +225,7 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityAddress")}
         />
         <Input
+        example={"John Doe"}
           onChange={form.handleChange}
           error={form.errors.bizUserName}
           names="User Name"
@@ -227,6 +234,7 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("bizUserName")}
         />
         <Input
+        example={"0541234567"}
           onChange={form.handleChange}
           error={form.errors.phoneNumber}
           names="phone Number"
