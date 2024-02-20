@@ -28,17 +28,18 @@ const ResetPassword = () => {
 
       if (response.ok) {
         setMessage(data.message);
+        // Navigate only if the response is successful
         navigate("sent-email", { state: { email, phoneNumber } });
       } else {
         setMessage(data.error || "Failed to reset password.");
       }
     } catch (error) {
-      setMessage(error);
-      console.error("Error resetting password:", error.message);
-      // setMessage("Something went wrong. Please try again later.");
-    } finally {
-      navigate("sent-email", { state: { email, phoneNumber } }); // need to fix this. that i will navigate only if email sent sucssesfully
+      navigate("sent-email", { state: { email, phoneNumber } });
 
+      setMessage("Something went wrong. Please try again later.");
+      console.error("Error resetting password:", error.message);
+    } finally {
+      // Reset isLoading after handling the response
       setIsLoading(false);
     }
   };
@@ -52,7 +53,7 @@ const ResetPassword = () => {
       <h2>Reset Password</h2>
       <p>Enter your email address to receive a password reset link.</p>
 
-      <label>email:</label>
+      <label>Email:</label>
       <input
         className="form-control w-50 m-auto"
         type="email"
@@ -60,7 +61,7 @@ const ResetPassword = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
       />
-      <label>phone:</label>
+      <label>Phone:</label>
       <input
         className="form-control w-50 m-auto"
         type="text"

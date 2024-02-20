@@ -159,7 +159,7 @@ const CreateActivityCard = () => {
       <PageHeader title={<h1>create paintball activity card page</h1>} />
       <p>fill the form to and it will send to the Admin</p>
       <form
-        className="create-form1 "
+        className="create-form1"
         /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}
         style={{
           background: "rgba(111,111,111,0.3)",
@@ -184,7 +184,7 @@ const CreateActivityCard = () => {
         example={"birthday party"}
           onChange={form.handleChange}
           error={form.errors.activityDescription}
-          names="activity Description"
+          names="activity description"
           type="text"
           id="activity-Description"
           {...form.getFieldProps("activityDescription")}
@@ -193,7 +193,7 @@ const CreateActivityCard = () => {
         example={"12/12/2023"}
           onChange={form.handleChange}
           error={form.errors.activityDate}
-          names="activity Date"
+          names="activity date"
           type="date"
           id="activityDate"
           {...form.getFieldProps("activityDate")}
@@ -202,7 +202,7 @@ const CreateActivityCard = () => {
         example={"12:00"}
           onChange={form.handleChange}
           error={form.errors.activityTime}
-          names="activity Time"
+          names="activity time"
           type="time"
           id="activityTime"
           {...form.getFieldProps("activityTime")}
@@ -211,7 +211,7 @@ const CreateActivityCard = () => {
         example={"image url"}
           onChange={form.handleChange}
           error={form.errors.activityImage}
-          names="activity Image"
+          names="activity image"
           type="text"
           id="activityImage"
         />

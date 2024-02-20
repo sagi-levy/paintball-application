@@ -317,14 +317,28 @@ footer {
 }
 @media (max-width: 290px) {
   .carousel-caption {
-    line-height: 1;
+    line-height: 0.5;
+  }
+  .form-group {
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-top: 2%;
   }
 }
 @media (min-width: 776px) {
   form.create-form1 {
     width: 90% !important; /* Use !important to ensure it overrides other styles */
   }
+  .form-group {
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+  }
+  #edit-form{
+    width: 60%;
+  }
 }
+
 @media (min-width: 100px) {
   /* Apply width: 100% to form elements on small screens and above */
   #paintball-player-img {
@@ -350,6 +364,6 @@ footer {
   margin-right: 10px;
   background-image: url("../public/paintballImages/Photoroom-20240219_222438\ \(1\).png");
   background-size: cover; /* Optional: adjust as needed */
-border-radius: 50%;
-filter: brightness(0.8);
+  border-radius: 50%;
+  filter: brightness(0.8);
 }

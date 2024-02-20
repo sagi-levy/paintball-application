@@ -51,10 +51,11 @@ const ChangePassword = () => {
           }
         );
 
-        if (!response.ok) {
+        if (response.status == 401 || !response.ok) {
           const data = await response;
           console.log(data);
-          setErrorApiRequest(data.statusText);
+          // setErrorApiRequest(data.statusText);
+          setErrorApiRequest("not correct old password");
           return;
         }
       } catch (error) {
@@ -84,27 +85,31 @@ const ChangePassword = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+          example={"strong password"}
           {...form.getFieldProps("oldPassword")}
           type="password"
-          name="oldPassword"
+          names="old password"
           id="oldPassword"
           error={form.touched.oldPassword && form.errors.oldPassword}
         />
         <Input
+          example={"strong password"}
           {...form.getFieldProps("newPassword")}
           type="password"
-          name="newPassword"
+          names="new password"
           id="newPassword"
           error={form.touched.newPassword && form.errors.newPassword}
         />
         <Input
+          example={"strong password"}
           {...form.getFieldProps("confirmNewPassword")}
           type="password"
-          name="confirmNewPassword"
+          name="confirm new password"
           id="confirmNewPassword"
           error={
             form.touched.confirmNewPassword && form.errors.confirmNewPassword
           }
+          {...form.getFieldProps("confirmNewPassword")}
         />{" "}
         <button type="submit" className="btn btn-primary">
           confirm

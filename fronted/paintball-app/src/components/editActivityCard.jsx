@@ -142,14 +142,14 @@ const EditActivityCard = () => {
     <>
       <PageHeader title={<h1 className="pt-5">edit card page</h1>} />
       <p>you can edit the card by savig the new valus</p>
-      <form onSubmit={form.handleSubmit}>
+      <form id="edit-form" onSubmit={form.handleSubmit}>
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
           onChange={form.handleChange}
           error={form.errors.activityName}
-          name="activity-name"
+          names="activity name"
           type="text"
           id="activity-name"
           {...form.getFieldProps("activityName")}
@@ -157,7 +157,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDescription}
-          name="activity-Description"
+          names="activity description"
           type="text"
           id="activity-Description"
           {...form.getFieldProps("activityDescription")}
@@ -165,7 +165,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityDate}
-          name="activityDate"
+          names="activity date"
           type="date"
           id="activityDate"
           {...form.getFieldProps("activityDate")}
@@ -173,7 +173,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityImage}
-          name="activityImage"
+          names="activity image"
           type="text"
           id="activityImage"
           {...form.getFieldProps("activityImage")}
@@ -181,7 +181,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityAddress}
-          name="activity-Address"
+          names="activity address"
           type="text"
           id="activity-Address"
           {...form.getFieldProps("activityAddress")}
@@ -189,7 +189,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.bizUserName}
-          name="bizUserName"
+          names="user name"
           type="text"
           id="bizUserName"
           {...form.getFieldProps("bizUserName")}
@@ -197,7 +197,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.phoneNumber}
-          name="phoneNumber"
+          names="phone number"
           type="text"
           id="phoneNumber"
           value={ActivityCard ? ActivityCard.phoneNumber : ""}
@@ -207,7 +207,7 @@ const EditActivityCard = () => {
         <Input
           onChange={form.handleChange}
           error={form.errors.activityTime}
-          name="activityTime"
+          names="activity time"
           type="time"
           id="activityTime"
           {...form.getFieldProps("activityTime")}
@@ -221,7 +221,7 @@ const EditActivityCard = () => {
                 onChange={form.handleChange}
                 type="checkbox"
                 id="isPaid"
-                name="isPaid"
+                names="is paid"
                 checked={form.values.isPaid}
                 {...form.getFieldProps("isPaid")}
                 className="form-check-input w-25"
@@ -232,7 +232,7 @@ const EditActivityCard = () => {
                 onChange={form.handleChange}
                 type="checkbox"
                 id="inCalendar"
-                name="inCalendar"
+                names="in calendar"
                 checked={form.values.inCalendar}
                 {...form.getFieldProps("inCalendar")}
                 className="form-check-input w-25"

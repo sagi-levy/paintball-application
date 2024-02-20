@@ -71,16 +71,18 @@ const EnterNewPassword = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+        example={"creative strong password"}
           {...form.getFieldProps("newPassword")}
           type="password"
-          name="newPassword"
+          names="new password"
           id="newPassword"
           error={form.touched.newPassword && form.errors.newPassword}
         />
         <Input
-          {...form.getFieldProps("confirmNewPassword")}
+        example={"creative strong password"}
+        {...form.getFieldProps("confirmNewPassword")}
           type="password"
-          name="confirmNewPassword"
+          names="confirm new password"
           id="confirmNewPassword"
           error={
             form.touched.confirmNewPassword && form.errors.confirmNewPassword
