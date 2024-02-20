@@ -47,23 +47,26 @@ const SignUp = () => {
         )}
 
         <Input
+        example={"John doe"}
           {...form.getFieldProps("name")}
           type="text"
-          name="name"
+          names="name"
           id="name"
           error={form.touched.name && form.errors.name}
         />
         <Input
+        example={"055.."}
           {...form.getFieldProps("phoneNumber")}
           type="text"
-          name="phoneNumber"
+          names="phone number"
           id="phoneNumber"
           error={form.touched.phoneNumber && form.errors.phoneNumber}
         />
         <Input
+        example={"stronspass"}
           {...form.getFieldProps("password")}
           type="password"
-          name="password"
+          names="password"
           id="password"
           error={form.touched.password && form.errors.password}
         />

@@ -36,7 +36,6 @@ const CreateActivityCard = () => {
               headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": localStorage.token,
-                // Add other headers as needed
               },
             }
           : null
@@ -67,7 +66,7 @@ const CreateActivityCard = () => {
                 activityTime,
                 activityDate,
               }))
-          ); // when there is user (token) data gives me also user and also tasks in an object
+          ); 
     } catch (error) {
       console.error(error.message);
     }
@@ -157,7 +156,7 @@ const CreateActivityCard = () => {
   return (
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
-      <p>fill the form to and it will send to the Admin</p>
+      <p>fill the form and it will be send to the Admin</p>
       <form
         className="create-form1"
         /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}

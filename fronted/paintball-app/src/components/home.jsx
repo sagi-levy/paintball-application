@@ -71,7 +71,7 @@ const Home = () => {
             ></button>
           </div>
           <div className="carousel-inner">
-          <div className="carousel-item active">
+            <div className="carousel-item active">
               <img
                 id="carousel-img"
                 src="https://cdn.pixabay.com/photo/2017/07/09/03/37/paintball-2486109_960_720.jpg"
@@ -111,7 +111,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="carousel-item active">
+            <div className="carousel-item">
               <img
                 id="carousel-img"
                 src="https://media.istockphoto.com/id/1281185274/photo/laser-tag-tactical-game-just-for-fun-forces-mission-science-fiction-playing-in-red-light.jpg?b=1&s=170667a&w=0&k=20&c=RqTQ9tfv5zYgcfxDazHcZrSyasj11mB_GyQKlxakKVk="
@@ -150,7 +150,7 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="carousel-item active">
+            <div className="carousel-item ">
               <img
                 id="carousel-img"
                 src="https://cdn.pixabay.com/photo/2015/12/07/10/24/go-kart-1080492_1280.jpg"
@@ -215,8 +215,8 @@ const Home = () => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <div id="container-image-and-form"  className="container">
-          <div className="row" id="row-image-and-form" >
+        <div id="container-image-and-form" className="container">
+          <div className="row" id="row-image-and-form">
             <div className="col-lg-7 col-sm-12 ">
               <CreateActivityCard />
             </div>

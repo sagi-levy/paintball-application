@@ -262,7 +262,6 @@ footer {
 @media screen and (max-width: 768px) {
   .page-header-on-carousel {
     padding-bottom: 20px;
-    /* Adjusted padding for smaller screens */
   }
 }
 /* @media screen and (min-width: 768px) {
@@ -298,6 +297,17 @@ footer {
   line-height: 2;
   color: #ecd8d8;
 }
+@media screen and (max-width: 290px) {
+  .page-header-on-carousel > h1 {
+    text-shadow: 40px 40px 40px rgba(19, 15, 15, 1);
+
+    font-size: 22px;
+    line-height: 2;
+  }
+  .carousel-caption > p {
+    font-size: 15px;
+  }
+}
 .badge {
   letter-spacing: 1px; /* Change the value as needed */
 }
@@ -315,7 +325,7 @@ footer {
   /* background-color: #dc2c2c;; */
   background: rgba(111, 111, 111, 0.3);
 }
-@media (max-width: 290px) {
+@media (max-width: 350px) {
   .carousel-caption {
     line-height: 0.5;
   }
@@ -334,7 +344,7 @@ footer {
     margin-left: 40px;
     margin-bottom: 10px;
   }
-  #edit-form{
+  #edit-form {
     width: 60%;
   }
 }

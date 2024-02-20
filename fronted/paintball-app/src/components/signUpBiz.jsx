@@ -33,7 +33,10 @@ const SignUpBiz = () => {
       try {
         console.log(values);
         await createUser({ ...values, biz: true });
-        await logIn({ phoneNumber: values.phoneNumber, password: values.password });
+        await logIn({
+          phoneNumber: values.phoneNumber,
+          password: values.password,
+        });
         navigate(`/cards/my-activity-cards/${values.phoneNumber}`);
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -58,20 +61,23 @@ const SignUpBiz = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+          example={"055..."}
           {...form.getFieldProps("phoneNumber")}
           type="text"
-          name="phoneNumber"
+          names="phone number"
           id="phoneNumber"
           error={form.touched.phoneNumber && form.errors.phoneNumber}
         />
         <Input
+          example={"John doe"}
           {...form.getFieldProps("name")}
           type="text"
-          name="name"
+          names="name"
           id="name"
           error={form.touched.name && form.errors.name}
         />
         <Input
+          example={"strong pass"}
           {...form.getFieldProps("password")}
           type="password"
           name="password"

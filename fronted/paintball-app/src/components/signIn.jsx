@@ -60,17 +60,19 @@ const SignIn = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+          example={"055..."}
           {...form.getFieldProps("phoneNumber")}
           error={form.errors.phoneNumber}
-          name="phoneNumber"
+          names="phone number"
           type="phoneNumber"
           id="phoneNumber"
         />
 
         <Input
+          example={"strong"}
           {...form.getFieldProps("password")}
           error={form.errors.password}
-          name="password"
+          names="password"
           type="password"
           id="password"
         />
