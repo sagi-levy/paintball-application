@@ -37,13 +37,11 @@ import {
 import { AppProvider } from "./context/card.context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const stripePromise = loadStripe(
-  process.env.REACT_APP_LOAD_STRIPE_STRING
-);
+const stripePromise = loadStripe(process.env.REACT_APP_LOAD_STRIPE_STRING);
 function App() {
   return (
     <div className="App">
-      <header className="">
+      <header className="header">
         <Navbar />
       </header>
       <ToastContainer />

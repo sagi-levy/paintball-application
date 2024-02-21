@@ -377,3 +377,9 @@ footer {
   border-radius: 50%;
   filter: brightness(0.8);
 }
+.header {
+  position: sticky;
+  top: 0; /* Stick the navbar to the top of the page */
+  z-index: 1000; /* Ensure the navbar stays on top of other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+}
