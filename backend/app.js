@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(process.env.MONGO_ATLAS_CONNECECTION_URL)
+  .connect(process.env.MONGO_ATLAS_CONNECTION_URL)
   .then(() => console.log("connected to mongo"))
   .catch(() => console.log("could not connect to mongo"));
 
@@ -38,61 +38,61 @@ let tasks = [];
 
 console.log(tasks);
 
-app.get("/api/tasks", async (req, res) => {
-  tasks = await ActivityCard.find({});
-  const token = req.header("x-auth-token");
-  //console.log(token);
-  if (!token) {
-    res.status(200).json(tasks);
-    return;
-  }
-  try {
-    const payload = jwt.verify(token, JWTSecretToken);
-    req.user = payload;
-     console.log("payload", payload);
-     //console.log("user id is:", req.user._id);
-    const user = await User.findOne({ _id: payload._id }, { password: 0 });
-    console.log(user);
-    res.send({ user: user, tasks: tasks });
-  } catch {
-    res.status(400).send("invalid token");
-  }
-});
+// app.get("/api/tasks", async (req, res) => {
+//   tasks = await ActivityCard.find({});
+//   const token = req.header("x-auth-token");
+//   //console.log(token);
+//   if (!token) {
+//     res.status(200).json(tasks);
+//     return;
+//   }
+//   try {
+//     const payload = jwt.verify(token, JWTSecretToken);
+//     req.user = payload;
+//      console.log("payload", payload);
+//      //console.log("user id is:", req.user._id);
+//     const user = await User.findOne({ _id: payload._id }, { password: 0 });
+//     console.log(user);
+//     res.send({ user: user, tasks: tasks });
+//   } catch {
+//     res.status(400).send("invalid token");
+//   }
+// });
 
-app.post("/api/tasks", async (req, res) => {
-  // const { error } = validateCard(req.body);
-  // if (error) {
-  //   res.status(400).send(error.details[0].message);
-  //   return;
-  // }
-  let card = await ActivityCard.findOne({
-    activityTime: req.body.activityTime,
-    activityDate: req.body.activityDate,
-  });
-  console.log(card);
-  if (card) {
-    console.log("there is already activity is this day and time", card);
-    return;
-  } else {
-    console.log("ok");
-  }
+// app.post("/api/tasks", async (req, res) => {
+//   const { error } = validateCard(req.body);
+//   if (error) {
+//     res.status(400).send(error.details[0].message);
+//     return;
+//   }
+//   let card = await ActivityCard.findOne({
+//     activityTime: req.body.activityTime,
+//     activityDate: req.body.activityDate,
+//   });
+//   console.log(card);
+//   if (card) {
+//     console.log("there is already activity is this day and time", card);
+//     return;
+//   } else {
+//     console.log("ok");
+//   }
 
-  const activityCard = await new ActivityCard({
-    ...req.body,
-    activityImage:
-      req.body.activityImage ||
-      "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
-    activityNumber: await generateBuisnessNumber(),
-    user_id: req.body.phoneNumber,
-    isPaid: false,
-    inCalendar: false,
-  }).save();
+//   const activityCard = await new ActivityCard({
+//     ...req.body,
+//     activityImage:
+//       req.body.activityImage ||
+//       "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
+//     activityNumber: await generateBuisnessNumber(),
+//     user_id: req.body.phoneNumber,
+//     isPaid: false,
+//     inCalendar: false,
+//   }).save();
 
-  const newTask = activityCard;
-  tasks.push(newTask);
-  console.log(`new tack is ${newTask}`);
-  res.status(201).json({ tasks: tasks, newTask: newTask });
-});
+//   const newTask = activityCard;
+//   tasks.push(newTask);
+//   console.log(`new tack is ${newTask}`);
+//   res.status(201).json({ tasks: tasks, newTask: newTask });
+// });
 
 const PORT = process.env.SERVER_PORT
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));

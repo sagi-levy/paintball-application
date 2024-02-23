@@ -7,6 +7,13 @@ const {
 } = require("../models/cards.model");
 const authCheckMiddleWare = require("../middlewares/auth");
 const { User } = require("../models/users");
+const { JWTSecretToken } = require("../configs/config");
+
+
+let tasks = [];
+
+
+
 
 router.get("/my-activity-cards", authCheckMiddleWare, async (req, res) => {
   if (!req.user.biz) {
@@ -68,11 +75,63 @@ router.delete(
   }
 );
 
-router.post(
-  "/create-activity-card",
 
-  async (req, res) => {}
-);
+router.get("/get-activity-cards", async (req, res) => {
+  tasks = await ActivityCard.find({});
+  const token = req.header("x-auth-token");
+  //console.log(token);
+  if (!token) {
+    res.status(200).json(tasks);
+    return;
+  }
+  try {
+    const payload = jwt.verify(token, JWTSecretToken);
+    req.user = payload;
+     console.log("payload", payload);
+     //console.log("user id is:", req.user._id);
+    const user = await User.findOne({ _id: payload._id }, { password: 0 });
+    console.log(user);
+    res.send({ user: user, tasks: tasks });
+  } catch {
+    res.status(400).send("invalid token");
+  }
+});
+
+
+router.post("/create-activity-card", async (req, res) => {
+  const { error } = validateCard(req.body);
+  if (error) {
+    res.status(400).send(error.details[0].message);
+    return;
+  }
+  let card = await ActivityCard.findOne({
+    activityTime: req.body.activityTime,
+    activityDate: req.body.activityDate,
+  });
+  console.log(card);
+  if (card) {
+    console.log("there is already activity is this day and time", card);
+    return;
+  } else {
+    console.log("ok");
+  }
+
+  const activityCard = await new ActivityCard({
+    ...req.body,
+    activityImage:
+      req.body.activityImage ||
+      "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
+    activityNumber: await generateBuisnessNumber(),
+    user_id: req.body.phoneNumber,
+    isPaid: false,
+    inCalendar: false,
+  }).save();
+
+  const newTask = activityCard;
+  tasks.push(newTask);
+  console.log(`new tack is ${newTask}`);
+  res.status(201).json({ tasks: tasks, newTask: newTask });
+});
 
 router.put(
   "/edit-activity-cards/:id",

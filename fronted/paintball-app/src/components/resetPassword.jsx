@@ -12,7 +12,6 @@ const ResetPassword = () => {
   const handleResetPassword = async () => {
     try {
       setIsLoading(true);
-      // Add your backend API endpoint for password reset
       const response = await fetch(
         `${process.env.REACT_APP_RENDER_API_URL}/reset-password`,
         {
@@ -28,7 +27,6 @@ const ResetPassword = () => {
 
       if (response.ok) {
         setMessage(data.message);
-        // Navigate only if the response is successful
         navigate("sent-email", { state: { email, phoneNumber } });
       } else {
         setMessage(data.error || "Failed to reset password.");
@@ -39,7 +37,6 @@ const ResetPassword = () => {
       setMessage("Something went wrong. Please try again later.");
       console.error("Error resetting password:", error.message);
     } finally {
-      // Reset isLoading after handling the response
       setIsLoading(false);
     }
   };
