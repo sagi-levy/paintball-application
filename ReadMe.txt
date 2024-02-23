@@ -20,3 +20,5 @@ The application must be opened
 npm install - to install all node module packages both on the backend and on the frontend)
 And through the terminal you have to tap
 npm start in the backend folder
+
+https://paintball-application.onrender.com/
