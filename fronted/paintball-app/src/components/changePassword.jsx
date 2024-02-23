@@ -5,12 +5,14 @@ import Input from "../components/common/input";
 import Joi from "joi";
 import FormikUsingJoi from "../utils/formikUsingJoi";
 import { useFormik } from "formik";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChangePassword = () => {
-   const location = useLocation();
+  const location = useLocation();
   const user = location.state?.user || null;
-  console.log(user)
+  console.log(user);
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const ChangePassword = () => {
       try {
         // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `http://localhost:3003/users/change-password/${id}`,
+          `${process.env.REACT_APP_RENDER_API_URL}/users/change-password/${id}`,
           {
             method: "PUT",
             headers: {
@@ -48,22 +50,34 @@ const ChangePassword = () => {
             body: JSON.stringify(formData),
           }
         );
-        if (!response.ok) {
+
+        if (response.status == 401 || !response.ok) {
           const data = await response;
           console.log(data);
-          setErrorApiRequest(data.statusText);
+          // setErrorApiRequest(data.statusText);
+          setErrorApiRequest("not correct old password");
+          return;
         }
       } catch (error) {
         console.error(error);
         setErrorApiRequest("Internal server error");
       }
+      toast.success(`password changed`, {
+        autoClose: 2000,
+        style: {
+          background: "black",
+          color: "white",
+          borderRadius: "8px",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+        },
+      });
       navigate("/calendar");
     },
   });
 
   return (
     <div>
-      <h2>Change Password</h2>
+      <h2 style={{ paddingTop: "70px" }}>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>
         {" "}
@@ -71,27 +85,31 @@ const ChangePassword = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+          example={"strong password"}
           {...form.getFieldProps("oldPassword")}
           type="password"
-          name="oldPassword"
+          names="old password"
           id="oldPassword"
           error={form.touched.oldPassword && form.errors.oldPassword}
         />
         <Input
+          example={"strong password"}
           {...form.getFieldProps("newPassword")}
           type="password"
-          name="newPassword"
+          names="new password"
           id="newPassword"
           error={form.touched.newPassword && form.errors.newPassword}
         />
         <Input
+          example={"strong password"}
           {...form.getFieldProps("confirmNewPassword")}
           type="password"
-          name="confirmNewPassword"
+          name="confirm new password"
           id="confirmNewPassword"
           error={
             form.touched.confirmNewPassword && form.errors.confirmNewPassword
           }
+          {...form.getFieldProps("confirmNewPassword")}
         />{" "}
         <button type="submit" className="btn btn-primary">
           confirm

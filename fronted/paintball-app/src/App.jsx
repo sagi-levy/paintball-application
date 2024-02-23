@@ -2,10 +2,13 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/common/footer";
+import FooterMenu from "./components/common/footerMenu";
 import CreateActivityCard from "./components/createActivityCard";
 import SignOut from "./components/signOut";
 import MyActivityCards from "./components/myActivityCards";
 import ProtectedRoute from "./components/protectedRoute";
+import ProtectedRouteOnlyBiz from "./components/protectedRouteOnlyBiz";
+
 import About from "./components/about";
 import EditActivityCard from "./components/editActivityCard";
 import Home from "./components/home";
@@ -32,17 +35,17 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { AppProvider } from "./context/card.context";
-
-const stripePromise = loadStripe(
-  "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
-);
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const stripePromise = loadStripe(process.env.REACT_APP_LOAD_STRIPE_STRING);
 function App() {
   return (
     <div className="App">
-      <header className="mb-5">
+      <header className="header">
         <Navbar />
       </header>
-      <main>
+      <ToastContainer />
+      <main className="main-content pb-4">
         <AppProvider>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -66,13 +69,13 @@ function App() {
             <Route
               path="cards/my-activity-cards/:id"
               element={
-                <ProtectedRoute onlyBiz>
+                <ProtectedRouteOnlyBiz onlyBiz>
                   <MyActivityCards />
-                </ProtectedRoute>
+                </ProtectedRouteOnlyBiz>
               }
             ></Route>
             <Route
-              path="cards/edit-activity-cards/:id" //should add query param :id  ?
+              path="cards/edit-activity-cards/:id"
               element={
                 <ProtectedRoute id>
                   <EditActivityCard />
@@ -117,6 +120,7 @@ function App() {
         </AppProvider>
       </main>
       <footer>
+        <FooterMenu />
         <Footer />
       </footer>
     </div>

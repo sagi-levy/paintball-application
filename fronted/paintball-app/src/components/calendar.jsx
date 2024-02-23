@@ -16,9 +16,12 @@ const Calendar = () => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const fetchTasks = async () => {
+    // console.log("process.env.REACT_APP_RENDER_API_URL: ",process.env.REACT_APP_RENDER_API_URL)
+    // console.log(`process.env=${JSON.stringify(process.env,null,2)}`)
+   
     try {
       const response = await fetch(
-        "http://localhost:3003/api/tasks",
+        `${process.env.REACT_APP_RENDER_API_URL}/api/tasks`,
         user
           ? {
               method: "GET",
@@ -34,6 +37,7 @@ const Calendar = () => {
       }
 
       const data = await response.json();
+      console.log(data)
 
       user ? setTasks(data.tasks) : setTasks(data); // when there is user (token) data gives me also user and also tasks in an object
     } catch (error) {
@@ -63,10 +67,10 @@ const Calendar = () => {
     const weekDays = getDaysInWeek(currentWeek);
 
     return (
-      <table className="table table-bordered">
+      <table className="table table-bordered" >
         <thead>
           <tr>
-            <th>
+            <th >
               <button
                 className="btn btn-primary"
                 onClick={() =>
@@ -82,7 +86,7 @@ const Calendar = () => {
               <th key={index}>{`${daysOfWeek[index]} ${day.getDate()}`}</th>
             ))}
             <th>
-              <button
+              <button 
                 className="btn btn-primary"
                 onClick={() =>
                   setCurrentWeek(
@@ -100,8 +104,8 @@ const Calendar = () => {
             <tr key={hour}>
               <td>{`${hour}:00`}</td>
               {weekDays.map((day, index) => (
-                <td key={index}>
-                  <ul className="list-group">
+                <td key={index} style={{ width: "200px" }}>
+                  <ul className="list-group ">
                     {tasks
                       .filter(
                         (task) =>
@@ -117,10 +121,17 @@ const Calendar = () => {
                           new Date(a.activityDate) - new Date(b.activityDate)
                       )
                       .map((task, taskIndex) => (
-                        <li key={task._id} className="list-group-item">
-                          {task.activityName}
+                        <li
+                          key={task._id}
+                          className="list-group-item"
+                          id="li-in-calendar"
+                        >
+                          <p className="text-light m-auto">
+                            {" "}
+                            {task.activityName} of {task.bizUserName}
+                          </p>
 
-                          <span>
+                          <span className="text-light">
                             {" "}
                             paid?
                             {task.isPaid ? (
@@ -129,12 +140,15 @@ const Calendar = () => {
                               <i className="bi bi-calendar2-x-fill"></i>
                             )}
                           </span>
-                          {user && user._id == task.phoneNumber ? (
+                          {(user && user._id == task.phoneNumber) ||
+                          (user && user.biz) ? (
                             <>
                               <ProtectedRoute
                                 tasks={tasks}
                                 id={user._id}
-                                myTasks={tasks}
+                                myTasks={tasks.filter(
+                                  (task) => task.phoneNumber == user._id
+                                )}
                               >
                                 <Link
                                   style={{
@@ -142,7 +156,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/edit-activity-cards/${user._id}`}
+                                  to={`/cards/edit-activity-cards/${task.phoneNumber}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-pencil-fill"></i>
@@ -161,7 +175,7 @@ const Calendar = () => {
                                     fontFamily: "cursive",
                                     justifyContent: "center",
                                   }}
-                                  to={`/cards/delete-activity-cards/${user._id}`}
+                                  to={`/cards/delete-activity-cards/${task.phoneNumber}?cardId=${task._id}`}
                                 >
                                   {" "}
                                   <i className="bi bi-trash"></i>
@@ -184,10 +198,14 @@ const Calendar = () => {
   // console.log(new Date(tasks[0].activityDate).getHours());
   // console.log((tasks[0].time));
   return (
-    <div className="container mt-4">
-      <h2>Calendar</h2>
-      {renderCalendar()}
+    <div className="container mt-4 pt-5">
+    <h2>Calendar</h2>
+    <div className="table-responsive">
+     
+        {renderCalendar()}
+      
     </div>
+  </div>
   );
 };
 

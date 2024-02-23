@@ -34,9 +34,8 @@ const EnterNewPassword = () => {
 
     async onSubmit(formData) {
       try {
-        // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
-          `http://localhost:3003/users/change-password/via-email-code/${id}`,
+          `${process.env.REACT_APP_RENDER_API_URL}/users/change-password/via-email-code/${id}`,
           {
             method: "PUT",
             headers: {
@@ -58,12 +57,12 @@ const EnterNewPassword = () => {
 
         setErrorApiRequest("Internal server error");
       }
-      //navigate("/calendar");
+      navigate("/calendar");
     },
   });
 
   return (
-    <div>
+    <div className="p-5">
       <h2>Change Password</h2>
 
       <form onSubmit={form.handleSubmit}>
@@ -72,16 +71,18 @@ const EnterNewPassword = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+        example={"creative strong password"}
           {...form.getFieldProps("newPassword")}
           type="password"
-          name="newPassword"
+          names="new password"
           id="newPassword"
           error={form.touched.newPassword && form.errors.newPassword}
         />
         <Input
-          {...form.getFieldProps("confirmNewPassword")}
+        example={"creative strong password"}
+        {...form.getFieldProps("confirmNewPassword")}
           type="password"
-          name="confirmNewPassword"
+          names="confirm new password"
           id="confirmNewPassword"
           error={
             form.touched.confirmNewPassword && form.errors.confirmNewPassword

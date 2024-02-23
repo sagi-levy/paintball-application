@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const { User, validateUser } = require("../models/users");
+const { ActivityCard } = require("../models/cards.model");
 const authMW = require("../middlewares/auth");
 const { JWTSecretToken } = require("../configs/config");
 const jwt = require("jsonwebtoken");
@@ -29,6 +30,24 @@ router.post("/", async (req, res) => {
     _id: req.body.phoneNumber, //  if I delete it- _id default is objectID  need to ask what is better
     password: await bcrypt.hash(req.body.password, 12),
   }).save();
+  try {
+    let activity = await ActivityCard.updateMany(
+      {
+        phoneNumber: req.body.phoneNumber,
+        user_id: "the guy who created this activity hasn't registed yet",
+      },
+      {
+        $set: { user_id: req.body.phoneNumber },
+      }
+    );
+    console.log(
+      "this new user has signed up now but he allready had activities, so we updated those activities user_id to this user phoneNumber",
+      activity
+    ); 
+  } catch (error) {
+    console.error(error); 
+  }
+
   res.send({ name: user.name, phoneNumber: user._id });
 });
 router.put("/change-password/:id", async (req, res) => {
@@ -110,7 +129,7 @@ router.put("/change-password/via-email-code/:id", async (req, res) => {
       return res.status(404).send("you cant change password to other user");
     }
   } catch {
-    res.status(400).send({message:"you cant change password to other user"});
+    res.status(400).send({ message: "you cant change password to other user" });
     return;
   }
   try {

@@ -1,20 +1,30 @@
 // PaymentCard.js
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  useParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import PageHeader from "./pageHeader";
 import { updateActivityCardToPaidTrue } from "../../services/cardsServices";
 import useActivityCard from "../../hooks/useActivityCard";
 import { useAppContext } from "../../context/card.context";
+import queryString from "query-string"; // Import query-string library
 
 const PaymentCard = ({ amountToCharge = 20 }) => {
+  const location = useLocation();
+
+  const queryParams = queryString.parse(location.search);
+  const { cardId } = queryParams;
   const { myProp } = useAppContext();
   const navigate = useNavigate();
 
   const { id } = useParams();
   console.log(id, myProp);
-  useActivityCard(id);
-  console.log(useActivityCard(id));
+  useActivityCard(id, cardId);
+  console.log(useActivityCard(id, cardId));
   const stripe = useStripe();
   const elements = useElements();
 
@@ -53,7 +63,11 @@ const PaymentCard = ({ amountToCharge = 20 }) => {
     <>
       <form onSubmit={handleSubmit}>
         <CardElement />
-        <button className="btn btn-outline-primary" type="submit" disabled={!stripe}>
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+          disabled={!stripe}
+        >
           Pay {amountToCharge}
         </button>
       </form>

@@ -26,10 +26,10 @@ const KartingPage = () => {
     <div className="container mt-5">
       {" "}
       <PageHeader
-        title={<h1 className="text-center mb-4">Paintball Packages</h1>}
+        title={<h1  className="text-center mb-4">karting Packages</h1>}
       />
       <BasicPackages packages={paintballPackages} />
-      <div className="col-md-4 mb-4">
+      <div className="row">
         <ActivityDetails
           title={"Who is it suitable for?"}
           description={
@@ -47,7 +47,7 @@ const KartingPage = () => {
         <ActivityDetails
           title={"How does it happen in the field?"}
           description={
-            "he goal is to create a group experience for you. We start with professional and safety training in driving on a track in a karting vehicle. We will understand how the ranking is done and how to win. Put on protective equipment and access vehicles. We will perform a competitive time trial at the end of which, of course, we will find out who drove the fastest of all. Think it's you? So come on, what are you waiting for?"
+            "the goal is to create a group experience for you. We start with professional and safety training in driving on a track in a karting vehicle. We will understand how the ranking is done and how to win. Put on protective equipment and access vehicles. "
           }
           icon={<i className="bi bi-flag bi-big "></i>}
         />

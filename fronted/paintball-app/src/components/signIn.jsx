@@ -5,11 +5,14 @@ import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { useAuth } from "../context/auth.context";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [errorApiRequest, setErrorApiRequest] = useState("");
   const { logIn, user } = useAuth();
   const navigate = useNavigate();
+
   const form = useFormik({
     initialValues: { phoneNumber: "", password: "" },
     validate(values) {
@@ -29,6 +32,15 @@ const SignIn = () => {
         await logIn(values);
         console.log(user); // user shown after refresh, supposed to be render, don't know why not
         console.log(values); // user shown after refresh, supposed to be render, don't know why not
+        toast.success(`welcome`, {
+          autoClose: 2000,
+          style: {
+            background: "black",
+            color: "white",
+            borderRadius: "8px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          },
+        });
 
         navigate("/about");
       } catch ({ response }) {
@@ -41,24 +53,26 @@ const SignIn = () => {
 
   return (
     <>
-      <PageHeader title={<h1>Sign in page</h1>} />
+      <PageHeader title={<h1 className="pt-5 ">Sign in page</h1>} />
       <p>sign in to enter</p>
       <form className="mb-4" onSubmit={form.handleSubmit}>
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+          example={"055..."}
           {...form.getFieldProps("phoneNumber")}
           error={form.errors.phoneNumber}
-          name="phoneNumber"
+          names="phone number"
           type="phoneNumber"
           id="phoneNumber"
         />
 
         <Input
+          example={"strong"}
           {...form.getFieldProps("password")}
           error={form.errors.password}
-          name="password"
+          names="password"
           type="password"
           id="password"
         />
@@ -70,7 +84,7 @@ const SignIn = () => {
 
       <Link
         style={{
-          color: "black",
+          color: "#ecd8d8",
           fontFamily: "cursive",
           justifyContent: "center",
         }}

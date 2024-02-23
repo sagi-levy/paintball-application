@@ -17,25 +17,25 @@ import { useAuth } from "../context/auth.context";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/card.context";
 
-const stripePromise = loadStripe(
-  "pk_test_51OXTK9FzIkHLxdyfqYLsI9aG4k28P6nhqV0o42t2vVBgD6j0UUBrinpOLAAS4l5tuJ3X9spREb83JyMUIyByhYew00dkMjUQlN"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_LOAD_STRIPE_STRING);
 
 const CreateActivityCard = () => {
-  const [tasksTimes, setTasksTimes] = useState([]); // should get from server
+  //const [tasksTimes, setTasksTimesAlreadyCatches] = useState([]); // should get from server
   const { logIn, user } = useAuth();
+  const { setTasksTimesAlreadyCatches, tasksTimes } = useAppContext();
+  console.log("tasks times:", tasksTimes);
 
+  const isUser = user;
   const fetchTasksTimes = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3003/api/tasks",
+        `${process.env.REACT_APP_RENDER_API_URL}/api/tasks`,
         user
           ? {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": localStorage.token,
-                // Add other headers as needed
               },
             }
           : null
@@ -47,7 +47,7 @@ const CreateActivityCard = () => {
       const data = await response.json();
 
       user
-        ? setTasksTimes(
+        ? setTasksTimesAlreadyCatches(
             data.tasks
               .filter(
                 (activity) => activity.activityTime && activity.activityDate
@@ -57,7 +57,7 @@ const CreateActivityCard = () => {
                 activityDate,
               }))
           )
-        : setTasksTimes(
+        : setTasksTimesAlreadyCatches(
             data
               .filter(
                 (activity) => activity.activityTime && activity.activityDate
@@ -66,7 +66,7 @@ const CreateActivityCard = () => {
                 activityTime,
                 activityDate,
               }))
-          ); // when there is user (token) data gives me also user and also tasks in an object
+          ); 
     } catch (error) {
       console.error(error.message);
     }
@@ -85,7 +85,7 @@ const CreateActivityCard = () => {
       activityDescription: "",
       activityAddress: "",
       activityDate: "",
-      phoneNumber: "",
+      phoneNumber: user ? user._id : "",
       bizUserName: "",
       activityImage: "",
       activityTime: "",
@@ -115,13 +115,16 @@ const CreateActivityCard = () => {
           body.activityImage = activityImage;
         }
         console.log(body);
-        const x = await createActivityCard(body);
-        console.log("new task is:", x.data.newTask);
-        setProp(x.data.newTask);
 
-        navigate(`/cards/payment/${values.phoneNumber}`);
+        const dataServer = await createActivityCard(body);
+        console.log("new task is:", dataServer.data.newTask);
+        setProp(dataServer.data.newTask);
+
+        navigate(
+          `/cards/payment/${values.phoneNumber}?cardId=${dataServer.data.newTask._id}`
+        );
       } catch ({ response }) {
-        if (response && response.status === 400) {
+        if ((response && response.status === 400) || response.status === 502) {
           setErrorApiRequest(response.data);
         }
       }
@@ -135,13 +138,17 @@ const CreateActivityCard = () => {
         activity.activityDate === inputDate
     );
   }
-  const checkTimeValidity = (inputTime,inputDate, activitiesArray) => {
-    if (isTimeInArray(inputTime,inputDate, activitiesArray)) {
+  const checkTimeValidity = (inputTime, inputDate, activitiesArray) => {
+    if (isTimeInArray(inputTime, inputDate, activitiesArray)) {
       form.errors.activityTime = "there is already activity in this time";
     }
   };
   try {
-    checkTimeValidity(form.values.activityTime,form.values.activityDate, tasksTimes);
+    checkTimeValidity(
+      form.values.activityTime,
+      form.values.activityDate,
+      tasksTimes
+    );
     console.log("Input time is valid.");
   } catch (error) {
     console.error(error.message);
@@ -149,77 +156,96 @@ const CreateActivityCard = () => {
   return (
     <>
       <PageHeader title={<h1>create paintball activity card page</h1>} />
-      <p>fill the form to and it will send to the Admin</p>
-      <form onSubmit={form.handleSubmit}>
+      <p>fill the form and it will be send to the Admin</p>
+      <form
+        className="create-form1"
+        /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}
+        style={{
+          background: "rgba(111,111,111,0.3)",
+          padding: "20px",
+          borderRadius: "8px",
+        }}
+      >
         {errorApiRequest && (
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
+        example={"paintball"} 
           onChange={form.handleChange}
           error={form.errors.activityName}
-          name="activity-name"
+          names="activity name"
           type="text"
           id="activity-name"
           {...form.getFieldProps("activityName")}
         />
+
         <Input
+        example={"birthday party"}
           onChange={form.handleChange}
           error={form.errors.activityDescription}
-          name="activity-Description"
+          names="activity description"
           type="text"
           id="activity-Description"
           {...form.getFieldProps("activityDescription")}
         />
         <Input
+        example={"12/12/2023"}
           onChange={form.handleChange}
           error={form.errors.activityDate}
-          name="activityDate"
+          names="activity date"
           type="date"
           id="activityDate"
-          // {...form.getFieldProps("activityDate")}
+          {...form.getFieldProps("activityDate")}
         />
         <Input
+        example={"12:00"}
           onChange={form.handleChange}
           error={form.errors.activityTime}
-          name="activityTime"
+          names="activity time"
           type="time"
           id="activityTime"
           {...form.getFieldProps("activityTime")}
         />
         <Input
+        example={"image url"}
           onChange={form.handleChange}
           error={form.errors.activityImage}
-          name="activityImage"
+          names="activity image"
           type="text"
           id="activityImage"
         />
         <Input
+        example={"kfar sava"}
           onChange={form.handleChange}
           error={form.errors.activityAddress}
-          name="activity-Address"
+          names="activity Address"
           type="text"
           id="activity-Address"
           {...form.getFieldProps("activityAddress")}
         />
         <Input
+        example={"John Doe"}
           onChange={form.handleChange}
           error={form.errors.bizUserName}
-          name="bizUserName"
+          names="User Name"
           type="text"
           id="bizUserName"
           {...form.getFieldProps("bizUserName")}
         />
         <Input
+        example={"0541234567"}
           onChange={form.handleChange}
           error={form.errors.phoneNumber}
-          name="phoneNumber"
+          names="phone Number"
           type="text"
           id="phoneNumber"
+          value={isUser ? user._id : form.values.phoneNumber}
+          disabled={isUser}
         />
 
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary mt-4"
           disabled={Object.keys(form.errors).length}
         >
           leave your activity details

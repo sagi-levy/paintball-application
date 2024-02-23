@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect("mongodb://127.0.0.1/paintball-activities")
+  .connect(process.env.MONGO_ATLAS_CONNECECTION_URL)
   .then(() => console.log("connected to mongo"))
   .catch(() => console.log("could not connect to mongo"));
 
@@ -94,5 +94,5 @@ app.post("/api/tasks", async (req, res) => {
   res.status(201).json({ tasks: tasks, newTask: newTask });
 });
 
-const PORT = 3003;
+const PORT = process.env.SERVER_PORT
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));

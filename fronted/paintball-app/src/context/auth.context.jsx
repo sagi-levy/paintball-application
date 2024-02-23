@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         logIn,
-        logout, refreshUser,
+        logout,
+        refreshUser,
 
         createUser: userServices.createUser,
       }}
