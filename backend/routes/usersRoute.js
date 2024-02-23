@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
   }
   user = await new User({
     ...req.body,
-    _id: req.body.phoneNumber, //  if I delete it- _id default is objectID  need to ask what is better
+    _id: req.body.phoneNumber,
     password: await bcrypt.hash(req.body.password, 12),
   }).save();
   try {
@@ -76,14 +76,13 @@ router.put("/change-password/:id", async (req, res) => {
         .status(400)
         .send("new password must be equal to confirmPassword");
     }
-    // Find the user by ID
+    
     const user = await User.findOne({ _id: req.params.id });
 
     if (!user) {
       return res.status(404).send("No user found with the provided ID");
     }
 
-    // Compare the old password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(
       req.body.oldPassword,
       user.password
@@ -93,10 +92,8 @@ router.put("/change-password/:id", async (req, res) => {
       return res.status(401).send("Incorrect old password");
     }
 
-    // Hash the new password
     const hashedNewPassword = await bcrypt.hash(req.body.newPassword, 10);
 
-    // Update the user's password in the database
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.params.id },
       { password: hashedNewPassword },
@@ -138,7 +135,6 @@ router.put("/change-password/via-email-code/:id", async (req, res) => {
         .status(400)
         .send("new password must be equal to confirmPassword");
     }
-    // Find the user by ID
     const user = await User.findOne({ _id: req.params.id });
 
     if (!user) {

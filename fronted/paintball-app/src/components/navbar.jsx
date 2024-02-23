@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
-import { getUser } from "../services/userApiServices";
 
 const Navbar = () => {
   const { user } = useAuth() || {};
@@ -9,9 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleNavLinkClick = () => {
-    // Close the collapse when a NavLink is clicked
     setCollapseOpen(false);
-    // Scroll to the top of the screen
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -24,7 +21,8 @@ const Navbar = () => {
         <div className="container-fluid">
           <Link to="/" onClick={handleNavLinkClick}>
             {" "}
-<div className="logo-image"></div>          </Link>
+            <div className="logo-image"></div>{" "}
+          </Link>
 
           <button
             className="navbar-toggler"

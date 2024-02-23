@@ -8,39 +8,35 @@ const SentEmail = () => {
   const { logIn, user, refreshUser } = useAuth();
   const TOKEN_KEY = process.env.REACT_APP_TOKEN;
   const [errorApiRequest, setErrorApiRequest] = useState("");
-  const [timer, setTimer] = useState(30); // Initial timer value in seconds
+  const [timer, setTimer] = useState(30); 
   const [verificationCode, setVerificationCode] = useState("");
   const [isTimerActive, setIsTimerActive] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.state);
+  
   const email = location.state.email;
   const phoneNumber = location.state.phoneNumber;
   const startTimer = () => {
-    // Set a timer to decrement the timer value every second
     const intervalId = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer === 0) {
-          // Clear the interval when the timer reaches 0
           clearInterval(intervalId);
           setIsTimerActive(false);
-          // Set the timer as inactive
-          return 0; // Set timer to 0 and prevent it from restarting
+          return 0; 
         } else {
           return prevTimer - 1;
         }
       });
     }, 2000);
 
-    return intervalId; // Return the intervalId for cleanup
+    return intervalId; 
   };
 
   useEffect(() => {
     if (isTimerActive) {
       const intervalId = startTimer();
 
-      // Cleanup: Reset the timer and clear the interval when the component unmounts
       return () => {
         clearInterval(intervalId);
       };
@@ -54,7 +50,6 @@ const SentEmail = () => {
 
   const handleVerificationCodeSubmit = async () => {
     try {
-      // Check if the entered code is valid
       const isValidCode = verificationCode.length === 4;
 
       if (isValidCode && isTimerActive) {
@@ -70,8 +65,8 @@ const SentEmail = () => {
         );
 
         if (!response.ok) {
-          const errorMessage = await response.text(); // Extract error message from response
-          throw new Error(errorMessage); // Throw error with error message
+          const errorMessage = await response.text(); 
+          throw new Error(errorMessage); 
         }
 
         const { user, userToken } = await response.json();
@@ -90,14 +85,14 @@ const SentEmail = () => {
         navigate(`/users/change-password/via-email-code/${user._id}`, {
           state: { user },
         });
-        setIsTimerActive(true); // Set the timer as active
+        setIsTimerActive(true); 
       } else {
         setErrorApiRequest("invalid code");
         console.error("Invalid verification code");
       }
     } catch (error) {
       console.log(error);
-      setErrorApiRequest(error.message); // Update errorApiRequest state with error message
+      setErrorApiRequest(error.message); 
     }
   };
 
@@ -105,7 +100,6 @@ const SentEmail = () => {
     setErrorApiRequest("");
     const fetchForCode = async () => {
       try {
-        // Add your backend API endpoint for password reset
         const response = await fetch(`${process.env.REACT_APP_RENDER_API_URL}/reset-password`, {
           method: "POST",
           headers: {
@@ -119,7 +113,6 @@ const SentEmail = () => {
         const data = await response.json();
 
         if (response.ok) {
-          console.log("message");
           setErrorApiRequest("");
         } else {
         }
@@ -129,7 +122,7 @@ const SentEmail = () => {
       }
     };
 
-    fetchForCode(); // Immediately send a new code
+    fetchForCode(); 
   };
 
   return (

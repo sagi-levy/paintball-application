@@ -9,15 +9,12 @@ import { Link } from "react-router-dom";
 
 const Calendar = () => {
   const { logIn, user } = useAuth();
-  // console.log(user._id);
-  //console.dir(localStorage.token);
   const [currentWeek, setCurrentWeek] = useState(new Date());
-  const [tasks, setTasks] = useState([]); // should get from server
+  const [tasks, setTasks] = useState([]); 
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const fetchTasks = async () => {
-    // console.log("process.env.REACT_APP_RENDER_API_URL: ",process.env.REACT_APP_RENDER_API_URL)
-    // console.log(`process.env=${JSON.stringify(process.env,null,2)}`)
+  
    
     try {
       const response = await fetch(
@@ -37,9 +34,8 @@ const Calendar = () => {
       }
 
       const data = await response.json();
-      console.log(data)
 
-      user ? setTasks(data.tasks) : setTasks(data); // when there is user (token) data gives me also user and also tasks in an object
+      user ? setTasks(data.tasks) : setTasks(data); 
     } catch (error) {
       console.error(error.message);
     }
@@ -61,8 +57,7 @@ const Calendar = () => {
     return days;
   };
 
-  //console.log(tasks.filter((task)=>task.phoneNumber==user._id))
-  //console.log(user._id);
+  
   const renderCalendar = () => {
     const weekDays = getDaysInWeek(currentWeek);
 
@@ -194,9 +189,7 @@ const Calendar = () => {
       </table>
     );
   };
-  // console.log(tasks, tasks[0]);
-  // console.log(new Date(tasks[0].activityDate).getHours());
-  // console.log((tasks[0].time));
+
   return (
     <div className="container mt-4 pt-5">
     <h2>Calendar</h2>

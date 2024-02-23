@@ -24,7 +24,7 @@ const ActivityCardComponent = ({
               height: "200px", 
               overflow: "hidden",
               '@media (max-width: 768px)': {
-                height: "100px" // Adjust height for small screens
+                height: "100px" 
               }
             }}>
               <img
@@ -37,7 +37,7 @@ const ActivityCardComponent = ({
             <div className="card-body" style={{ 
               height: "80px",
               '@media (max-width: 768px)': {
-                height: "80px" // Adjust height for small screens
+                height: "80px" 
               }
             }}>
               <h4 className="card-title">activity name: {activityName}</h4>

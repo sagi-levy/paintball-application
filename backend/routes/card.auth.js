@@ -27,8 +27,7 @@ router.get("/my-activity-cards", authCheckMiddleWare, async (req, res) => {
 
 router.get("/my-activity-cards/:id", authCheckMiddleWare, async (req, res) => {
   const user = req.jwtPayload;
-  // console.log("params", req.params.id);
-  // console.log("query params is: ", req.query.cardId);
+  
   if (req.jwtPayload.biz) {
     const activityCard = await ActivityCard.findOne({
       phoneNumber: req.params.id,
@@ -58,9 +57,8 @@ router.delete(
       const activityCard = await ActivityCard.findOneAndRemove({
         phoneNumber: req.params.id,
         _id: req.query.cardId,
-        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), 
 
-        //user_id: req.jwtPayload._id,
       });
 
       if (!activityCard) {
@@ -79,7 +77,7 @@ router.delete(
 router.get("/get-activity-cards", async (req, res) => {
   tasks = await ActivityCard.find({});
   const token = req.header("x-auth-token");
-  //console.log(token);
+  
   if (!token) {
     res.status(200).json(tasks);
     return;
@@ -88,7 +86,6 @@ router.get("/get-activity-cards", async (req, res) => {
     const payload = jwt.verify(token, JWTSecretToken);
     req.user = payload;
      console.log("payload", payload);
-     //console.log("user id is:", req.user._id);
     const user = await User.findOne({ _id: payload._id }, { password: 0 });
     console.log(user);
     res.send({ user: user, tasks: tasks });
@@ -108,9 +105,8 @@ router.post("/create-activity-card", async (req, res) => {
     activityTime: req.body.activityTime,
     activityDate: req.body.activityDate,
   });
-  console.log(card);
   if (card) {
-    console.log("there is already activity is this day and time", card);
+    res.send("there is already activity is this day and time", card);
     return;
   } else {
     console.log("ok");
@@ -129,7 +125,6 @@ router.post("/create-activity-card", async (req, res) => {
 
   const newTask = activityCard;
   tasks.push(newTask);
-  console.log(`new tack is ${newTask}`);
   res.status(201).json({ tasks: tasks, newTask: newTask });
 });
 
@@ -137,7 +132,6 @@ router.put(
   "/edit-activity-cards/:id",
   authCheckMiddleWare,
   async (req, res) => {
-    // console.log("activity card is is", req.body._id);
     console.log("query params is: ", req.query.cardId);
     console.log("body ", req.body);
     const user = req.jwtPayload;
@@ -148,15 +142,12 @@ router.put(
       res.status(400).send(error.details[0].message);
       return;
     }
-    // console.log(req.jwtPayload._id);
-    // console.log(req.jwtPayload);
-
+   
     let activityCard = await ActivityCard.findOneAndUpdate(
       {
         phoneNumber: req.params.id,
         _id: req.query.cardId,
-        // _id: req.body._id,
-        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), //user_id: req.jwtPayload._id,
+        ...(req.user && req.user.biz ? {} : { user_id: req.jwtPayload._id }), 
       },
       req.body
     );
@@ -167,46 +158,14 @@ router.put(
     activityCard = await ActivityCard.findOne({
       phoneNumber: req.params.id,
       _id: req.query.cardId,
-      //_id: req.body._id,
-      //user_id: req.user._id,
+      
     });
-    // if (user.biz === false && user._id !== req.body.phoneNumber) {
-    //   let userChangingId = await User.findOneAndUpdate(
-    //     {
-    //       phoneNumber: req.body.phoneNumber,
-    //     },
-    //     { phoneNumber: req.body.phoneNumber },
-    //     { new: true }
-    //   );
-    //   console.log(userChangingId);
-    //   if (userChangingId) {
-    //     console.log(
-    //       " changed this User phone number cause the card changed phone number",
-    //       userChangingId
-    //     );
-
-    //     return;
-    //   } else {
-    //     console.log("ok");
-    //     res.send({ activityCard, userChangingId });
-    //   }
-    // } else {
-    //   console.log("cadacsacs");
-    //   res.send(activityCard);
-    //   return;
-    // }
-
+    
     res.send(activityCard);
   }
 );
 router.put("/payment/:id", async (req, res) => {
-  // const { error } = validateCard(req.body);
-  // if (error) {
-  //   res.status(400).send(error.details[0].message);
-  //   return;
-  // }
-  // console.log(req.jwtPayload._id);
-  // console.log(req.jwtPayload);
+
   console.log(req.body);
   let activityCard = await ActivityCard.findOneAndUpdate(
     {

@@ -1,5 +1,4 @@
 import axios from "axios";
-import config from "../config.json";
 axios.defaults.baseURL = process.env.REACT_APP_RENDER_API_URL; 
 export function setCommonHeader(headerName, value) {
   axios.defaults.headers.common[headerName] = value;

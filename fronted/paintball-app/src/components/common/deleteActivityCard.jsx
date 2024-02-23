@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import queryString from "query-string"; // Import query-string library
+import queryString from "query-string"; 
 import { deleteActivityCard } from "../../services/cardsServices";
 
 const DeleteActivityCard = () => {

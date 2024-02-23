@@ -1,4 +1,3 @@
-// PaymentCard.js
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -7,11 +6,10 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import PageHeader from "./pageHeader";
 import { updateActivityCardToPaidTrue } from "../../services/cardsServices";
 import useActivityCard from "../../hooks/useActivityCard";
 import { useAppContext } from "../../context/card.context";
-import queryString from "query-string"; // Import query-string library
+import queryString from "query-string"; 
 
 const PaymentCard = ({ amountToCharge = 20 }) => {
   const location = useLocation();
@@ -24,7 +22,6 @@ const PaymentCard = ({ amountToCharge = 20 }) => {
   const { id } = useParams();
   console.log(id, myProp);
   useActivityCard(id, cardId);
-  console.log(useActivityCard(id, cardId));
   const stripe = useStripe();
   const elements = useElements();
 
@@ -32,7 +29,6 @@ const PaymentCard = ({ amountToCharge = 20 }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet.
       return;
     }
 
@@ -40,10 +36,9 @@ const PaymentCard = ({ amountToCharge = 20 }) => {
       type: "card",
       card: elements.getElement(CardElement),
       billing_details: {
-        // You can customize billing details here if needed
       },
-      amount: amountToCharge * 100, // Convert amount to cents (Stripe uses cents)
-      currency: "usd", // Change to your desired currency
+      amount: amountToCharge * 100, 
+      currency: "usd", 
     });
 
     if (result.error) {
@@ -51,8 +46,6 @@ const PaymentCard = ({ amountToCharge = 20 }) => {
       await updateActivityCardToPaidTrue(id, myProp);
       navigate("/calendar");
     } else {
-      // Send payment method ID and other details to your server for further processing
-      console.log(result.paymentMethod.id);
 
       await updateActivityCardToPaidTrue(id, myProp);
       navigate("/calendar");

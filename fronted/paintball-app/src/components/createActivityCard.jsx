@@ -5,14 +5,7 @@ import PageHeader from "./common/pageHeader";
 import Input from "../components/common/input";
 import { createActivityCard } from "../services/cardsServices";
 import { useNavigate } from "react-router-dom";
-import PaymentForm from "./common/payment";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
 import { useAuth } from "../context/auth.context";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/card.context";
@@ -20,10 +13,8 @@ import { useAppContext } from "../context/card.context";
 const stripePromise = loadStripe(process.env.REACT_APP_LOAD_STRIPE_STRING);
 
 const CreateActivityCard = () => {
-  //const [tasksTimes, setTasksTimesAlreadyCatches] = useState([]); // should get from server
   const { logIn, user } = useAuth();
   const { setTasksTimesAlreadyCatches, tasksTimes } = useAppContext();
-  console.log("tasks times:", tasksTimes);
 
   const isUser = user;
   const fetchTasksTimes = async () => {
@@ -159,7 +150,7 @@ const CreateActivityCard = () => {
       <p>fill the form and it will be send to the Admin</p>
       <form
         className="create-form1"
-        /*className="w-50 w-sm-100"*/ onSubmit={form.handleSubmit}
+         onSubmit={form.handleSubmit}
         style={{
           background: "rgba(111,111,111,0.3)",
           padding: "20px",

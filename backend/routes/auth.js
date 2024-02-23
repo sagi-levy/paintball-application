@@ -1,4 +1,3 @@
-// require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const joi = require("joi");
@@ -24,9 +23,8 @@ router.post("/", async (req, res) => {
     res.status(400).send("invalid password");
     return;
   }
-  //process
+  
   const token = user.generateAuthToken();
-  //response
   res.send({ token });
 });
 

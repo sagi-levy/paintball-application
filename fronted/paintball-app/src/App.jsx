@@ -8,7 +8,6 @@ import SignOut from "./components/signOut";
 import MyActivityCards from "./components/myActivityCards";
 import ProtectedRoute from "./components/protectedRoute";
 import ProtectedRouteOnlyBiz from "./components/protectedRouteOnlyBiz";
-
 import About from "./components/about";
 import EditActivityCard from "./components/editActivityCard";
 import Home from "./components/home";
@@ -26,7 +25,6 @@ import EnterNewPassword from "./components/enterNewPassword";
 import PaintballPage from "./components/common/activities/paintballPage";
 import LaserTagPage from "./components/common/activities/laserTagPage";
 import KartingPage from "./components/common/activities/kartingPage";
-import { date } from "joi";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   CardElement,

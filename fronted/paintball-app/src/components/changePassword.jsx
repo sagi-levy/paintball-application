@@ -12,9 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 const ChangePassword = () => {
   const location = useLocation();
   const user = location.state?.user || null;
-  console.log(user);
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
 
   const [errorApiRequest, setErrorApiRequest] = useState("");
@@ -37,7 +35,6 @@ const ChangePassword = () => {
 
     async onSubmit(formData) {
       try {
-        // Validate form data (e.g., ensure newPassword and confirmNewPassword match)
         const response = await fetch(
           `${process.env.REACT_APP_RENDER_API_URL}/users/change-password/${id}`,
           {
@@ -45,7 +42,6 @@ const ChangePassword = () => {
             headers: {
               "Content-Type": "application/json",
               "x-auth-token": localStorage.token,
-              // Add other headers as needed
             },
             body: JSON.stringify(formData),
           }
@@ -54,7 +50,6 @@ const ChangePassword = () => {
         if (response.status == 401 || !response.ok) {
           const data = await response;
           console.log(data);
-          // setErrorApiRequest(data.statusText);
           setErrorApiRequest("not correct old password");
           return;
         }

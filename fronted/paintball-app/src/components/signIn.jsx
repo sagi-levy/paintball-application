@@ -30,8 +30,8 @@ const SignIn = () => {
     async onSubmit(values) {
       try {
         await logIn(values);
-        console.log(user); // user shown after refresh, supposed to be render, don't know why not
-        console.log(values); // user shown after refresh, supposed to be render, don't know why not
+        console.log(user); 
+        console.log(values);
         toast.success(`welcome`, {
           autoClose: 2000,
           style: {

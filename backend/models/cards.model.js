@@ -56,7 +56,7 @@ const activityCardSchema = new mongoose.Schema({
     unique: true,
   },
   user_id: {
-    type: String, // should be: mongoose.Schema.Types.ObjectId ??
+    type: String,
     ref: "User",
     required: true,
   },

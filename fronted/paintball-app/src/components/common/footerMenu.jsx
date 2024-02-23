@@ -6,7 +6,7 @@ function FooterMenu() {
 
   const handleLinkClick = (link) => {
     navigate(link);
-    window.scrollTo(0, 0); // Scroll to the top after navigation
+    window.scrollTo(0, 0); 
   };
 
   return (

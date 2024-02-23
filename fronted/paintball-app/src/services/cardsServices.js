@@ -26,7 +26,6 @@ export function getSpecificActivityCard(id,cardId) {
     headers: {
       "Content-Type": "application/json",
       "x-auth-token": localStorage.token,
-      // Add other headers as needed
     },
   });
 }
