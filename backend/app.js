@@ -34,9 +34,6 @@ const jwt = require("jsonwebtoken");
 const { JWTSecretToken } = require("./configs/config");
 const { User, validateUser } = require("./models/users");
 
-let tasks = [];
-
-console.log(tasks);
 
 // app.get("/api/tasks", async (req, res) => {
 //   tasks = await ActivityCard.find({});
