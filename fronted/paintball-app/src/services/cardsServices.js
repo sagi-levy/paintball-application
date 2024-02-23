@@ -1,9 +1,9 @@
 import httpRequestDetails from "./basicIrlAxios";
 export function createActivityCard(card) {
-  return httpRequestDetails.post("/api/tasks", card);
+  return httpRequestDetails.post("/cards/create-activity-card", card);
 }
 export function getAll() {
-  return httpRequestDetails.get("/api/tasks");
+  return httpRequestDetails.get("/cards/get-activity-cards");
 }
 export function deleteActivityCard(id,cardId) {
   return httpRequestDetails.delete(`/cards/delete-activity-cards/${id}?cardId=${cardId}`);

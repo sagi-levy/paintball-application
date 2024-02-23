@@ -112,6 +112,8 @@ footer {
 }
 #carousel-p-tag {
   color: #942c2c;
+  text-shadow: 2px 20px 40px rgba(19, 15, 15, 2);
+
 }
 .card-footer > form {
   -webkit-box-shadow: none;
@@ -288,12 +290,12 @@ footer {
 }
 
 .page-header-on-carousel > h3 {
-  text-shadow: 40px 40px 40px rgba(19, 15, 15, 0.5);
+  text-shadow: 0 5px 40px  rgba(19, 15, 15, 2);
   line-height: 2;
   color: #ecd8d8;
 }
 .page-header-on-carousel > h1 {
-  text-shadow: 40px 40px 40px rgba(19, 15, 15, 0.5);
+  text-shadow: 2px 20px 40px rgba(19, 15, 15, 2);
   line-height: 2;
   color: #ecd8d8;
 }

@@ -22,42 +22,38 @@ function FooterMenu() {
           <span>Get connected with us on social networks:</span>
         </div>
         <div style={{ zIndex: 2 }}>
-          <span
+          <a
+            href="https://www.facebook.com/groups/399219820420340/?locale=he_IL"
             className="text-white me-4"
-            onClick={() =>
-              handleLinkClick(
-                "https://www.facebook.com/groups/399219820420340/?locale=he_IL"
-              )
-            }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="bi bi-facebook"></i>
-          </span>
-          <span
+          </a>
+          <a
+            href="https://www.instagram.com/paintball.israel/"
             className="text-white me-4"
-            onClick={() =>
-              handleLinkClick("https://www.instagram.com/paintball.israel/")
-            }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="bi bi-instagram text-light"></i>
-          </span>
-          <span
+          </a>
+          <a
+            href="https://api.whatsapp.com/send?phone=972508639354&text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A4%D7%A2%D7%99%D7%9C%D7%95%D7%AA%20%D7%A4%D7%99%D7%99%D7%A0%D7%98%D7%91%D7%95%D7%9C%20%F0%9F%99%82"
             className="text-white me-4"
-            onClick={() =>
-              handleLinkClick(
-                "https://api.whatsapp.com/send?phone=972508639354&text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A4%D7%A2%D7%99%D7%9C%D7%95%D7%AA%20%D7%A4%D7%99%D7%99%D7%A0%D7%98%D7%91%D7%95%D7%9C%20%F0%9F%99%82"
-              )
-            }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="bi bi-whatsapp"></i>
-          </span>
-          <span
+          </a>
+          <a
+            href="https://www.tiktok.com/tag/paintball"
             className="text-white me-4"
-            onClick={() =>
-              handleLinkClick("https://www.tiktok.com/tag/paintball")
-            }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="bi bi-tiktok"></i>
-          </span>
+          </a>
         </div>
       </section>
       <section
@@ -98,9 +94,16 @@ function FooterColumn({ title, content, links, handleLinkClick }) {
       {links &&
         links.map((link, index) => (
           <p key={index}>
-            <span className="text-white" onClick={() => handleLinkClick(link)}>
-              {link}
-            </span>
+            {/* If link starts with "http", it's an external link */}
+            {link.startsWith("http") ? (
+              <a href={link} className="text-white" target="_blank" rel="noopener noreferrer">
+                {link}
+              </a>
+            ) : (
+              <span className="text-white" onClick={() => handleLinkClick(link)}>
+                {link}
+              </span>
+            )}
           </p>
         ))}
     </div>
