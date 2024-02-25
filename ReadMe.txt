@@ -25,5 +25,19 @@ npm start
 
 OR JUST OPEN THE LINK BELOW:
 
+
+
 https://paintball-application.onrender.com/
+
+
+
+
+Throughout the development process, I worked on several platforms in order to open a new user story for each feature, and from time to time I asked my uncle to do a CR which allowed me to do PR and resolve conflicts myself,as you can see in the following images.
+Also at the beginning of the work process, I made a flow chart in order to understand the logic of the website I want to make.
+
+
 ![paintball-app-azure-dashboard-userStories](https://github.com/sagi-levy/paintball-application/assets/107099749/20d18a55-fb3b-4361-a17b-201aefd5c892)
+![paintball-app-Flowchart](https://github.com/sagi-levy/paintball-application/assets/107099749/b48e5a8e-f290-4029-a4f1-e6bc6f6abc1a)
+![paintball-app-Render-Dashboard](https://github.com/sagi-levy/paintball-application/assets/107099749/b652bef7-c4fa-4da6-83b0-38da7a6d59b2)
+
+
