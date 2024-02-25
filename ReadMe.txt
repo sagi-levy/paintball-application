@@ -5,20 +5,25 @@ Mobile: 0543191612
 The website I built and which I submit is a website for creating activities in the field of paintball.
 About me:
 For the past two years I have been working as an instructor of the paintball game, every day I get to guide a large number of groups of all ages and of all types and I noticed that my boss does not have a website. Something that would have allowed him to see the upcoming activities as well as those that have already taken place, and of course edit them accordingly.
-Through this site, my boss, hereinafter the manager, hereinafter admin
-An admin will be able to register on the site and create tickets for future activities and those that have already taken place
-The information will appear as a card, the administrator can edit and delete.
-Every such action goes through the server and is ultimately saved in the Mongo database.
-A non-user client will also be able to record activities in the log, but to edit or delete them, he will have to register.
-Each user can only edit and delete their activities.
-It is not possible to make a reservation for a date and time that is already occupied by another activity.
-The user can change the password or if he has forgotten it, he can reset the password using a one-time code sent by email.
-Attached is a link to the application via the render.com website
 
-The application must be opened
-(Only after you have done so
-npm install - to install all node module packages both on the backend and on the frontend)
-And through the terminal you have to tap
-npm start in the backend folder
+In this project I will present my skills in backend & fronted development through a project
+that reflects what I learned working with Node.js and MongoDB, React.js and more..
+Through this site, clients will be able to create bookings for activities, and if they pay,
+the activities will be entered into the calendar. And in addition, it will be possible to register
+and perform operations such as editing, deleting and more... operations that will be
+protected both on the server side and on the client side.
+Every such action goes through the server and is ultimately saved in the Mongo database.
+Of course, in some operations the client will require the transfer of a token and only after a
+verification process will he be able to proceed to the next intermediary.
+In this project I worked with various libraries including
+express,axios,mongoose,bcrypt,lodash,joi,jsonwebtoken,react-dom,bootstrap and so on.
+Also, I work with branches and every time I add user stories to my site in order to improve
+and learn.
+To run the project you need to install all node module packages both on the backend and on the frontend
+And through the terminal you need to write
+npm start 
+
+OR JUST OPEN THE LINK BELOW:
 
 https://paintball-application.onrender.com/
+![paintball-app-azure-dashboard-userStories](https://github.com/sagi-levy/paintball-application/assets/107099749/20d18a55-fb3b-4361-a17b-201aefd5c892)
