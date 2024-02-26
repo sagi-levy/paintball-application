@@ -15,6 +15,10 @@ protected both on the server side and on the client side.
 Every such action goes through the server and is ultimately saved in the Mongo database.
 Of course, in some operations the client will require the transfer of a token and only after a
 verification process will he be able to proceed to the next intermediary.
+To log in as an administrator you can use an account
+Phone Number: 0555555558
+Password 123456
+An action that will allow you to edit all the activities of all clients.
 In this project I worked with various libraries including
 express,axios,mongoose,bcrypt,lodash,joi,jsonwebtoken,react-dom,bootstrap and so on.
 Also, I work with branches and every time I add user stories to my site in order to improve
