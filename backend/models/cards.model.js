@@ -56,7 +56,7 @@ const activityCardSchema = new mongoose.Schema({
     unique: true,
   },
   user_id: {
-    type: String, // should be: mongoose.Schema.Types.ObjectId ??
+    type: String,
     ref: "User",
     required: true,
   },
@@ -77,7 +77,8 @@ const ActivityCard = mongoose.model(
 );
 
 const validateCard = (activityCard) => {
-  const schema = Joi.object({user_id:Joi.string(),
+  const schema = Joi.object({
+    user_id: Joi.string(),
     isPaid: Joi.boolean(),
     inCalendar: Joi.boolean(),
     activityName: Joi.string().min(2).max(255).required(),
@@ -93,6 +94,7 @@ const validateCard = (activityCard) => {
     activityImage: Joi.string().allow("").min(11).max(1024),
     activityDate: Joi.date().allow(""),
     activityTime: Joi.string().regex(/^([0-9]{2})\:([0-9]{2})$/),
+    _id: Joi.string().allow(""),
   });
 
   return schema.validate(activityCard);

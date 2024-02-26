@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sigmar&display=swap");
+#root,
+body {
+  min-height: 100vh;
+  position: relative;
+}
+.App {
+  text-align: center;
+}
+@media screen and (max-width: 290px) {
+  body {
+    position: absolute !important; 
+  }
+}
+.App::before {
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  height: 100%;
+  z-index: -1;
+}
+p {
+  color: rgb(50, 37, 42);
+}
+#carouselExampleIndicators {
+  margin: auto;
+  width: 100%;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+form {
+  margin: auto;
+
+  -webkit-box-shadow: 5px 15px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+@media screen and (max-width: 3000px) {
+  form {
+    width: 90%;
+  }
+}
+
+h1,
+h3,
+h2 {
+  text-align: center;
+  font-family: "sigmar", cursive;
+  color: #ffffff;
+}
+
+h2,
+.container .create-btn {
+  text-align: center;
+}
+p {
+  font-family: "sigmar", cursive;
+  text-align: center;
+  color: #ffffff;
+}
+th,
+tr,
+label {
+  color: rgb(255, 255, 255); 
+}
+footer {
+  position: sticky;
+  top: 95%;
+
+  background-color: #212529;
+}
+
+.gallery-img {
+  -webkit-box-shadow: 4px -4px 15px 0px #ff1f1f, 12px -11px 7px 0px #ff9376,
+    20px -5px 7px 0px #ffe264, 20px 6px 7px 0px #f6ff33,
+    13px 12px 17px 0px #ff9527, 2px 17px 17px 0px #ff0000,
+    -9px 21px 18px 0px #fff212, -9px 6px 11px 0px #ff0808,
+    -11px -9px 11px 0px #fffa17, -11px -9px 11px 0px #fffa17,
+    5px 5px 20px 5px rgba(0, 0, 0, 0);
+  box-shadow: 4px -4px 15px 0px #ff1f1f, 12px -11px 7px 0px #ff9376,
+    20px -5px 7px 0px #ffe264, 20px 6px 7px 0px #f6ff33,
+    13px 12px 17px 0px #ff9527, 2px 17px 17px 0px #ff0000,
+    -9px 21px 18px 0px #fff212, -9px 6px 11px 0px #ff0808,
+    -11px -9px 11px 0px #fffa17, -11px -9px 11px 0px #fffa17,
+    5px 5px 20px 5px rgba(0, 0, 0, 0);
+}
+.card {
+  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
+    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
+  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 17px 0px #522312,
+    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
+  width: 80% !important;
+  margin: auto !important;
+}
+
+.gallery-img {
+  padding: 0 !important;
+}
+.img-fluid {
+  max-width: 100%;
+  height: 100% !important;
+}
+.card-img-top {
+  max-height: 20rem;
+  margin-top: 1rem;
+}
+#carousel-p-tag {
+  color: #942c2c;
+  text-shadow: 2px 20px 40px rgba(19, 15, 15, 2);
+
+}
+.card-footer > form {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.text-decoration-none {
+}
+#carousel-img {
+  filter: brightness(
+    0.5
+  );
+}
+
+.bi-big {
+  font-size: 2rem; 
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center; 
+}
+
+#basic-package-card {
+  position: relative;
+  height: 300px;
+  overflow: hidden; 
+}
+
+#basic-package-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0; 
+  filter: brightness(0%); 
+  transition: opacity 0.3s ease, filter 0.3s ease; 
+}
+
+#basic-package-card:hover::before {
+  opacity: 0.9; 
+  filter: brightness(50%); 
+}
+#basic-package-card .card-body,
+#basic-package-card .card-footer {
+  position: relative; 
+  z-index: 1; 
+}
+#basic-package-card:hover::before {
+  opacity: 0.9; 
+  filter: brightness(65%);
+}
+
+#basic-package-card:hover h5,
+#basic-package-card:hover p,
+#basic-package-card:hover li {
+  color: white;
+}
+
+.footer-menu {
+  position: relative;
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg"); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+}
+
+.footer-menu::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: #1c233180;
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative; 
+  z-index: 2; 
+}
+
+.footer-content a {
+  position: relative; 
+  z-index: 3;
+}
+.call-us-card {
+  position: fixed;
+  top: 50px; 
+  right: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  transition: right 0.5s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; 
+  max-width: calc(100vw - 40px);
+}
+.delete-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+.main-content {
+  min-height: 60vh;
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/paintballImages/paintball-5407710_1280.png");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: brightness(0.4); 
+  z-index: -1; 
+}
+.navbar {
+  box-shadow: 5px 7px 15px 5px #000000;
+  z-index: 5000;
+}
+.page-header-on-carousel {
+  padding-bottom: 350px;
+}
+@media screen and (max-width: 768px) {
+  .page-header-on-carousel {
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page-header-on-carousel {
+    padding-bottom: 0;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .page-header-on-carousel > h3 {
+    display: none;
+    height: 100px;
+    padding-bottom: 10px; 
+  }
+}
+
+.page-header-on-carousel > h3 {
+  text-shadow: 0 5px 40px  rgba(19, 15, 15, 2);
+  line-height: 2;
+  color: #ecd8d8;
+}
+.page-header-on-carousel > h1 {
+  text-shadow: 2px 20px 40px rgba(19, 15, 15, 2);
+  line-height: 2;
+  color: #ecd8d8;
+}
+@media screen and (max-width: 290px) {
+  .page-header-on-carousel > h1 {
+    text-shadow: 40px 40px 40px rgba(19, 15, 15, 1);
+
+    font-size: 22px;
+    line-height: 2;
+  }
+  .carousel-caption > p {
+    font-size: 15px;
+  }
+}
+.badge {
+  letter-spacing: 1px; 
+}
+.bi-instagram,
+.bi-envelope,
+.bi-telephone-inbound {
+  color: #ecd8d8;
+}
+.bi-geo,
+.bi-geo-alt,
+.bi-flag {
+  color: #ffffff;
+}
+#li-in-calendar {
+  background: rgba(111, 111, 111, 0.3);
+}
+@media (max-width: 350px) {
+  .carousel-caption {
+    line-height: 0.5;
+  }
+  .form-group {
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-top: 2%;
+  }
+}
+@media (min-width: 776px) {
+  form.create-form1 {
+    width: 90% !important; 
+  }
+  .form-group {
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+  }
+  #edit-form {
+    width: 60%;
+  }
+}
+
+@media (min-width: 100px) {
+  #paintball-player-img {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .text-d-sm-none {
+    display: none;
+  }
+  @media screen and (max-width: 1520px) {
+    #container-image-and-form {
+      margin-right: 0px;
+    }
+  }
+  #dropdownMenuButton1 {
+    width: 50px;
+  }
+}
+.logo-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-image: url("../public/paintballImages/Photoroom-20240219_222438\ \(1\).png");
+  background-size: cover; 
+  border-radius: 50%;
+  filter: brightness(0.8);
+}
+.header {
+  position: sticky;
+  top: 0; 
+  z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
