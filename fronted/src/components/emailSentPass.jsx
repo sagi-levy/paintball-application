@@ -54,7 +54,7 @@ const SentEmail = () => {
 
       if (isValidCode && isTimerActive) {
         const response = await fetch(
-          `${process.env.REACT_APP_RENDER_API_URL}/reset-password/sent-email`,
+          `${process.env.REACT_APP_URL}/reset-password/sent-email`,
           {
             method: "POST",
             headers: {
@@ -100,7 +100,7 @@ const SentEmail = () => {
     setErrorApiRequest("");
     const fetchForCode = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_RENDER_API_URL}/reset-password`, {
+        const response = await fetch(`${process.env.REACT_APP_URL}/reset-password`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

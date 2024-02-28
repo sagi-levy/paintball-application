@@ -13,7 +13,7 @@ const ResetPassword = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${process.env.REACT_APP_RENDER_API_URL}/reset-password`,
+        `${process.env.REACT_APP_URL}/reset-password`,
         {
           method: "POST",
           headers: {

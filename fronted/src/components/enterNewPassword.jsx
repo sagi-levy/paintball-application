@@ -31,7 +31,7 @@ const EnterNewPassword = () => {
     async onSubmit(formData) {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_RENDER_API_URL}/users/change-password/via-email-code/${id}`,
+          `${process.env.REACT_APP_URL}/users/change-password/via-email-code/${id}`,
           {
             method: "PUT",
             headers: {
