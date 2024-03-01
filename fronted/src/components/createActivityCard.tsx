@@ -18,7 +18,7 @@ const CreateActivityCard = () => {
     biz: boolean;
     iat: number;
   }
-  interface ActivityFormValues {
+  export interface ActivityFormValues {
     activityName: string;
     bizUserName: string;
     activityDescription: string;
@@ -32,7 +32,7 @@ const CreateActivityCard = () => {
   const {
     logIn,
     user,
-  }: { logIn: (credentials: any) => Promise<any={}>; user: User | null } =
+  }: { logIn: (credentials: ActivityFormValues) => Promise<any={}>; user: User | null } =
     useAuth();
   const {
     setTasksTimesAlreadyCatches,
@@ -106,7 +106,7 @@ const CreateActivityCard = () => {
     fetchTasksTimes();
   }, []);
 
-  const { setProp } = useAppContext();
+  const { setProp } = useAppContext();z
 
   const navigate = useNavigate();
   const [errorApiRequest, setErrorApiRequest] = useState("");
@@ -118,7 +118,7 @@ const CreateActivityCard = () => {
       activityDate: "",
       phoneNumber: user ? user._id : "",
       bizUserName: "",
-      activityImage: "",
+      activityImage: "",1``
       activityTime: "",
     },
 

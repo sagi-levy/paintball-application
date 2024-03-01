@@ -1,6 +1,7 @@
+import { FormikErrors } from "formik";
 import Joi from "joi";
 
-const FormikUsingJoi = (schema) => {
+const FormikUsingJoi: <Values>(values: Values) => void | object | Promise<FormikErrors<Values>> = (schema) => {
   return (values) => {
     const { error } = Joi.object(schema).validate(values, {
       abortEarly: false,
