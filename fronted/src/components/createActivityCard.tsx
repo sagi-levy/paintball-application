@@ -118,7 +118,7 @@ const CreateActivityCard = () => {
       activityDate: "",
       phoneNumber: user ? user._id : "",
       bizUserName: "",
-      activityImage: "",1``
+      activityImage: "",
       activityTime: "",
     },
 
