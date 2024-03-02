@@ -14,16 +14,11 @@ module.exports = async (req, res, next) => {
     console.log(token);
 
     const payload = jwt.verify(token, JWTSecretToken);
-    console.log(payload);
-
-    console.log(req.user);
-
     req.user = payload;
     req.jwtPayload = payload;
 
-    
     next();
   } catch {
-    res.status(400).send("invalid token");
+    res.status(401).send("invalid token");
   }
 };

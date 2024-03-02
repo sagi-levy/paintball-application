@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   let user = await User.findOne({ phoneNumber: req.body.phoneNumber });
   if (user) {
     console.log("user is already registed");
-    res.status(400).send("user is already registed");
+    res.status(409).send("user is already registed");
     return;
   }
   user = await new User({
@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
     console.error(error); 
   }
 
-  res.send({ name: user.name, phoneNumber: user._id });
+  res.status(200).send({ name: user.name, phoneNumber: user._id });
 });
 router.put("/change-password/:id", async (req, res) => {
   const token = req.header("x-auth-token");
@@ -65,9 +65,8 @@ router.put("/change-password/:id", async (req, res) => {
 
     console.log("payload", payload);
 
-    console.log("user id is:", req.user._id);
   } catch {
-    res.status(400).send("invalid token");
+    res.status(401).send("invalid token");
     return;
   }
   try {

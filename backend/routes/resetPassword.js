@@ -77,7 +77,7 @@ router.post("/sent-email", async (req, res) => {
       { _id: user._id, biz: user.biz },
       JWTSecretToken
     );
-    res.send({ user, userToken });
+    res.status(200).send({ user, userToken });
   }
 });
 

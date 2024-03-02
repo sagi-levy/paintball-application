@@ -43,7 +43,7 @@ router.get("/my-activity-cards/:id", authCheckMiddleWare, async (req, res) => {
       _id: req.query.cardId,
     });
     if (!activityCard) {
-      res.status(404).send("their is not such a card with this specific id");
+      res.status(404).send("could not find a card with this specific id");
       return;
     }
     res.send(activityCard);
@@ -63,7 +63,7 @@ router.delete(
       });
 
       if (!activityCard) {
-        res.status(404).send("their is not such a card with this specific id");
+        res.status(404).send("could not find a card with this specific id");
         return;
       }
       res.send(activityCard);
@@ -91,7 +91,7 @@ router.get("/get-activity-cards", async (req, res) => {
     console.log(user);
     res.send({ user: user, tasks: tasks });
   } catch {
-    res.status(400).send("invalid token");
+    res.status(401).send("invalid token");
   }
 });
 
@@ -107,7 +107,7 @@ router.post("/create-activity-card", async (req, res) => {
     activityDate: req.body.activityDate,
   });
   if (card) {
-    res.send("there is already activity is this day and time", card);
+    res.status(409).send("there is already activity is this day and time", card);
     return;
   } else {
     console.log("ok");
