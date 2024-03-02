@@ -13,7 +13,7 @@ const userShcema = new mongoose.Schema({
   password: { type: String, minLength: 5, maxLength: 1000, required: true },
   createdAt: { type: Date, default: Date.now },
   biz: { type: Boolean, required: true },
-  _id: { type: String }, //  if I delete it- _id default is objectID  need to ask what is better
+  _id: { type: String },
 });
 userShcema.methods.generateAuthToken = function () {
   return JWT.sign({ _id: this.phoneNumber, biz: this.biz }, JWTSecretToken);
@@ -32,7 +32,7 @@ const validateUser = (user) => {
       .regex(/^0[2-9]\d{7,8}$/),
     password: joi.string().required().min(5).max(1000),
     biz: joi.boolean().required(),
-    _id: joi.string(),//  if I delete it- _id default is objectID  need to ask what is better
+    _id: joi.string(),
   });
   return Schema.validate(user);
 };

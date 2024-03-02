@@ -24,11 +24,8 @@ app.use("/auth", authRouter);
 app.use("/cards", cardAuth);
 app.use("/send-email", emailsRouter);
 app.use("/reset-password", resetPasswordRouter);
-const {
-  ActivityCard,
-  generateBuisnessNumber,
-} = require("./models/cards.model");
 
+<<<<<<< HEAD
 const authMW = require("./middlewares/auth");
 const jwt = require("jsonwebtoken");
 const { JWTSecretToken } = require("./configs/config");
@@ -92,4 +89,7 @@ const { User, validateUser } = require("./models/users");
 // });
 
 const PORT = process.env.SERVER_PORT
+=======
+const PORT = process.env.SERVER_PORT;
+>>>>>>> main
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));

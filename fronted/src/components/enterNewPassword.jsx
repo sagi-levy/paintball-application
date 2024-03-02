@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import { changeUserPassword } from "../services/userApiServices";
 import { useNavigate, useParams } from "react-router-dom";
 import Input from "../components/common/input";
 import Joi from "joi";
 import FormikUsingJoi from "../utils/formikUsingJoi";
 import { useFormik } from "formik";
-import { useLocation } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
 
 const EnterNewPassword = () => {
   const user = useAuth();
-  console.log(user);
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
 
   const [errorApiRequest, setErrorApiRequest] = useState("");
@@ -41,7 +37,6 @@ const EnterNewPassword = () => {
             headers: {
               "Content-Type": "application/json",
               "x-auth-token": localStorage.token,
-              // Add other headers as needed
             },
             body: JSON.stringify(formData),
           }

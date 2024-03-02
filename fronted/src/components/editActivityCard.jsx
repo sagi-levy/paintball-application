@@ -7,7 +7,7 @@ import Input from "../components/common/input";
 import { updateActivityCard } from "../services/cardsServices";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import queryString from "query-string"; // Import query-string library
+import queryString from "query-string"; 
 import { useAuth } from "../context/auth.context";
 import { useAppContext } from "../context/card.context";
 
@@ -23,17 +23,12 @@ const EditActivityCard = () => {
     checkTimeValidity,
     tasksTimesAlreadyCatches,
   } = useAppContext();
-  console.log("tasks times:", tasksTimes);
 
   const queryParams = queryString.parse(location.search);
   const { cardId } = queryParams;
-  console.log(cardId);
   const navigate = useNavigate();
-  console.log(useParams());
   const { id } = useParams();
-  console.log(id);
   const ActivityCard = useActivityCard(id, cardId);
-  console.log(ActivityCard);
 
   useEffect(() => {
     if (!ActivityCard) {
@@ -126,17 +121,7 @@ const EditActivityCard = () => {
       }
     },
   });
-  // if (
-  //   checkTimeValidity(
-  //     form.values.activityTime,
-  //     form.values.activityDate,
-  //     tasksTimes
-  //   )
-  // ) {
-  //   form.errors.activityTime = "there is already activity in the time";
-  // } 
   
-
   console.log(Object.keys(form.errors));
   return (
     <>
@@ -212,8 +197,7 @@ const EditActivityCard = () => {
           id="activityTime"
           {...form.getFieldProps("activityTime")}
         />
-        {/* Your existing code... */}
-        {isAdmin && ( // Conditionally render inputs only if user is an admin
+        {isAdmin && ( 
           <>
             <div className="checkbox-group">
               <Input

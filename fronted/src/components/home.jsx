@@ -28,7 +28,6 @@ const Home = () => {
   };
   return (
     <>
-      {/* <PageHeader title={<h1>Welcome To Paintball Israel</h1>} /> */}
       {showCallUs && (
         <div
           className="call-us-card z-3Z position-absolute w-sm-100"

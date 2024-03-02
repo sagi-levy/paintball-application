@@ -9,7 +9,7 @@ body {
 }
 @media screen and (max-width: 290px) {
   body {
-    position: absolute !important; /* Reset position for smaller screens */
+    position: absolute !important; 
   }
 }
 .App::before {
@@ -64,7 +64,7 @@ p {
 th,
 tr,
 label {
-  color: rgb(255, 255, 255); /* Change 'red' to your desired text color */
+  color: rgb(255, 255, 255); 
 }
 footer {
   position: sticky;
@@ -72,10 +72,7 @@ footer {
 
   background-color: #212529;
 }
-/* .carousel-inner {
-  border-top: 5px solid;
-  border-radius: 18px;
-} */
+
 .gallery-img {
   -webkit-box-shadow: 4px -4px 15px 0px #ff1f1f, 12px -11px 7px 0px #ff9376,
     20px -5px 7px 0px #ffe264, 20px 6px 7px 0px #f6ff33,
@@ -124,29 +121,24 @@ footer {
 #carousel-img {
   filter: brightness(
     0.5
-  ); /* Adjust the value (0.0 to 1.0) for the desired darkness */
+  );
 }
 
 .bi-big {
-  font-size: 2rem; /* Adjust the value as needed */
+  font-size: 2rem; 
 }
-/* .card-container:hover {
-  -webkit-box-shadow: 4px -4px 15px 0px #391414, 13px 12px 17px 0px #ff9527,
-    -31px -23px 0px -18px rgba(0, 0, 0, 0.11);
-  box-shadow: 4px -4px 15px 0px #1a0606, 13px 12px 100px 0px #522312,
-    -31px -23px 0px -18px rgba(20, 26, 67, 0.11);
-} */
+
 .checkbox-group {
   display: flex;
   align-items: center;
   margin: auto;
-  justify-content: center; /* Align items vertically in the center */
+  justify-content: center; 
 }
 
 #basic-package-card {
   position: relative;
   height: 300px;
-  overflow: hidden; /* Ensure the overflow is hidden to clip the pseudo-element */
+  overflow: hidden; 
 }
 
 #basic-package-card::before {
@@ -160,23 +152,23 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0; /* Initial opacity */
-  filter: brightness(0%); /* Initial brightness */
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Add transition effect */
+  opacity: 0; 
+  filter: brightness(0%); 
+  transition: opacity 0.3s ease, filter 0.3s ease; 
 }
 
 #basic-package-card:hover::before {
-  opacity: 0.9; /* Adjust opacity on hover */
-  filter: brightness(50%); /* Adjust brightness on hover */
+  opacity: 0.9; 
+  filter: brightness(50%); 
 }
 #basic-package-card .card-body,
 #basic-package-card .card-footer {
-  position: relative; /* Ensure z-index works */
-  z-index: 1; /* Ensure the elements are on top of the pseudo-element */
+  position: relative; 
+  z-index: 1; 
 }
 #basic-package-card:hover::before {
-  opacity: 0.9; /* Adjust opacity on hover */
-  filter: brightness(65%); /* Adjust brightness on hover */
+  opacity: 0.9; 
+  filter: brightness(65%);
 }
 
 #basic-package-card:hover h5,
@@ -186,44 +178,44 @@ footer {
 }
 
 .footer-menu {
-  position: relative; /* Ensure footer-menu is positioned relatively */
-  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-  background-size: cover; /* Adjust the size of the background image */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  position: relative;
+  background-image: url("../public/paintballImages/paintball-g4b55a704a_1920.jpg"); 
+  background-size: cover; 
+  background-repeat: no-repeat;
 }
 
 .footer-menu::after {
-  content: ""; /* Create a pseudo-element */
-  position: absolute; /* Position the pseudo-element */
-  top: 0; /* Position from the top of the footer-menu */
-  left: 0; /* Position from the left of the footer-menu */
-  width: 100%; /* Take the full width of the footer-menu */
-  height: 100%; /* Take the full height of the footer-menu */
-  background-color: #1c233180; /* Overlay background color with opacity */
-  z-index: 1; /* Ensure the overlay is behind the content */
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: #1c233180;
+  z-index: 1;
 }
 
 .footer-content {
-  position: relative; /* Ensure the content is positioned relatively */
-  z-index: 2; /* Ensure the content is above the overlay */
+  position: relative; 
+  z-index: 2; 
 }
 
 .footer-content a {
-  position: relative; /* Ensure the links are positioned relatively */
-  z-index: 3; /* Ensure the links are above the overlay */
+  position: relative; 
+  z-index: 3;
 }
 .call-us-card {
   position: fixed;
-  top: 50px; /* Adjust this value to position it vertically */
-  right: 20px; /* Adjust this value to position it horizontally */
+  top: 50px; 
+  right: 20px;
   background-color: #ffffff;
   border: 1px solid #ccc;
   transition: right 0.5s ease-in-out;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Ensure the card appears above other elements */
-  max-width: calc(100vw - 40px); /* Adjust the maximum width as needed */
+  z-index: 1000; 
+  max-width: calc(100vw - 40px);
 }
 .delete-button {
   position: absolute;
@@ -236,7 +228,6 @@ footer {
   z-index: 1001;
 }
 .main-content {
-  /* position: relative; */
   min-height: 60vh;
 }
 
@@ -251,8 +242,8 @@ footer {
   background-size: cover;
   background-position: center;
   background-color: rgba(0, 0, 0, 0.5);
-  filter: brightness(0.4); /* Adjust the brightness as needed */
-  z-index: -1; /* Ensure the overlay stays behind other content */
+  filter: brightness(0.4); 
+  z-index: -1; 
 }
 .navbar {
   box-shadow: 5px 7px 15px 5px #000000;
@@ -266,26 +257,19 @@ footer {
     padding-bottom: 20px;
   }
 }
-/* @media screen and (min-width: 768px) {
-  #row-image-and-form {
-    width: 100rem;
-  }
-} */
+
 @media screen and (max-width: 500px) {
   .page-header-on-carousel {
     padding-bottom: 0;
     padding-top: 40px;
-
-    /* Adjusted padding for smaller screens */
   }
 }
 
-/* Media query for extra small screens */
 @media screen and (max-width: 576px) {
   .page-header-on-carousel > h3 {
     display: none;
     height: 100px;
-    padding-bottom: 10px; /* Further adjusted padding for extra small screens */
+    padding-bottom: 10px; 
   }
 }
 
@@ -311,7 +295,7 @@ footer {
   }
 }
 .badge {
-  letter-spacing: 1px; /* Change the value as needed */
+  letter-spacing: 1px; 
 }
 .bi-instagram,
 .bi-envelope,
@@ -324,7 +308,6 @@ footer {
   color: #ffffff;
 }
 #li-in-calendar {
-  /* background-color: #dc2c2c;; */
   background: rgba(111, 111, 111, 0.3);
 }
 @media (max-width: 350px) {
@@ -339,7 +322,7 @@ footer {
 }
 @media (min-width: 776px) {
   form.create-form1 {
-    width: 90% !important; /* Use !important to ensure it overrides other styles */
+    width: 90% !important; 
   }
   .form-group {
     margin-right: 40px;
@@ -352,7 +335,6 @@ footer {
 }
 
 @media (min-width: 100px) {
-  /* Apply width: 100% to form elements on small screens and above */
   #paintball-player-img {
     width: 100%;
   }
@@ -375,13 +357,13 @@ footer {
   height: 50px;
   margin-right: 10px;
   background-image: url("../public/paintballImages/Photoroom-20240219_222438\ \(1\).png");
-  background-size: cover; /* Optional: adjust as needed */
+  background-size: cover; 
   border-radius: 50%;
   filter: brightness(0.8);
 }
 .header {
   position: sticky;
-  top: 0; /* Stick the navbar to the top of the page */
-  z-index: 1000; /* Ensure the navbar stays on top of other content */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+  top: 0; 
+  z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
