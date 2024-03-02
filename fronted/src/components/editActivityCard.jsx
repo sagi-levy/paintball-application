@@ -122,7 +122,6 @@ const EditActivityCard = () => {
     },
   });
   
-  console.log(Object.keys(form.errors));
   return (
     <>
       <PageHeader title={<h1 className="pt-5">edit card page</h1>} />

@@ -24,7 +24,6 @@ export function logOut() {
 export function getUser() {
   try {
     const token = getJwt();
-    console.log("token:   ", token);
     return jwtDecode(token);
   } catch {
     return null;

@@ -140,7 +140,6 @@ const CreateActivityCard = () => {
       form.values.activityDate,
       tasksTimes
     );
-    console.log("Input time is valid.");
   } catch (error) {
     console.error(error.message);
   }

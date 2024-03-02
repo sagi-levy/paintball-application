@@ -14,7 +14,6 @@ const ActivityCardComponent = ({
   activityImage,
   activityTime,
 }) => {
-  console.log("user id is :", user_id);
   return (
     <>
       <div className="col-md-4 col-12" key={_id} >
