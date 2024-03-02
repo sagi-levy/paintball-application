@@ -61,6 +61,8 @@ const SignIn = () => {
         )}
         <Input
           example={"055..."}
+          isTouched={form.touched.phoneNumber}
+
           {...form.getFieldProps("phoneNumber")}
           error={form.errors.phoneNumber}
           names="phone number"
@@ -70,6 +72,8 @@ const SignIn = () => {
 
         <Input
           example={"strong"}
+          isTouched={form.touched.password}
+
           {...form.getFieldProps("password")}
           error={form.errors.password}
           names="password"

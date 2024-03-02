@@ -48,6 +48,8 @@ const SignUp = () => {
 
         <Input
         example={"John doe"}
+        isTouched={form.touched.name}
+
           {...form.getFieldProps("name")}
           type="text"
           names="name"
@@ -56,6 +58,8 @@ const SignUp = () => {
         />
         <Input
         example={"055.."}
+        isTouched={form.touched.phoneNumber}
+
           {...form.getFieldProps("phoneNumber")}
           type="text"
           names="phone number"
@@ -64,6 +68,8 @@ const SignUp = () => {
         />
         <Input
         example={"stronspass"}
+        isTouched={form.touched.password}
+
           {...form.getFieldProps("password")}
           type="password"
           names="password"

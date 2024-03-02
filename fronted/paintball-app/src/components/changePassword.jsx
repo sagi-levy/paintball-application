@@ -86,6 +86,8 @@ const ChangePassword = () => {
         )}
         <Input
           example={"strong password"}
+          isTouched={form.touched.oldPassword}
+
           {...form.getFieldProps("oldPassword")}
           type="password"
           names="old password"
@@ -94,6 +96,8 @@ const ChangePassword = () => {
         />
         <Input
           example={"strong password"}
+          isTouched={form.touched.newPassword}
+
           {...form.getFieldProps("newPassword")}
           type="password"
           names="new password"
@@ -102,6 +106,8 @@ const ChangePassword = () => {
         />
         <Input
           example={"strong password"}
+          isTouched={form.touched.confirmNewPassword}
+
           {...form.getFieldProps("confirmNewPassword")}
           type="password"
           name="confirm new password"

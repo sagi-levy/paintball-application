@@ -66,7 +66,7 @@ const CreateActivityCard = () => {
                 activityTime,
                 activityDate,
               }))
-          ); 
+          );
     } catch (error) {
       console.error(error.message);
     }
@@ -170,7 +170,8 @@ const CreateActivityCard = () => {
           <div className="alert alert-danger">{errorApiRequest}</div>
         )}
         <Input
-        example={"paintball"} 
+          example={"paintball"}
+          isTouched={form.touched.activityName}
           onChange={form.handleChange}
           error={form.errors.activityName}
           names="activity name"
@@ -180,8 +181,10 @@ const CreateActivityCard = () => {
         />
 
         <Input
-        example={"birthday party"}
+          example={"birthday party"}
           onChange={form.handleChange}
+          isTouched={form.touched.activityDescription}
+
           error={form.errors.activityDescription}
           names="activity description"
           type="text"
@@ -189,8 +192,10 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityDescription")}
         />
         <Input
-        example={"12/12/2023"}
+          example={"12/12/2023"}
           onChange={form.handleChange}
+          isTouched={form.touched.activityDate}
+
           error={form.errors.activityDate}
           names="activity date"
           type="date"
@@ -198,8 +203,10 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityDate")}
         />
         <Input
-        example={"12:00"}
+          example={"12:00"}
           onChange={form.handleChange}
+          isTouched={form.touched.activityTime}
+
           error={form.errors.activityTime}
           names="activity time"
           type="time"
@@ -207,16 +214,20 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityTime")}
         />
         <Input
-        example={"image url"}
+          example={"image url"}
           onChange={form.handleChange}
+          isTouched={form.touched.activityImage}
+
           error={form.errors.activityImage}
           names="activity image"
           type="text"
           id="activityImage"
         />
         <Input
-        example={"kfar sava"}
+          example={"kfar sava"}
           onChange={form.handleChange}
+          isTouched={form.touched.activityAddress}
+
           error={form.errors.activityAddress}
           names="activity Address"
           type="text"
@@ -224,8 +235,10 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("activityAddress")}
         />
         <Input
-        example={"John Doe"}
+          example={"John Doe"}
           onChange={form.handleChange}
+          isTouched={form.touched.bizUserName}
+
           error={form.errors.bizUserName}
           names="User Name"
           type="text"
@@ -233,8 +246,10 @@ const CreateActivityCard = () => {
           {...form.getFieldProps("bizUserName")}
         />
         <Input
-        example={"0541234567"}
+          example={"0541234567"}
           onChange={form.handleChange}
+          isTouched={form.touched.phoneNumber}
+
           error={form.errors.phoneNumber}
           names="phone Number"
           type="text"

@@ -88,10 +88,10 @@ const Home = () => {
                   />
                   <h3 className="text-d-sm-none">
                     Hello and welcome to the home page of the Paintball Israel
-                    website. In order to get more details, watch a video of
-                    activities and proceed to determine the date of the
-                    activity, you must sign in to the website. in order to
-                    create activities, sign in as admin
+                    website. You can create your future activity in the form
+                    under. In order to edit and make changes you will need to
+                    sign in to the website. Pay attention, your activity will
+                    get into the calendar only after paying.
                   </h3>{" "}
                 </div>
 
