@@ -1,4 +1,5 @@
-const Input = ({ error,isTouched, names, type,example, ...rest }) => {
+const 
+Input = ({ error,isTouched, names, type,example, ...rest }) => {
   return (
     <div>
     <div className="form-group">
